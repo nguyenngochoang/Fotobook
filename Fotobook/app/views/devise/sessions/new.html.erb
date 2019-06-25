@@ -1,0 +1,34 @@
+ <div class="logmethod container-fluid mt-2">
+        <div class="rounded border border-dark w-25 d-flex justify-content-center logmethod">
+        <%= link_to image_tag("google.png",class:"rounded-circle img-fluid logo", alt:"Google"), root_path, {class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
+        <%= link_to image_tag("logo-facebook.png",class:"rounded-circle img-fluid logo", alt:"Facebook"),root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"}  %>
+        <%= link_to image_tag("Twitter.png", class:"rounded-circle img-fluid logo", alt:"Twitter"), root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
+        </div>
+    </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name),:html =>{class:"w-25 log text-white my-lg-2"}) do |f| %>
+        <div class="col text-center">
+            <%= image_tag('user.png',class:"w-25 h-25 img-fluid mt-1",alt:"123") %>
+        </div>
+
+        <div class="field py-2 px-2">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"form-control" %><br/>
+           <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "current-password",class:"form-control" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field text-center">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="col text-center mt-3 actions">
+          <%= f.submit "Log in",class:"btn btn-primary btn-md mb-3 logbtn2" %>
+        </div>
+<% end %>
+<div class="text-center">
+  <%= render "devise/shared/links" %>
+</div>
+

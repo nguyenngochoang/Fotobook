@@ -1,0 +1,22 @@
+.logmethod{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.log{
+    background-color: #a6a6a6;
+    margin: auto;
+    width: fit-content;
+}
+
+.logbtn2{
+    position: relative;
+}
+
+.logo:hover{
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+    transition-duration: 2s;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fotobook</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-primary py-0">
+        <a class="navbar-brand ml-5 text-white font-weight-bold" href="#">Fotobook</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
+            <form class="form-inline my-2 my-lg-0 w-100">
+                <input class="form-control mr-sm-2 h-25 w-50" type="text" placeholder="Search photo/album"
+                    aria-label="Search">
+            </form>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none'  %>
+
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
