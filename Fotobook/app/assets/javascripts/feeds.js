@@ -3,30 +3,15 @@ $(document).ready(function () {
     $(".hidethis").hide();
 
 
-    // animation for button logout
-    var stopAnimation = false;
-    $(".logoutbtn").mouseover(
-        function animation() {
-            if (stopAnimation) {
-                stopAnimation = false;
-            }
-            else {
-
-                $(".logoutbtn").animate({ opacity: "-=0.5" }, "slow");
-                $(".logoutbtn").animate({ opacity: "+=0.5" }, "slow", animation);
-            }
-        });
-
-    $(".logoutbtn").mouseout(function () {
-        stopAnimation = true;
-    });
-
-    // end of logout aninmations
-
     //heart animation for love bttuon
-    $(".HeartAnimation").click(function () {
+    $(".HeartAnimation").click(function(e) {
         $(this).toggleClass("animate");
+        preventDefault();
+
+
     });
+
+
     //end of heart animation
 
 
@@ -64,7 +49,7 @@ $(document).ready(function () {
         var title =  $(this).next().find(".row-text").children("h5").text();
         $(".modal-title").text(title);
         $(".modal-footer > p").text(text);
-        $('.modal').modal("toggle");
+        jQuery('.modal').modal("toggle");
         index = arr.indexOf(backgroundUrl)
 
     });
@@ -105,6 +90,21 @@ $(document).ready(function () {
             $thisdiv.show();
             $thisdiv=$thisdiv.next();
 
+
+        }
+    });
+
+    $(".follow-button").on("click",function(){
+        if($(this).text()=="+ Follow"){
+            $(this).text("Following");
+            $(this).css("backgroundImage","linear-gradient(to right, #fe8c00 51%, #f83600 100%)");
+            preventDefault();
+        }
+        else{
+            $(this).text("+ Follow");
+            $(this).css("backgroundImage","");
+            $(this).css("backgroundColor","#ffffff");
+            preventDefault();
 
         }
     })

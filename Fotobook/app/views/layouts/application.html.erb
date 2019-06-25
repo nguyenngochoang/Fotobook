@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'login_signup' %>
   </head>
 
   <body>
@@ -24,7 +25,16 @@
             </form>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none'  %>
+                    <% if user_signed_in? %>
+                       <div class="input-group w-25 h-25 userNavBar">
+                            <%= image_tag 'default.png',alt:'default',class:"py-0  userava" %>
+                            <span class="align-self-center mx-2 text-white">Hoang Nguyen</span>
+                        </div>
+                       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
+
+                    <% end %>
+
+
 
                 </li>
             </ul>
@@ -33,4 +43,6 @@
     </nav>
     <%= yield %>
   </body>
+
+
 </html>

@@ -1,0 +1,13 @@
+picture_link:string (if users upload them, save it on db and create a link)
+
+user:references (author)
+
+status:text
+
+
+time:date
+like:integer
+
+
+
+

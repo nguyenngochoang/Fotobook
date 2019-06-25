@@ -1,0 +1,207 @@
+*{
+    font-family: 'Open Sans', sans-serif !important;
+}
+.userava {
+    height: 35px;
+    width: 35px;
+}
+.showNav{
+    position: relative;
+}
+
+.userNavBar{
+    position: absolute;
+    right: 20px;
+    top : 2px;
+    bottom: 10px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: #e7e7e7;
+}
+
+.body {
+    margin-top: 50px;
+}
+
+.HeartAnimation {
+    background-image: url('/assets/web_heart_animation.png');
+    background-repeat: no-repeat;
+    background-size: 2900%;
+    background-position: left;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    margin: 0px 0px -25px -20px;
+}
+
+.animate {
+    animation: heart-burst .8s steps(28) forwards;
+}
+
+@keyframes heart-burst {
+    0% {
+        background-position: left
+    }
+    100% {
+        background-position: right
+    }
+}
+
+.container.body {
+    width: 100vh !important;
+    min-width: 100%;
+}
+
+.responsiveimg {
+    width: 100%;
+    height: 100%;
+}
+
+.row{
+    height: fit-content;
+
+}
+
+.row-text{
+    margin:50px 0px 0px 10px;
+    height: 10em;
+    overflow: auto;
+}
+
+.card-text{
+    overflow: scroll;
+}
+
+.mid {
+    position: relative;
+    height: auto;
+    width: 100%;
+}
+
+.likesspan {
+    margin: 0px 0px 0px -40px;
+}
+
+.card-body {
+    position: relative;
+    margin-top:50px;
+}
+
+.card{
+    border: none;
+}
+
+.content{
+    border: #c9c7c7 solid 1px;
+    background-color: #e7e7e7;
+}
+.bot-element {
+    position: absolute;
+    bottom: 10px;
+}
+
+.bot-element-text {
+    position: absolute;
+    left: 70px;
+    bottom: 3px;
+    font-size: 14px;
+}
+
+hr{
+    position: absolute;
+    border: 0;
+    border-top: 3px solid #c9c7c7;
+    bottom: 10px;
+    width: 95%;
+}
+
+.date{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 12px;
+}
+.userInfo{
+    position: absolute;
+    top:0px;
+    left: 20px;
+}
+.userInfo a{
+   margin:10px 0px 0px 5px;
+}
+
+.img{
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    height: auto;
+    min-height: 20em;
+    position: relative;
+
+}
+.img:hover{
+    cursor: alias;
+}
+
+.img >img{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.col-lg-10{
+    background-color: white;
+}
+
+.content p{
+    margin-top: -20px;
+}
+
+.modal-body > img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.next:hover,.prev:hover{
+    cursor: alias;
+}
+
+.follow-button {
+	background-color:#ffffff;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #fc8200;
+	display:inline-block;
+	cursor:pointer;
+	color:#033a9f;
+	font-family:Arial;
+	font-size:10px !important;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #fc8200;
+    width: 60px;
+    height: 20px;
+    position: absolute;
+    top: 8px;
+    right:1px;
+    padding : 1px 0px 0px 10px;
+
+}
+.follow-button:hover {
+	background-color:#fc8200;
+}
+.follow-button:active {
+	position: absolute;
+	right: 5px;
+}

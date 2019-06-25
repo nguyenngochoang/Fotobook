@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  picture_link: MyString
+  status_title: MyString
+  status: MyText
+  time: 2019-06-25
+  like: 1
+  user: one
+
+two:
+  picture_link: MyString
+  status_title: MyString
+  status: MyText
+  time: 2019-06-25
+  like: 1
+  user: two

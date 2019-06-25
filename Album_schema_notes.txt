@@ -1,0 +1,5 @@
+name :string
+
+like:integer
+
+time:date
