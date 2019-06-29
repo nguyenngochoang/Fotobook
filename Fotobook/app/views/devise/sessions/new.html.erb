@@ -27,7 +27,9 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-
+        <%= content_tag(:div, flash[:error], :id => "flash_error", :class => "text-danger small ml-3") if flash[:error] %>
+        <%= content_tag(:div, flash[:notice], :id => "flash_notice", :class => "text-danger small ml-3") if flash[:notice] %>
+        <%= content_tag(:div, flash[:alert], :id => "flash_alert", :class => "text-danger small ml-3") if flash[:alert] %>
         <div class="col text-center mt-3 actions">
           <%= f.submit "Log in",class:"btn btn-primary btn-md mb-3 logbtn2" %>
         </div>
