@@ -1,0 +1,78 @@
+.rounded-circle {
+  max-width: 100%;
+  max-height: 100%;
+  width: 200px;
+  height: 200px;
+}
+
+.body {
+  min-width: 100vw;
+  background-color: #F2F3F5;
+}
+.mid{
+  background-color: white;
+}
+
+.gocenter{
+  margin-left: 150px;
+}
+
+.following-btn {
+  background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+  border-radius: 28px;
+  border: 1px solid #fc8200;
+  display: inline-block;
+  cursor: pointer;
+  color: #033a9f;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fc8200;
+  width: 60px;
+  height: 20px;
+  padding: 1px 0 0 8px;
+}
+
+.following-btn:hover {
+  text-decoration: none;
+}
+
+.username {
+  font-size: 40px;
+}
+
+.userdiv ul {
+  margin: -10px 0 0 -10px;
+}
+
+.imgrow {
+  height: auto;
+}
+
+.usercard {
+  width: 150px;
+  height: 100%;
+  border: none;
+  position: relative;
+}
+
+.card-img-top {
+  height: 150px !important;
+}
+
+.card-body {
+  font-size: 10px;
+}
+
+.photonums {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  background-color: rgba(245, 245, 245, 0.4);
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+}

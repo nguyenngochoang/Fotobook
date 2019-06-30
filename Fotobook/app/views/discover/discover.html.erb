@@ -1,20 +1,9 @@
-    <div class="container body">
-        <div class="row">
-            <div class="col-lg-2 col-12">
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                    <%= link_to 'Feeds', root_path,method: :get,class:"nav-link " %>
-                    </li>
-                    <li class="nav-item">
-                    <%= link_to 'Discover', discover_discover_path,method: :get,class:"nav-link active" %>
-                    </li>
-                </ul>
-            </div>
+
             <div class="col-lg-10 col-12 mid">
                 <div class="text-center mt-2">
                         <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
-                                <%=button_tag 'Photo',type: 'button',class:"btn btn-outline-primary"%>
-                                <%=button_tag 'Album',type: 'button',class:"btn btn-outline-primary"%>
+                               <%= button_tag "Photo", class: "btn btn-outline-primary pa",method: :get %>
+                                <%= button_tag "Album", class: "btn btn-outline-primary pa",id:"album",method: :get %>
                         </div>
                 </div>
                 <div class="container">
@@ -199,8 +188,9 @@
                     <!-- end of row 2 -->
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="col-lg-1 col-12"></div>
+
+
 
     <!-- Modal for showing picture -->
       <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">

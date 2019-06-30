@@ -150,7 +150,6 @@ hr {
 }
 .follow-button {
 	background-color: white;
-	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
 	border-radius: 28px;
 	border: 1px solid #fc8200;
 	display: inline-block;
@@ -159,7 +158,6 @@ hr {
 	font-family: Arial;
 	font-size: 10px !important;
 	text-decoration: none;
-	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 	text-shadow: 0 1px 0 #fc8200;
 	width: 60px;
 	height: 20px;

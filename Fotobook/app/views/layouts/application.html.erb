@@ -26,10 +26,9 @@
             </form>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-
                        <div class="input-group w-25 h-25 userNavBar">
                             <%= image_tag 'default.png',alt:'default',class:"py-0  userava" %>
-                            <span class="align-self-center mx-2 text-white">Hoang Nguyen</span>
+                            <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
                         </div>
                        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
 
@@ -42,7 +41,24 @@
 
         </div>
     </nav>
-    <%= yield %>
+
+
+<div class="container body">
+        <div class="row">
+            <div class="col-lg-1 col-12">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                    <%= link_to 'Feeds', root_path,method: :get,class:"nav-link active" %>
+                    </li>
+                    <li class="nav-item">
+                    <%= link_to 'Discover', discover_discover_path,method: :get,class:"nav-link " %>
+                    </li>
+                </ul>
+            </div>
+             <%= yield %>
+</div>
+
+
   </body>
 
 
