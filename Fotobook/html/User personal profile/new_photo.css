@@ -1,0 +1,19 @@
+.body {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #F2F3F5;
+}
+
+.mid {
+  margin-top:20px;
+  background-color: white;
+  min-height: 100vh;
+
+}
+hr{
+  background-color: #eee;
+    border: 0 none;
+    color: #eee;
+    height: 3px;
+}
+

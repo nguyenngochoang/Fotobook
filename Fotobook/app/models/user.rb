@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :albums
 
   validates :first_name, :last_name, presence: true, length: { maximum: 25, too_long: "25 characters are maximum allowed!" }
-  validates :email, length: { maximum: 500, too_long: "255 characters are maximum allowed!" }
+  validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }
 end

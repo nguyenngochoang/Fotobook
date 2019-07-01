@@ -1,0 +1,195 @@
+.rounded-circle {
+  max-width: 100%;
+  max-height: 100%;
+  width: 200px;
+  height: 200px;
+}
+
+.body {
+  min-width: 100vw;
+  background-color: #F2F3F5;
+}
+
+.mid {
+  background-color: white;
+}
+
+.gocenter {
+  margin-left: 150px;
+}
+
+.edit-btn {
+  background-color: white;
+  border-radius: 28px;
+  border: 1px solid #033a9f;
+  display: inline-block;
+  cursor: pointer;
+  color: #033a9f;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  width: 60px;
+  height: 20px;
+  padding: 1px 0 0 6px;
+}
+
+.edit-btn:hover {
+  text-decoration: none;
+  background-color: #033a9f;
+  color: white;
+}
+
+.username {
+  font-size: 40px;
+}
+
+.userdiv ul {
+  margin: -10px 0 0 -10px;
+}
+
+.imgrow {
+  height: auto;
+}
+
+.usercard {
+  width: 150px;
+  height: 100%;
+  border: none;
+  position: relative;
+}
+
+.card-img-top {
+  height: 150px !important;
+}
+
+.card-body {
+  font-size: 10px;
+}
+
+.photonums {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  background-color: rgba(245, 245, 245, 0.4);
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  z-index: 3;
+}
+
+.albumThumbnail {
+  position: relative;
+}
+
+.firstimg {
+  position: absolute;
+  z-index: 2;
+}
+
+.secondimg {
+  -webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+  z-index: 1;
+}
+
+.thirdimg {
+  position: absolute;
+  top: 2px;
+  -webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+  z-index: 0;
+}
+
+.lockdiv {
+  z-index: 3;
+  position: absolute;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  right: 2px;
+}
+
+.lock {
+  width: 70%;
+  height: 70%;
+  margin-bottom: 5px;
+}
+
+.paEdit {
+  position: absolute;
+  top: 120px;
+  right: 5px;
+  background-color: rgba(57, 62, 69, 0.2);
+  width: 60px;
+  height: 20px;
+  font-size: 14px;
+  padding: 0 0 0 18px;
+  text-decoration: none;
+  color: white;
+  border-radius: 28px;
+  z-index: 3;
+
+}
+
+.paEdit:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.addPhoto-btn {
+  float: right;
+  background-color: #04570a;
+  border-radius: 28px;
+  border: 1px solid #04570a;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  width: 70px;
+  height: 20px;
+  padding: 1px 0 0 10px;
+}
+.addPhoto-btn:hover{
+  text-decoration: none;
+  color: white;
+}
+.photonums {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  background-color: rgba(245, 245, 245, 0.4);
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  z-index: 3;
+}
+.albumThumbnail{
+  position: relative;
+}
+
+.firstimg{
+  position: absolute;
+  z-index: 2;
+}
+
+.secondimg{
+  -webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+  z-index: 1;
+}
+.thirdimg{
+  position: absolute;
+  top:2px;
+  -webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+  z-index: 0;
+}

@@ -31,19 +31,12 @@
                             <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
                         </div>
                        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
-
-                    <% end %>
-
-
-
                 </li>
             </ul>
 
         </div>
     </nav>
-
-
-<div class="container body">
+    <div class="container body">
         <div class="row">
             <div class="col-lg-1 col-12">
                 <ul class="nav nav-pills flex-column">
@@ -55,6 +48,7 @@
                     </li>
                 </ul>
             </div>
+<% end %>
              <%= yield %>
 </div>
 
