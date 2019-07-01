@@ -17,5 +17,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require welcome
+//= require users
 //= require_tree .

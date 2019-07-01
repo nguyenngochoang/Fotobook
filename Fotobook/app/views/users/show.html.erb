@@ -1,0 +1,148 @@
+<div class="col-lg-10 col-12 us mid">
+        <div class="row  us gocenter">
+          <div id="col-lg-4 col-12 useravatar inline-block">
+           <%= image_tag 'profile/4k-ultra-hd-abstract-nebula-space-creative-galaxy-background_nybzvmxi__F0000.png',alt:"Sample image",class:"us rounded-circle" %>
+          </div>
+          <div class="col-lg-8 col-12 inline-block ml-2 us userdiv">
+            <a href="#" class="us edit-btn">Edit Profile</a>
+            <p class="font-weight-bolder us username"><%="#{@user.first_name} #{@user.last_name}"%></p>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#" class="btn btn-link font-weight-bolder">108 Photos</a></li>
+              <li class="list-inline-item">|</li>
+              <li class="list-inline-item"><a href="#" class="btn btn-link disabled">43 Albums</a></li>
+              <li class="list-inline-item">|</li>
+              <li class="list-inline-item"><a href="#" class="btn btn-link disabled">22 Followings</a></li>
+              <li class="list-inline-item">|</li>
+              <li class="list-inline-item"><a href="#" class="btn btn-link disabled">13 Followers</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <a href="#" class="us addPhoto-btn font-weight-bolder">Add Photo</a>
+        <div class="row us imgrow mt-5  us gocenter container-fluid">
+          <div class="card h-100 us usercard mr-5 ">
+            <%= image_tag @user.photos.take.attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+            <div class="us lockdiv us rounded-circle text-center">
+              <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+            </div>
+            <a href="#" class="us paEdit">Edit</a>
+            <div class="us card-body text-center"> Some more card content </div>
+          </div>
+          <div class="card h-100 us usercard mr-5 ">
+             <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+              <div class="us lockdiv us rounded-circle text-center">
+               <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+              </div>
+              <a href="#" class="us paEdit">Edit</a>
+              <div class="us card-body text-center"> Some more card content </div>
+            </div>
+            <div class="card h-100 us usercard mr-5 ">
+               <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                <div class="us lockdiv us rounded-circle text-center">
+                     <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                </div>
+                <a href="#" class="us paEdit">Edit</a>
+                <div class="us card-body text-center"> Some more card content </div>
+              </div>
+              <div class="card h-100 us usercard mr-5 ">
+                 <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                  <div class="us lockdiv us rounded-circle text-center">
+                       <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+                  <a href="#" class="us paEdit">Edit</a>
+                  <div class="us card-body text-center"> Some more card content </div>
+                </div>
+                <div class="card h-100 us usercard mr-5 ">
+           <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+            <div class="us lockdiv us rounded-circle text-center">
+                 <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+            </div>
+            <a href="#" class="us paEdit">Edit</a>
+            <div class="us card-body text-center"> Some more card content </div>
+          </div>
+        </div>
+        <div class="row us imgrow mt-5  us gocenter container-fluid">
+            <div class="card h-100 us usercard mr-5 ">
+             <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+              <div class="us lockdiv us rounded-circle text-center">
+                   <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+              </div>
+              <a href="#" class="us paEdit">Edit</a>
+              <div class="us card-body text-center"> Some more card content </div>
+            </div>
+            <div class="card h-100 us usercard mr-5 ">
+               <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                <div class="us lockdiv us rounded-circle text-center">
+                     <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                </div>
+                <a href="#" class="us paEdit">Edit</a>
+                <div class="us card-body text-center"> Some more card content </div>
+              </div>
+              <div class="card h-100 us usercard mr-5 ">
+                 <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                  <div class="us lockdiv us rounded-circle text-center">
+                       <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+                  <a href="#" class="us paEdit">Edit</a>
+                  <div class="us card-body text-center"> Some more card content </div>
+                </div>
+                <div class="card h-100 us usercard mr-5 ">
+                   <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                    <div class="us lockdiv us rounded-circle text-center">
+                         <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                    </div>
+                    <a href="#" class="us paEdit">Edit</a>
+                    <div class="us card-body text-center"> Some more card content </div>
+                  </div>
+                  <div class="card h-100 us usercard mr-5 ">
+             <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+              <div class="us lockdiv us rounded-circle text-center">
+                   <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+              </div>
+              <a href="#" class="us paEdit">Edit</a>
+              <div class="us card-body text-center"> Some more card content </div>
+            </div>
+          </div>
+          <div class="row us imgrow mt-5  us gocenter container-fluid">
+              <div class="card h-100 us usercard mr-5 ">
+               <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                <div class="us lockdiv us rounded-circle text-center">
+                     <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                </div>
+                <a href="#" class="us paEdit">Edit</a>
+                <div class="us card-body text-center"> Some more card content </div>
+              </div>
+              <div class="card h-100 us usercard mr-5 ">
+                 <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                  <div class="us lockdiv us rounded-circle text-center">
+                       <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+                  <a href="#" class="us paEdit">Edit</a>
+                  <div class="us card-body text-center"> Some more card content </div>
+                </div>
+                <div class="card h-100 us usercard mr-5 ">
+                   <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                    <div class="us lockdiv us rounded-circle text-center">
+                         <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                    </div>
+                    <a href="#" class="us paEdit">Edit</a>
+                    <div class="us card-body text-center"> Some more card content </div>
+                  </div>
+                  <div class="card h-100 us usercard mr-5 ">
+                     <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                      <div class="us lockdiv us rounded-circle text-center">
+                           <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                      </div>
+                      <a href="#" class="us paEdit">Edit</a>
+                      <div class="us card-body text-center"> Some more card content </div>
+                    </div>
+                    <div class="card h-100 us usercard mr-5 ">
+               <%= image_tag 'profile/ultra.jpeg',alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+                <div class="us lockdiv us rounded-circle text-center">
+                     <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                </div>
+                <a href="#" class="us paEdit">Edit</a>
+                <div class="us card-body text-center"> Some more card content </div>
+              </div>
+            </div>
+      </div>

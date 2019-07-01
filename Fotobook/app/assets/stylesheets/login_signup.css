@@ -24,3 +24,6 @@
 .userNavBar:hover{
     cursor: pointer;
 }
+.link:hover{
+    text-decoration: none;
+}

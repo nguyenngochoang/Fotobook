@@ -27,9 +27,11 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                        <div class="input-group w-25 h-25 userNavBar">
+                       <%= link_to user_path(current_user),:class=>"link" do%>
                             <%= image_tag 'default.png',alt:'default',class:"py-0  userava" %>
                             <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
                         </div>
+                        <%end%>
                        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
                 </li>
             </ul>
