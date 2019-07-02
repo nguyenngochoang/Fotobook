@@ -1,0 +1,44 @@
+<%if mode=="photo"%>
+  <%if user.photos.any? %>
+      <div class="row us imgrow mt-5  us gocenter container-fluid photo">
+        <%for j in (0...get_photos_count(user))%>
+            <div class="card h-100 us usercard mr-5 ">
+              <%= image_tag get_photos_link(user)[j].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+              <div class="us lockdiv us rounded-circle text-center">
+                <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+              </div>
+              <a href="#" class="us paEdit">Edit</a>
+              <div class="us card-body text-center"> Some more card content </div>
+            </div>
+
+        <%end%>
+      </div>
+  <%else%>
+    <div class="text-center us-nophoto text-black-50">
+        <p>You don't have any Photos. Upload one ?</p>
+    </div>
+  <%end%>
+<% elsif mode=="album" %>
+  <%if user.albums.any?%>
+    <div class="row us imgrow mt-5  gocenter container-fluid d-none ab">
+        <%for j in (0...get_albums_count)%>
+            <div class="card h-100 us usercard mr-5 ">
+              <div class="us albumThumbnail">
+                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
+                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
+                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
+                <div class="us rounded-circle photonums text-center"><%="#{user.albums[j].photos.count} Photos"%></div>
+              </div>
+
+              <div class="us lockdiv us rounded-circle text-center">
+                <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+              </div>
+              <a href="#" class="us paEdit">Edit</a>
+              <div class="us card-body text-center"> Some more card content </div>
+            </div>
+
+        <%end%>
+      </div>
+  <%end%>
+
+<%end%>

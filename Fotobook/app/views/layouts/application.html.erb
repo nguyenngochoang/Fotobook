@@ -4,8 +4,7 @@
     <title>Fotobook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'login_signup' %>
   </head>
@@ -26,13 +25,13 @@
             </form>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                       <div class="input-group w-25 h-25 userNavBar">
-                       <%= link_to user_path(current_user),:class=>"link" do%>
+                    <div class="input-group w-25 h-25 userNavBar">
+                        <%= link_to me_path,:class=>"link" do%>
                             <%= image_tag 'default.png',alt:'default',class:"py-0  userava" %>
                             <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
-                        </div>
+                    </div>
                         <%end%>
-                       <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
+                        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
                 </li>
             </ul>
 
@@ -42,12 +41,22 @@
         <div class="row">
             <div class="col-lg-1 col-12">
                 <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                    <%= link_to 'Feeds', root_path,method: :get,class:"nav-link active" %>
-                    </li>
-                    <li class="nav-item">
-                    <%= link_to 'Discover', discover_discover_path,method: :get,class:"nav-link " %>
-                    </li>
+                    <% if current_page?(discover_path)%>
+                        <li class="nav-item">
+                            <%= link_to 'Feeds', root_path,method: :get,class:"nav-link " %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Discover', discover_path,method: :get,class:"nav-link active" %>
+                        </li>
+                    <%else %>
+                        <li class="nav-item">
+                            <%= link_to 'Feeds', root_path,method: :get,class:"nav-link active" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to 'Discover', discover_path,method: :get,class:"nav-link" %>
+                        </li>
+                    <%end%>
+
                 </ul>
             </div>
 <% end %>

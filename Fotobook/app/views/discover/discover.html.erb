@@ -2,7 +2,7 @@
             <div class="col-lg-10 col-12 mid">
                 <div class="text-center mt-2">
                         <div class="btn-group btn-group-lg " role="group" aria-label="Basic example">
-                               <%= button_tag "Photo", class: "btn btn-outline-primary pa",method: :get %>
+                               <%= button_tag "Photo", class: "btn btn-outline-primary active pa",method: :get %>
                                 <%= button_tag "Album", class: "btn btn-outline-primary pa",id:"album",method: :get %>
                         </div>
                 </div>
@@ -16,7 +16,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6 col-12 py-0 img">
-                                            <%= image_tag 'uploads/pnggrad16rgb.png',alt:"sample1",class:"innerImg"%>
+                                             <%= render partial: 'users/thumbnail',locals:{link:"uploads/pnggrad16rgb.png", mode:"photo"} %>
+                                                <%= render partial: 'users/thumbnail',locals:{mode:"album",link:"uploads/pnggrad16rgb.png"} %>
                                             </div>
                                             <div class="col-lg-6 col-12 content">
                                                 <div class="userInfo ">
@@ -25,7 +26,7 @@
                                                 </div>
                                                  <%= content_tag("a", '+ Follow' ,class:"follow-button") %>
                                                 <div class="row row-text">
-                                                    <h5 class="card-title">Card title</h5><br><br>
+                                                    <h5 class="card-title">Ahihi</h5><br><br>
                                                     <p>
                                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                                         Dolorum,
@@ -59,7 +60,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6 col-12 py-0 img">
-                                            <%= image_tag 'uploads/sample2.jpeg',alt:"sample2",class:"innerImg"%>
+                                            <%= render partial: 'users/thumbnail',locals:{link:"uploads/sample2.jpeg", mode:"photo"} %>
+                                                <%= render partial: 'users/thumbnail',locals:{mode:"album",link:"uploads/sample2.jpeg"} %>
                                             </div>
                                             <div class="col-lg-6 col-12 content">
                                                 <div class="userInfo ">
@@ -106,7 +108,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6 col-12 py-0 img">
-                                            <%= image_tag 'uploads/sample3.jpg',alt:"sample1",class:"innerImg"%>
+                                             <%= render partial: 'users/thumbnail',locals:{link:"uploads/sample3.jpg", mode:"photo"} %>
+                                                <%= render partial: 'users/thumbnail',locals:{mode:"album",link:"uploads/sample3.jpg"} %>
                                             </div>
                                             <div class="col-lg-6 col-12 content">
                                                 <div class="userInfo ">
@@ -149,7 +152,8 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-lg-6 col-12 py-0 img">
-                                            <%= image_tag 'uploads/sample4.jpg',alt:"sample2",class:"innerImg"%>
+                                           <%= render partial: 'users/thumbnail',locals:{link:"uploads/sample4.jpg", mode:"photo"} %>
+                                                <%= render partial: 'users/thumbnail',locals:{mode:"album",link:"uploads/sample4.jpg"} %>
                                             </div>
                                             <div class="col-lg-6 col-12 content">
                                                 <div class="userInfo ">

@@ -10,7 +10,7 @@
 
 //urls
 // $url_0: url(/assets/web_heart_animation.png);
-
+// -------------------------------------------------feeds.css -------------------------------------
 * {
 	font-family:Open Sans, sans-serif !important;
 }
@@ -36,6 +36,7 @@ body {
 }
 .body {
 	margin-top: 50px;
+	min-height: 100vh;
 }
 .HeartAnimation {
 	background-image: url(/assets/web_heart_animation.png);
@@ -90,6 +91,7 @@ body {
 }
 .content {
 	border: #c9c7c7 solid 1px;
+	border-left: none;
 	background-color:  #e7e7e7;
 	p {
 		margin-top: -20px;
@@ -127,6 +129,9 @@ hr {
 	}
 }
 .img {
+	border: #c9c7c7 solid 1px;
+	border-right: none;
+	background-color:  #e7e7e7;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	height: auto;
@@ -136,6 +141,15 @@ hr {
 		cursor: alias;
 	}
 	> img {
+		height: 70%;
+		width: 80%;
+		position: absolute;
+		top: 40px;
+		left: 30px;
+		right: 0;
+		bottom: 0;
+	}
+	> .single{
 		height: 100%;
 		width: 100%;
 		position: absolute;
@@ -145,6 +159,22 @@ hr {
 		bottom: 0;
 	}
 }
+
+.feed-fistimg{
+	z-index: 3;
+}
+
+.feed-secondimg{
+	z-index: 2;
+	-webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+}
+.feed-thirdimg{
+	z-index: 1;
+	-webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+}
+
 .col-lg-10 {
 	background-color: white;
 }
@@ -177,6 +207,7 @@ hr {
 	width: 100vh !important;
 	min-width: 100%;
 }
+
 .modal-body > img {
 	width: 100%;
 	height: 100%;
@@ -187,6 +218,11 @@ hr {
 .prev:hover {
 	cursor: alias;
 }
+
+
+
+// --------------------------------------------end of feeds.css -------------------------------------
+
 
 // ------------------------------------- userpersonal.css ---------------------------------------
 
@@ -203,11 +239,12 @@ hr {
 }
 
 .us.mid {
-  background-color: white;
+	background-color: white;
+	min-height: 100vh;
 }
 
 .us.gocenter {
-  margin-left: 150px;
+  margin-left: 100px;
 }
 
 .us.edit-btn {
@@ -258,42 +295,42 @@ hr {
   margin-top:10px;
 }
 
-// .us.photonums {
-//   display: none;
-//   position: absolute;
-//   top: 20%;
-//   left: 23%;
-//   background-color: rgba(245, 245, 245, 0.4);
-//   height: 80px;
-//   width: 80px;
-//   text-align: center;
-//   vertical-align: middle;
-//   line-height: 80px;
-//   z-index: 3;
-// }
+.us.photonums {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  background-color: rgba(245, 245, 245, 0.4);
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  z-index: 3;
+}
 
-// .albumThumbnail {
-//   position: relative;
-// }
+.us.albumThumbnail {
+  position: relative;
+}
 
-// .firstimg {
-//   position: absolute;
-//   z-index: 2;
-// }
+.us.firstimg {
+  position: absolute;
+  z-index: 2;
+}
 
-// .secondimg {
-//   -webkit-transform: rotateZ(5deg);
-//   transform: rotateZ(5deg);
-//   z-index: 1;
-// }
+.us.secondimg {
+  -webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+  z-index: 1;
+}
 
-// .thirdimg {
-//   position: absolute;
-//   top: 2px;
-//   -webkit-transform: rotateZ(10deg);
-//   transform: rotateZ(10deg);
-//   z-index: 0;
-// }
+.us.thirdimg {
+  position: absolute;
+  top: 2px;
+  -webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+  z-index: 0;
+}
 
 .us.lockdiv {
   z-index: 3;
@@ -350,6 +387,13 @@ hr {
   }
 }
 
+.us-nophoto{
+	margin-top: 200px;
+	font-size: 30px;
+}
 
+.us.usertab{
+	cursor: pointer;
+}
 
 // ------------------------------------- end of userpersonal.css --------------------------------
