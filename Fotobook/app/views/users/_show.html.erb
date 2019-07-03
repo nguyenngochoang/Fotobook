@@ -7,7 +7,7 @@
             <a href="#" class="us edit-btn">Edit Profile</a>
             <p class="font-weight-bolder us username"><%="#{@user.first_name} #{@user.last_name}"%></p>
             <ul class="list-inline">
-              <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_photos_count(current_user)} Photos"%></a></li>
+              <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_all_photos(current_user).count} Photos"%></a></li>
               <li class="list-inline-item">|</li>
               <li class="list-inline-item"><a  href="#" onClick="return false;"  class="btn btn-link us usertab text-black-50"><%=" #{get_albums_count} Albums"%></a></li>
               <li class="list-inline-item">|</li>
@@ -22,5 +22,4 @@
 
         <%= render partial: 'users/usergallery',locals: {mode:"photo",user:current_user} %>
         <%= render partial: 'users/usergallery',locals: {mode:"album",user:current_user} %>
-
 

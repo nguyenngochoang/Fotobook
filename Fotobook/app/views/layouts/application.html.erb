@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Fotobook</title>
+    <%= include_gon %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -26,7 +27,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <div class="input-group w-25 h-25 userNavBar">
-                        <%= link_to me_path,:class=>"link" do%>
+                        <%= link_to me_path,method: :get,:class=>"link" do%>
                             <%= image_tag 'default.png',alt:'default',class:"py-0  userava" %>
                             <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
                     </div>

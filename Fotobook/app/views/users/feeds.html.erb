@@ -5,7 +5,6 @@
                                 <%= button_tag "Album", class: "btn btn-outline-primary pa",id:"album",method: :get %>
                         </div>
                 </div>
-                <%= render partial: 'path' %>
                 <div class="container">
                     <!-- row 1 -->
                     <div class="row">
@@ -204,10 +203,8 @@
 
 
 
-
-
-    <!-- Modal for showing picture -->
-      <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+<!-- Modal for showing picture -->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -220,7 +217,6 @@
                 <%= content_tag("a","back", class: "prev text-primary ") %>
                 <%= content_tag("a","next", class: "next float-right text-primary") %>
                 <%= image_tag ' ',alt:"image",class:"img-fluid",id:"modal-body-image" %>
-
             </div>
             <div class="modal-footer">
               <p></p>

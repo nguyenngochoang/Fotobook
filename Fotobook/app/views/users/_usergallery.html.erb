@@ -1,9 +1,9 @@
 <%if mode=="photo"%>
   <%if user.photos.any? %>
       <div class="row us imgrow mt-5  us gocenter container-fluid photo">
-        <%for j in (0...get_photos_count(user))%>
+        <%for j in (0...get_all_photos(user).count)%>
             <div class="card h-100 us usercard mr-5 ">
-              <%= image_tag get_photos_link(user)[j].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
+              <%= image_tag @arr[j].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
               <div class="us lockdiv us rounded-circle text-center">
                 <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
               </div>
@@ -23,7 +23,7 @@
     <div class="row us imgrow mt-5  gocenter container-fluid d-none ab">
         <%for j in (0...get_albums_count)%>
             <div class="card h-100 us usercard mr-5 ">
-              <div class="us albumThumbnail">
+              <div id="<%=user.albums[j].id%>", class="us albumThumbnail">
                 <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
                 <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
                 <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
@@ -39,6 +39,29 @@
 
         <%end%>
       </div>
+       <!-- Modal for showing picture -->
+<div class="us modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="us modal-body"">
+                <%= content_tag("a","back", class: "us prev text-primary ") %>
+                <%= content_tag("a","next", class: "us next float-right text-primary") %>
+                <%= image_tag ' ',alt:"image",class:"img-fluid",id:"us-modal-body-image" %>
+            </div>
+            <div class="modal-footer">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Modal for showing picture -->
+
   <%end%>
 
 <%end%>

@@ -2,7 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
 $(document).ready ->
+
   $('.pa').on 'click', ->
     if $('.pa').hasClass 'active'
       $('.pa').removeClass 'active'
@@ -43,6 +45,7 @@ $(document).ready ->
   $('.innerImg').each ->
     arr.push $(this).attr('src')
     return
+
   $('.img').on 'click', ->
     jQuery.noConflict()
     backgroundUrl = $(this).children('img').attr('src')
@@ -55,6 +58,7 @@ $(document).ready ->
     jQuery('.modal').modal 'toggle'
     index = arr.indexOf(backgroundUrl)
     return
+
   $('.next').on 'click', ->
     if index < arr.length - 1
       index = index + 1
@@ -107,7 +111,8 @@ $(document).ready ->
   $usertab.on 'click', ->
     $(this).addClass 'font-weight-bolder'
     $(this).removeClass 'text-black-50'
-    $notthis = $usertab.not(this)
+    $usertab.not(this).addClass 'text-black-50'
+    $usertab.not(this).removeClass 'font-weight-bolder'
     if $(this).text().indexOf("Album") >= 0
       $('.us.ab').removeClass('d-none')
       $('.us.photo').addClass('d-none')
@@ -115,14 +120,35 @@ $(document).ready ->
       $('.us.ab').addClass('d-none')
       $('.us.photo').removeClass('d-none')
       return
-    if $notthis.hasClass 'font-weight-bolder'
-      $notthis.removeClass 'font-weight-bolder'
-      $notthis.addClass 'text-black-50'
-      return
     return
 
+  hash_links = gon.hash_links
+  picture_id=0
+  this_id=0
 
+  $useralbum = $('.us.albumThumbnail')
+  $useralbum.on 'click',->
+    this_id = $(this).attr('id')
+    length = hash_links[this_id].length
+    $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_id]
+    jQuery('.us.modal').modal 'toggle'
+    return
 
+  $('.us.modal').on 'hidden.bs.modal', ->
+    picture_id=0
+    this_id=0
+    return
+
+  $('.us.next').on 'click', ->
+      if picture_id < hash_links.length-1
+        picture_id = picture_id + 1
+        $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_id]
+      return
+  $('.us.prev').on 'click', ->
+      if picture_id >-1
+        picture_id = picture_id-1
+        $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_id]
+      return
 return
 
 
