@@ -1,4 +1,0 @@
-db:migrate : thực hiện các migration đã được tạo nhằm thay đổi cột/bảng trong db.
-db:seed : chạy file seeds.rb để khởi tạo các data mẫu cho bảng trong db.
-db:setup : khởi tạo các bảng (load db schema, tạo data mẫu từ seeds.rb)
-db:reset : drop db hiện tại và chạy db:setup
