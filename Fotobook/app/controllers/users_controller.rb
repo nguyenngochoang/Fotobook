@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def get_album_hash(albums)
     links=[]
-    albums.map{|x| links[x.id]=x.photos.map{|y| y.attached_image}}
+    albums.map{|x| links[x.id]=x.photos.map{|y| [y.title,y.description,y.attached_image]}}
     links
   end
 
