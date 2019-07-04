@@ -1,14 +1,24 @@
 <%if mode=="photo"%>
+  <a href="#" class="us addPA-btn font-weight-bolder photo">Add Photo</a>
   <%if user.photos.any? %>
       <div class="row us imgrow mt-5  us gocenter container-fluid photo">
         <%for j in (0...get_all_photos(user).count)%>
-            <div class="card h-100 us usercard mr-5 ">
-              <%= image_tag @arr[j].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded" %>
-              <div class="us lockdiv us rounded-circle text-center">
-                <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
-              </div>
+            <%@current_photo=@arr[j]%>
+            <div data-link="<%=@current_photo.attached_image%>", class="card h-100 us usercard mr-5 thumbnail">
+              <%= image_tag @current_photo.attached_image,alt:"Card image cap",class:"us card-img-top img-fluid rounded"%>
+              <% if @current_photo.sharing_mode %>
+                  <div class="us lockdiv us rounded-circle text-center d-none ">
+                    <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+              <% else %>
+                  <div class="us lockdiv us rounded-circle text-center ">
+                    <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+              <% end %>
+
               <a href="#" class="us paEdit">Edit</a>
-              <div class="us card-body text-center"> Some more card content </div>
+              <div class="us card-body text-center"><%=@current_photo.description%></div>
+              <div class="us title text-center d-none"><%=@current_photo.title%></div>
             </div>
 
         <%end%>
@@ -19,22 +29,32 @@
     </div>
   <%end%>
 <% elsif mode=="album" %>
+  <a href="#" class="us addPA-btn font-weight-bolder ab">Add Album</a>
   <%if user.albums.any?%>
     <div class="row us imgrow mt-5  gocenter container-fluid d-none ab">
         <%for j in (0...get_albums_count)%>
             <div class="card h-100 us usercard mr-5 ">
-              <div id="<%=user.albums[j].id%>", class="us albumThumbnail">
-                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
-                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
-                <%= image_tag user.albums[j].photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
-                <div class="us rounded-circle photonums text-center"><%="#{user.albums[j].photos.count} Photos"%></div>
+              <% @current_album=get_current_album(j)%>
+              <div id="<%=@current_album.id%>", class="us thumbnail">
+                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
+                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
+                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
+                <div class="us rounded-circle photonums text-center"><%="#{@current_album.photos.count} Photos"%></div>
               </div>
-
-              <div class="us lockdiv us rounded-circle text-center">
-                <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
-              </div>
+              <% if @current_album.sharing_mode %>
+                  <div class="us lockdiv us rounded-circle text-center d-none ">
+                    <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+              <% else %>
+                  <div class="us lockdiv us rounded-circle text-center ">
+                    <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                  </div>
+              <% end %>
+                <div class="us lockdiv us rounded-circle text-center d-none">
+                  <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
+                </div>
               <a href="#" class="us paEdit">Edit</a>
-              <div class="us card-body text-center"> Some more card content </div>
+              <div class="us card-body text-center"> <%= @current_album.name%> </div>
             </div>
 
         <%end%>
@@ -49,13 +69,41 @@
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <div class="us modal-body"">
-                <%= content_tag("a","back", class: "us prev text-primary ") %>
-                <%= content_tag("a","next", class: "us next float-right text-primary") %>
-                <%= image_tag ' ',alt:"image",class:"img-fluid",id:"us-modal-body-image" %>
+            <div class="us modal-body">
+              <div id="arrowAnimleft">
+                <div class="arrowSliding left">
+                  <div class="arrow left"></div>
+                </div>
+                <div class="arrowSliding left delay1">
+                  <div class="arrow left"></div>
+                </div>
+                <div class="arrowSliding left delay2">
+                  <div class="arrow left"></div>
+                </div>
+                <div class="arrowSliding left delay3">
+                  <div class="arrow left"></div>
+                </div>
+              </div>
+
+              <div id="arrowAnimright">
+                <div class="arrowSliding right">
+                  <div class="arrow right"></div>
+                </div>
+                <div class="arrowSliding right delay1">
+                  <div class="arrow right"></div>
+                </div>
+                <div class="arrowSliding right delay2">
+                  <div class="arrow right"></div>
+                </div>
+                <div class="arrowSliding right delay3">
+                  <div class="arrow right"></div>
+                </div>
+              </div>
+
+              <%= image_tag ' ',alt:"image",class:"img-fluid",id:"us-modal-body-image" %>
             </div>
-            <div class="modal-footer">
-              <p></p>
+            <div class="us modal-footer container-fluid">
+              <p class="mr-auto"></p>
             </div>
           </div>
         </div>

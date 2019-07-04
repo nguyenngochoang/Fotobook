@@ -100,10 +100,10 @@ $(document).ready ->
 
 
 
-  $('.albumThumbnail').on 'mouseover', ->
+  $('.thumbnail').on 'mouseover', ->
     $(this).find('.photonums').stop().fadeIn 500
     return
-  $('.albumThumbnail').on 'mouseleave', ->
+  $('.thumbnail').on 'mouseleave', ->
     $(this).find('.photonums').stop().fadeOut 500
     return
 
@@ -125,15 +125,23 @@ $(document).ready ->
   hash_links = gon.hash_links
   picture_obj_id=0
   this_id=0
-  $useralbum = $('.us.albumThumbnail')
-  $useralbum.on 'click',->
-    console.log(hash_links)
+  data_link=" "
+  $userthumbnail = $('.us.thumbnail')
+  $userthumbnail.on 'click',->
     this_id = $(this).attr('id')
-    length = hash_links[this_id].length
-    $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
-    $('.modal-title').text hash_links[this_id][picture_obj_id][0]
-    $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
-    jQuery('.us.modal').modal 'toggle'
+    data_link = $(this).data('link')
+    if typeof(data_link)=='undefined'
+      length = hash_links[this_id].length
+      $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
+      $('.modal-title').text hash_links[this_id][picture_obj_id][0]
+      $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
+      jQuery('.us.modal').modal 'toggle'
+    else
+      $('#us-modal-body-image').attr 'src', data_link
+      $('.modal-title').text $(this).find('.us.title').text()
+      $('.modal-footer > p').text $(this).find('.us.card-body').text()
+      jQuery('.us.modal').modal 'toggle'
+      return
     return
 
   $('.us.modal').on 'hidden.bs.modal', ->
@@ -141,20 +149,24 @@ $(document).ready ->
     this_id=0
     return
 
-  $('.us.next').on 'click', ->
-      if picture_obj_id < hash_links[this_id].length-1
-        picture_obj_id = picture_obj_id + 1
-        $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
-        $('.modal-title').text hash_links[this_id][picture_obj_id][0]
-        $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
-      return
-  $('.us.prev').on 'click', ->
-      if picture_obj_id >0
-        picture_obj_id = picture_obj_id-1
-        $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
-        $('.modal-title').text hash_links[this_id][picture_obj_id][0]
-        $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
-      return
+  $('#arrowAnimleft').on 'click', ->
+    if picture_obj_id >0
+      picture_obj_id = picture_obj_id-1
+      $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
+      $('.modal-title').text hash_links[this_id][picture_obj_id][0]
+      $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
+    return
+
+  $('#arrowAnimright').on 'click', ->
+    if picture_obj_id < hash_links[this_id].length-1
+      picture_obj_id = picture_obj_id + 1
+      $('#us-modal-body-image').attr 'src', hash_links[this_id][picture_obj_id][2]
+      $('.modal-title').text hash_links[this_id][picture_obj_id][0]
+      $('.modal-footer > p').text hash_links[this_id][picture_obj_id][1]
+    return
+
+
+
 return
 
 

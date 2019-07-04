@@ -27,7 +27,11 @@ class UsersController < ApplicationController
   end
 
   def get_albums_count
-    @user.albums.count
+    @user.albums.size
+  end
+
+  def get_current_album(index)
+    current_album = @user.albums[index]
   end
 
   def get_album_hash(albums)
@@ -36,9 +40,12 @@ class UsersController < ApplicationController
     links
   end
 
+
+
   helper_method :get_photos_count
   helper_method :get_albums_count
   helper_method :get_all_photos
+  helper_method :get_current_album
   private
   def user_params
     params.require(:user).permit(:email,:first_name,:last_name)

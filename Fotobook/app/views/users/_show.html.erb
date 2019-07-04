@@ -7,19 +7,19 @@
             <a href="#" class="us edit-btn">Edit Profile</a>
             <p class="font-weight-bolder us username"><%="#{@user.first_name} #{@user.last_name}"%></p>
             <ul class="list-inline">
-              <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_all_photos(current_user).count} Photos"%></a></li>
+              <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_all_photos(current_user).size} Photos"%></a></li>
               <li class="list-inline-item">|</li>
               <li class="list-inline-item"><a  href="#" onClick="return false;"  class="btn btn-link us usertab text-black-50"><%=" #{get_albums_count} Albums"%></a></li>
               <li class="list-inline-item">|</li>
-              <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50">22 Followings</a></li>
+              <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{current_user.followees.size} Followings "%></a></li>
               <li class="list-inline-item">|</li>
-              <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50">13 Followers</a></li>
+              <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{current_user.followers.size} Followers"%></a></li>
             </ul>
           </div>
 
         </div>
-        <a href="#" class="us addPhoto-btn font-weight-bolder">Add Photo</a>
-
         <%= render partial: 'users/usergallery',locals: {mode:"photo",user:current_user} %>
         <%= render partial: 'users/usergallery',locals: {mode:"album",user:current_user} %>
+        <%= render partial: 'users/userfollow',locals: {mode:"following",user:current_user} %>
+        <%= render partial: 'users/userfollow',locals: {mode:"followers",user:current_user} %>
 
