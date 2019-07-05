@@ -191,11 +191,14 @@ hr {
 	text-shadow: 0 1px 0 #fc8200;
 	width: 60px;
 	height: 20px;
-	position: absolute;
-	top: 8px;
-	right: 1px;
 	padding: 1px 0 0 10px;
-	&:hover {
+
+}
+.discover-fl{
+  position: absolute;
+	top: 8px;
+  right: 1px;
+  &:hover {
 		background-color: #fc8200;
 	}
 	&:active {
@@ -571,3 +574,86 @@ hr {
   //------------------------------------ end of modal arrow effect -----------------------------
 
 // ------------------------------------- end of userpersonal.css --------------------------------
+
+// ------------------------------------- User following css --------------------------------------
+
+
+
+
+.fl.follow-button {
+  // background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+  border-radius: 28px;
+  border: 1px solid #fc8200;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fc8200;
+  width: 60px;
+  height: 20px;
+  padding: 1px 0 0 2px;
+  margin-bottom: 5px;
+  &:hover {
+		text-decoration: none;
+	}
+	&:active {
+		margin-right: 10px;
+	}
+
+}
+
+.fl.username {
+  font-size: 40px;
+}
+
+.fl.userdiv ul {
+  margin: -10px 0 0 -10px;
+}
+
+
+
+.fl.imgrow {
+  height: auto;
+}
+
+.fl.usercard {
+  width: 200px;
+  height: 100%;
+  background-color: #F2F3F5;
+  position: relative;
+}
+
+.fl.card-img-top {
+  height: 150px !important;
+}
+
+.fl.card-body {
+  font-size: 15px;
+  margin-top: -10px;
+}
+
+.fl.card-img-top {
+  height: 80px !important;
+  width: 80px;
+  margin: 5px 0 0 60px;
+}
+
+.fl.firstchild {
+  font-size: 30px;
+  color: #4287f5;
+}
+
+.fl.secondchild {
+  margin-top: -20px;
+}
+
+.fl.card-following-btn {
+  margin-bottom: 10px;
+
+}
+
+
+
+// -------------------------------------- end of User following css ------------------------------

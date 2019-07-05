@@ -1,5 +1,61 @@
-<% if mode=='followings' %>
-  
+<% if mode=='following' %>
+  <%@user_followees=user.followees%>
+  <% if @user_followees %>
+     <div class="row imgrow mt-5 gocenter container-fluid us following  tab d-none">
+          <% for i in (0...@user_followees.size)%>
+            <div class="card h-100 fl usercard mr-3 mt-3 ">
+                <%= image_tag 'profile/ultra.jpeg',alt:'sample',class:"fl card-img-top img-fluid rounded-circle" %>
+                <div class=" fl card-body text-center font-weight-bolder"><%=" #{@user_followees[i].first_name} #{@user_followees[i].last_name}"%></div>
+                <div class="row">
+                  <div class="col-lg-6 col-12">
+                      <div class="text-center ">
+                        <p class="fl firstchild font-weight-bolder"><%="#{@user_followees[i].photos.size}"%></p>
+                        <p class="fl secondchild">Photos</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-12">
+                      <div class="text-center ">
+                        <p class="fl firstchild font-weight-bolder"><%="#{get_albums_count(@user_followees[i])}"%></p>
+                        <p class="fl secondchild">Album</p>
+                      </div>
+                  </div>
+                </div>
+                <div class="fl text-center card-following-btn">
+                  <%= link_to 'Following', nil,class:"fl follow-button",onClick:"return false;" %>
+                </div>
+            </div>
+          <%end%>
+    </div>
+  <% else %>
+    <%# has no followings%>
+  <% end %>
+
 <% else %>
+  <% if user.followers.any? %>
+    <div class="d-none row imgrow mt-5 gocenter container-fluid us followers tab">
+          <div class="fl card h-100 usercard mr-3 ">
+            <%= image_tag 'profile/ultra.jpeg',alt:"Sample",class:"fl card-img-top img-fluid rounded-circle" %>
+            <div class="fl card-body text-center font-weight-bolder"> User name </div>
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="text-center ">
+                  <p class="fl firstchild font-weight-bolder">22</p>
+                  <p class="fl secondchild">Photos</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12">
+                <div class="text-center ">
+                  <p class="fl firstchild font-weight-bolder">105</p>
+                  <p class="fl secondchild">Album</p>
+                </div>
+              </div>
+            </div>
+            <div class=" fl text-center card-following-btn">
+              <%= link_to '+ Follow', nil,class:"fl follow-button",onClick:"return false;" %>
+            </div>
+          </div>
+  <% else %>
+      <%# has no followers%>
+  <% end %>
 
 <% end %>

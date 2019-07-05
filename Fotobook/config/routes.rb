@@ -10,6 +10,5 @@ Rails.application.routes.draw do
         end
     end
     get '/profiles/me', to:"users#myprofile", as:'me'
-
-
+   
 end

@@ -1,7 +1,7 @@
 <%if mode=="photo"%>
-  <a href="#" class="us addPA-btn font-weight-bolder photo">Add Photo</a>
+  <a href="#" class="us addPA-btn font-weight-bolder photo tab">Add Photo</a>
   <%if user.photos.any? %>
-      <div class="row us imgrow mt-5  us gocenter container-fluid photo">
+      <div class="row imgrow mt-5  us gocenter container-fluid photo tab">
         <%for j in (0...get_all_photos(user).count)%>
             <%@current_photo=@arr[j]%>
             <div data-link="<%=@current_photo.attached_image%>", class="card h-100 us usercard mr-5 thumbnail">
@@ -28,21 +28,22 @@
         <p>You don't have any Photos. Upload one ?</p>
     </div>
   <%end%>
-<% elsif mode=="album" %>
-  <a href="#" class="us addPA-btn font-weight-bolder ab">Add Album</a>
+<% else %>
+  <a href="#" class="us addPA-btn font-weight-bolder ab tab d-none">Add Album</a>
   <%if user.albums.any?%>
-    <div class="row us imgrow mt-5  gocenter container-fluid d-none ab">
-        <%for j in (0...get_albums_count)%>
+    <div class="row us imgrow mt-5  gocenter container-fluid d-none ab tab">
+        <%for j in (0...get_albums_count(user))%>
             <div class="card h-100 us usercard mr-5 ">
               <% @current_album=get_current_album(j)%>
+              <%@current_album_photos = @current_album.photos%>
               <div id="<%=@current_album.id%>", class="us thumbnail">
-                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
-                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
-                <%= image_tag @current_album.photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
-                <div class="us rounded-circle photonums text-center"><%="#{@current_album.photos.count} Photos"%></div>
+                <%= image_tag @current_album_photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg" %>
+                <%= image_tag @current_album_photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg" %>
+                <%= image_tag @current_album_photos[-1].attached_image,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg" %>
+                <div class="us rounded-circle photonums text-center"><%="#{@current_album_photos.count} Photos"%></div>
               </div>
               <% if @current_album.sharing_mode %>
-                  <div class="us lockdiv us rounded-circle text-center d-none ">
+                  <div class="lockdiv us rounded-circle text-center d-none">
                     <%= image_tag 'profile/lock.png',alt:"lock",class:"us lock" %>
                   </div>
               <% else %>
@@ -59,7 +60,10 @@
 
         <%end%>
       </div>
-       <!-- Modal for showing picture -->
+
+
+  <%end%>
+  <!-- Modal for showing picture -->
 <div class="us modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -109,7 +113,4 @@
         </div>
       </div>
 <!-- Modal for showing picture -->
-
-  <%end%>
-
 <%end%>

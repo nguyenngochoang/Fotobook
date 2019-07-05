@@ -88,6 +88,16 @@ $(document).ready ->
       $thisdiv.show()
       $thisdiv = $thisdiv.next()
     return
+
+  $('.follow-button').each ->
+    if $(this).text() == '+ Follow'
+      $(this).text 'Following'
+      $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
+    else
+      $(this).text '+ Follow'
+      $(this).css 'backgroundImage', ''
+      $(this).css 'backgroundColor', '#ffffff'
+    return
   $('.follow-button').on 'click', ->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
@@ -115,10 +125,16 @@ $(document).ready ->
     $usertab.not(this).removeClass 'font-weight-bolder'
     if $(this).text().indexOf("Album") >= 0
       $('.us.ab').removeClass('d-none')
-      $('.us.photo').addClass('d-none')
+      $('.us.tab:not(".us.ab")').addClass('d-none')
     else if $(this).text().indexOf("Photos") >= 0
-      $('.us.ab').addClass('d-none')
+      $('.us.tab:not(".us.photo")').addClass('d-none')
       $('.us.photo').removeClass('d-none')
+    else if $(this).text().indexOf("Following") >= 0
+      $('.us.tab:not(".us.following")').addClass('d-none')
+      $('.us.following').removeClass('d-none')
+    else
+      $('.us.tab:not(".us.followers")').addClass('d-none')
+      $('.us.followers').removeClass('d-none')
       return
     return
 

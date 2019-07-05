@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def myprofile
-    @user = User.find(current_user.id)
+    @user = current_user
     get_all_photos(@user)
 
     #passing hash_link of albums to js to use in modal views(next and back)
@@ -26,8 +26,8 @@ class UsersController < ApplicationController
     @arr = @arr.sort_by{|x| x.created_at}
   end
 
-  def get_albums_count
-    @user.albums.size
+  def get_albums_count(user)
+    user.albums.size
   end
 
   def get_current_album(index)
