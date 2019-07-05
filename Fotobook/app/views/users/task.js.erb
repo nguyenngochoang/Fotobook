@@ -1,0 +1,5 @@
+<%if @mode=="photos"%>
+  $(".profile-content").html('<%= j( render partial: "users/userphoto", locals: {user: @user} ) %>')
+<%elsif @mode=="albums"%>
+  $(".profile-content").html('<%= j( render partial: "users/useralbum", locals: {user: @user} ) %>')
+<%end%>

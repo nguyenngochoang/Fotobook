@@ -10,5 +10,6 @@ Rails.application.routes.draw do
         end
     end
     get '/profiles/me', to:"users#myprofile", as:'me'
-   
+    get '/task',to:"users#task", as:'task'
+    get '/currentalbum', to:"users#currentalbum", as:'currentalbum'
 end

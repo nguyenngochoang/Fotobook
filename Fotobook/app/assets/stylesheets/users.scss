@@ -211,10 +211,12 @@ hr {
 	min-width: 100%;
 }
 
-.modal-body > img {
+.carousel-item > img{
 	width: 100%;
 	height: 100%;
 }
+
+
 .next:hover {
 	cursor: alias;
 }
@@ -406,172 +408,8 @@ hr {
 }
 
 // ----------------------------------- modal arrow effect ---------------------------------------
-#arrowAnim {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#arrowAnimright{
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  float: right;
-}
-.arrow.left {
-  width: 100%;
-  height: 100%;
-  border: 10px solid;
-  border-color: white transparent transparent white;
-  transform: rotate(-45deg);
-}
-
-.arrow.right{
-  width: 100%;
-  height: 100%;
-  border: 10px solid;
-  border-color: white transparent transparent white;
-  transform: rotate(135deg);
-}
-  .arrowSliding.left {
-    position: absolute;
-    top:220px;
-    left : 30px;
-    -webkit-animation: lslide 3s linear infinite;
-    animation: lslide 3s linear infinite;
-  }
-
-  .left.delay1 {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-  }
-
-  .left.delay2 {
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
-  }
-
-  .left.delay3 {
-  -webkit-animation-delay: 3s;
-  animation-delay: 3s;
-  }
-
-  @-webkit-keyframes lslide {
-    0% {
-      opacity: 0;
-      transform: translateX(15px);
-    }
-
-    20% {
-      opacity: 1;
-      transform: translateX(9px);
-    }
-
-    80% {
-      opacity: 1;
-      transform: translateX(-9px);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translateX(-15px);
-    }
-  }
 
 
-  @keyframes lslide {
-  0% {
-    opacity: 0;
-    transform: translateX(15px);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translateX(9px);
-  }
-
-  80% {
-    opacity: 1;
-    transform: translateX(-9px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(-15px);
-    }
-  }
-
-  .arrowSliding.right {
-    position: absolute;
-    top:220px;
-    right : 30px;
-    -webkit-animation: rslide 3s linear infinite;
-    animation: rslide 3s linear infinite;
-  }
-
-  @-webkit-keyframes rslide {
-    0% {
-      opacity: 0;
-      transform: translateX(-15px);
-    }
-
-    20% {
-      opacity: 1;
-      transform: translateX(-9px);
-    }
-
-    80% {
-      opacity: 1;
-      transform: translateX(9px);
-    }
-
-    100% {
-      opacity: 0;
-      transform: translateX(15px);
-    }
-  }
-
-
-  @keyframes rslide {
-  0% {
-    opacity: 0;
-    transform: translateX(-15px);
-  }
-
-  20% {
-    opacity: 1;
-    transform: translateX(-9px);
-  }
-
-  80% {
-    opacity: 1;
-    transform: translateX(9px);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateX(15px);
-    }
-  }
-
-  .right.delay1 {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-  }
-
-  .right.delay2 {
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
-  }
-
-  .right.delay3 {
-  -webkit-animation-delay: 3s;
-  animation-delay: 3s;
-  }
-  //------------------------------------ end of modal arrow effect -----------------------------
 
 // ------------------------------------- end of userpersonal.css --------------------------------
 
