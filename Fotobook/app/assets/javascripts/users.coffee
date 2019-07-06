@@ -141,11 +141,17 @@ $(document).ready ->
         success: () ->
           false
   $('.profile-content').on 'click','.us.thumbnail',->
-    album_id = $(this).attr("id")
+    gallery_id = $(this).attr("id")
+    mode="";
+    if $(this).attr("class").indexOf("photo") >= 0
+      mode="photos"
+    else
+      mode="albums"
+
     Rails.ajax
       type: "GET"
-      url: "/currentalbum"
-      data: "data[param]="+id.toString()+"&data[mode]=albums&data[album_id]="+album_id.toString()
+      url: "/currentgallery"
+      data: "data[param]="+id.toString()+"&data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
       dataType: 'script'
       success: () ->
           false

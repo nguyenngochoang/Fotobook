@@ -1,3 +1,5 @@
+
+
 .logmethod{
     height: 100%;
     display: flex;
@@ -5,13 +7,15 @@
     align-items: center;
 }
 .log{
-    background-color: #a6a6a6;
+    background-color: #191919;
     margin: auto;
     width: fit-content;
+    border-radius: 14px;
 }
 
 .logbtn2{
     position: relative;
+    border-radius: 24px;
 }
 
 .logo:hover{
@@ -26,4 +30,36 @@
 }
 .link:hover{
     text-decoration: none;
+}
+
+.cover{
+    min-width: 100vh;
+    min-height: 100vh;
+    background:#34495e;
+}
+
+.input{
+    border: none;
+    display: block;
+    text-align: center;
+    border: 2px solid #3498db;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    background-color: #191919;
+}
+.input:focus{
+    width: 100%;
+    border-color: #2ecc71;
+    background-color: #191919;
+}
+.input{
+    width: 150px;
+    margin:0px auto
+}
+.logintext h1{
+
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
 }

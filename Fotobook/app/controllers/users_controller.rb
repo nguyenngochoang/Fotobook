@@ -5,17 +5,19 @@ class UsersController < ApplicationController
   end
   def feeds
   end
-
+  def new
+    redirect_to new_user_registration_path
+  end
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:photos,:albums).find(params[:id])
   end
 
   def myprofile
     @user = current_user
-    get_all_photos(@user)
-
-    #passing hash_link of albums to js to use in modal views(next and back)
+    @@res||= []
+    @@res=get_all_photos(@user)
   end
+
 
 
   def task
@@ -29,11 +31,17 @@ class UsersController < ApplicationController
   end
 
   #for performs ajax request and return result to modal
-  def currentalbum
+  def currentgallery
     @user = User.includes(:photos,:albums).find task_params[:param]
     @mode = task_params[:mode]
-    current_album_id = task_params[:album_id].to_i
-    @current_album = @user.albums.find current_album_id
+    current_gallery_id = task_params[:gallery_id].to_i
+    puts current_gallery_id
+    if @mode=="albums"
+      @current_gallery = @user.albums.find current_gallery_id
+    elsif @mode=="photos"
+      @current_gallery = @@res[current_gallery_id-1]
+    end
+    puts @arr
     respond_to do|format|
       format.js
     end
@@ -75,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def task_params
-    params.require(:data).permit(:param,:mode,:album_id)
+    params.require(:data).permit(:param,:mode,:gallery_id)
   end
 
 

@@ -3,7 +3,7 @@
     <div class="row imgrow mt-5  us gocenter container-fluid photo tab">
       <%for j in (0...@arr.count)%>
           <%@current_photo=@arr[j]%>
-          <div data-link="<%=@current_photo.attached_image%>", class="card h-100 us usercard mr-5 thumbnail">
+          <div id="<%=@current_photo.id%>", class="card h-100 us usercard mr-5 thumbnail photo">
             <%= image_tag @current_photo.attached_image,alt:"Card image cap",class:"us card-img-top img-fluid rounded"%>
             <% if @current_photo.sharing_mode %>
                 <div class="us lockdiv us rounded-circle text-center d-none ">
