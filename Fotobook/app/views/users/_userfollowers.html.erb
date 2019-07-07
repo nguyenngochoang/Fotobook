@@ -1,0 +1,33 @@
+
+<% if followers %>
+  <div class=" row imgrow mt-5 gocenter container-fluid us followers tab">
+        <%followers.each do |follower|%>
+          <div class="fl card h-100 usercard mr-3 ">
+            <%= image_tag 'profile/ultra.jpeg',alt:"Sample",class:"fl card-img-top img-fluid rounded-circle" %>
+            <div class="fl card-body text-center font-weight-bolder"><%="#{follower.first_name} #{follower.last_name}"%></div>
+            <div class="row">
+              <div class="col-lg-6 col-12">
+                <div class="text-center ">
+                  <p class="fl firstchild font-weight-bolder"><%=follower.photos.size%></p>
+                  <p class="fl secondchild">Photos</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-12">
+                <div class="text-center ">
+                  <p class="fl firstchild font-weight-bolder"><%= follower.albums.size%></p>
+                  <p class="fl secondchild">Album</p>
+                </div>
+              </div>
+            </div>
+            <div class=" fl text-center card-following-btn">
+              <%if check_followings_status(follower,user)%>
+                <%= link_to 'Following', nil,id:follower.id,class:"fl follow-button followingsbtn",onClick:"return false;" %>
+              <% else %>
+                <%= link_to '+ Follow', nil,id:follower.id,class:"fl follow-button followersbtn",onClick:"return false;" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+<% else %>
+    <%# has no followers%>
+<% end %>

@@ -4,13 +4,10 @@ Rails.application.routes.draw do
     devise_for :users
     root 'users#feeds'
 
-    resources 'users' do
-        member do
-            get 'myprofile'
-        end
-    end
+    resources 'users'
     get '/profiles/me', to:"users#myprofile", as:'me'
     get '/task',to:"users#task", as:'task'
     get '/currentgallery', to:"users#currentgallery", as:'currentgallery'
-    get '/users/sign_up(.:format)', to:"devise/registration#new", as:'new_user_signup'
+    get '/follow', to:"users#follow", as:'follow'
+    get 'follow_action', to:"users#follow_action", as:'follow_action'
 end

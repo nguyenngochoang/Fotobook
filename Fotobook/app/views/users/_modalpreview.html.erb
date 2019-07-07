@@ -6,7 +6,15 @@
         <% else %>
           <div class="carousel-item">
         <% end %>
-            <%= image_tag photo.attached_image, class:'img-fluid' %>
+            <div class="carousel-title carousel-info">
+              <h5 id="ptitle"><%=photo.title%></h5>
+            </div>
+
+            <%= image_tag photo.attached_image,class:'img-fluid img-carousel'%>
+            <div class="carousel-description">
+              <p id="pdescription"><%=photo.description%></p>
+            </div>
+
           </div>
     <%end%>
   </div>

@@ -7,13 +7,13 @@
       <a href="#" class="us edit-btn">Edit Profile</a>
       <p class="font-weight-bolder us username"><%="#{@user.first_name} #{@user.last_name}"%></p>
       <ul class="list-inline">
-        <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_all_photos(current_user).size} Photos"%></a></li>
+        <li class="list-inline-item"><a href="#" onClick="return false;" class="btn btn-link us usertab font-weight-bolder"><%=" #{get_all_photos(@user).size} Photos"%></a></li>
         <li class="list-inline-item">|</li>
-        <li class="list-inline-item"><a  href="#" onClick="return false;"  class="btn btn-link us usertab text-black-50"><%=" #{get_albums_count(current_user)} Albums"%></a></li>
+        <li class="list-inline-item"><a  href="#" onClick="return false;"  class="btn btn-link us usertab text-black-50"><%=" #{get_albums_count(@user)} Albums"%></a></li>
         <li class="list-inline-item">|</li>
-        <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{current_user.followees.size} Followings "%></a></li>
+        <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{@user.followees.size} Followings "%></a></li>
         <li class="list-inline-item">|</li>
-        <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{current_user.followers.size} Followers"%></a></li>
+        <li class="list-inline-item"><a  href="#" onClick="return false;" class="btn btn-link us usertab text-black-50"><%="#{@user.followers.size} Followers"%></a></li>
       </ul>
     </div>
     <div class="profile-content">

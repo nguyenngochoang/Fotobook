@@ -1,8 +1,6 @@
 
 <%if @mode=="albums"%>
-  $(".modal-title").html('<%=@current_gallery.name%>')
   $(".us.modal-body").html('<%= j( render partial: "users/modalpreview", locals: {current_gallery: @current_gallery}) %>')
-
 <%else%>
   $(".modal-title").html('<%=@current_gallery.title%>')
   $(".us.modal-body").html('<%= j( render partial: "users/photopreview", locals: {current_gallery: @current_gallery}) %>')

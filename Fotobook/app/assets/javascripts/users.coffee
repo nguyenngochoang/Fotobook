@@ -46,41 +46,41 @@ $(document).ready ->
     arr.push $(this).attr('src')
     return
 
-  $('.img').on 'click', ->
-    jQuery.noConflict()
-    backgroundUrl = $(this).children('img').attr('src')
-    backgroundUrl = backgroundUrl.replace('url(', '').replace(')', '').replace(/\"/gi, '')
-    $('#modal-body-image').attr 'src', backgroundUrl
-    text = $(this).next().find('.row-text').children('p').text()
-    title = $(this).next().find('.row-text').children('h5').text()
-    $('.modal-title').text title
-    $('.modal-footer > p').text text
-    jQuery('.modal').modal 'toggle'
-    index = arr.indexOf(backgroundUrl)
-    return
+  # $('.img').on 'click', ->
+  #   jQuery.noConflict()
+  #   backgroundUrl = $(this).children('img').attr('src')
+  #   backgroundUrl = backgroundUrl.replace('url(', '').replace(')', '').replace(/\"/gi, '')
+  #   $('#modal-body-image').attr 'src', backgroundUrl
+  #   text = $(this).next().find('.row-text').children('p').text()
+  #   title = $(this).next().find('.row-text').children('h5').text()
+  #   $('.modal-title').text title
+  #   $('.modal-footer > p').text text
+  #   jQuery('.modal').modal 'toggle'
+  #   index = arr.indexOf(backgroundUrl)
+  #   return
 
-  $('.next').on 'click', ->
-    if index < arr.length - 1
-      index = index + 1
-      backgroundUrl = arr[index]
-      $('#modal-body-image').attr 'src', backgroundUrl
-      $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
-      text = $selectthis.find('.row-text').children('p').text()
-      title = $selectthis.find('.row-text').children('h5').text()
-      $('.modal-title').text title
-      $('.modal-footer > p').text text
-    return
-  $('.prev').on 'click', ->
-    if index > 0
-      index = index - 1
-      backgroundUrl = arr[index]
-      $('#modal-body-image').attr 'src', backgroundUrl
-      $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
-      text = $selectthis.find('.row-text').children('p').text()
-      title = $selectthis.find('.row-text').children('h5').text()
-      $('.modal-title').text title
-      $('.modal-footer > p').text text
-    return
+  # $('.next').on 'click', ->
+  #   if index < arr.length - 1
+  #     index = index + 1
+  #     backgroundUrl = arr[index]
+  #     $('#modal-body-image').attr 'src', backgroundUrl
+  #     $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
+  #     text = $selectthis.find('.row-text').children('p').text()
+  #     title = $selectthis.find('.row-text').children('h5').text()
+  #     $('.modal-title').text title
+  #     $('.modal-footer > p').text text
+  #   return
+  # $('.prev').on 'click', ->
+  #   if index > 0
+  #     index = index - 1
+  #     backgroundUrl = arr[index]
+  #     $('#modal-body-image').attr 'src', backgroundUrl
+  #     $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
+  #     text = $selectthis.find('.row-text').children('p').text()
+  #     title = $selectthis.find('.row-text').children('h5').text()
+  #     $('.modal-title').text title
+  #     $('.modal-footer > p').text text
+  #   return
   # end of navigations from this photo to another
   $thisdiv = $('.hidethis:first')
   $(window).scroll ->
@@ -89,26 +89,40 @@ $(document).ready ->
       $thisdiv = $thisdiv.next()
     return
 
-  $('.follow-button').each ->
+  $('.profile-content').on 'click','.follow-button', ->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
       $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
+      followees_id=$(this).attr 'id'
+      Rails.ajax
+        type: "GET"
+        url: "/follow_action"
+        data: "data[param]="+id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
+        dataType: 'script'
+        success: () ->
+          false
     else
       $(this).text '+ Follow'
-      $(this).css 'backgroundImage', ''
+      $(this).css 'backgroundImage', 'none'
       $(this).css 'backgroundColor', '#ffffff'
-    return
-  $('.follow-button').on 'click', ->
-    if $(this).text() == '+ Follow'
-      $(this).text 'Following'
-      $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
-    else
-      $(this).text '+ Follow'
-      $(this).css 'backgroundImage', ''
-      $(this).css 'backgroundColor', '#ffffff'
+      followers_id=$(this).attr 'id'
+      Rails.ajax
+        type: "GET"
+        url: "/follow_action"
+        data: "data[param]="+id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        dataType: 'script'
+        success: () ->
+          false
     return
 
+  $('.carousel').carousel ->
+    interval: false
+    return
 
+  $(document).on 'click','.carousel-control-next', ->
+    $('.modal-title').text $('.carousel-item.active').data 'title'
+    $('.modal-footer').text $('.carousel-item.active').data 'description'
+    return
 
   $('.profile-content').on 'mouseover','.thumbnail', ->
     $(this).find('.photonums').stop().fadeIn 500
@@ -132,7 +146,6 @@ $(document).ready ->
         success: () ->
           false
     else if $(this).text().indexOf("Photos") >= 0
-
       Rails.ajax
         type: "GET"
         url: "/task"
@@ -140,6 +153,23 @@ $(document).ready ->
         dataType: 'script'
         success: () ->
           false
+    else if $(this).text().indexOf("Followings") >=0
+      Rails.ajax
+        type: "GET"
+        url: "/follow"
+        data: "data[param]="+id.toString()+"&data[mode]=followings"
+        dataType: 'script'
+        success: () ->
+          false
+    else
+       Rails.ajax
+        type: "GET"
+        url: "/follow"
+        data: "data[param]="+id.toString()+"&data[mode]=followers"
+        dataType: 'script'
+        success: () ->
+          false
+    return
   $('.profile-content').on 'click','.us.thumbnail',->
     gallery_id = $(this).attr("id")
     mode="";
@@ -157,8 +187,6 @@ $(document).ready ->
           false
     jQuery('.us.modal').modal 'toggle'
     return
-
-
 
 return
 

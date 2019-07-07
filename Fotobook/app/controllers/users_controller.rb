@@ -5,20 +5,15 @@ class UsersController < ApplicationController
   end
   def feeds
   end
-  def new
-    redirect_to new_user_registration_path
-  end
+
   def show
-    @user = User.includes(:photos,:albums).find(params[:id])
+    @user = User.includes(:photos,:albums,:followers,:followees).find(params[:id])
   end
 
   def myprofile
     @user = current_user
-    @@res||= []
-    @@res=get_all_photos(@user)
+    get_all_photos(@user)
   end
-
-
 
   def task
     @user = User.includes(:photos,:albums).find task_params[:param]
@@ -27,7 +22,6 @@ class UsersController < ApplicationController
     respond_to do|format|
       format.js
     end
-
   end
 
   #for performs ajax request and return result to modal
@@ -35,13 +29,11 @@ class UsersController < ApplicationController
     @user = User.includes(:photos,:albums).find task_params[:param]
     @mode = task_params[:mode]
     current_gallery_id = task_params[:gallery_id].to_i
-    puts current_gallery_id
     if @mode=="albums"
-      @current_gallery = @user.albums.find current_gallery_id
-    elsif @mode=="photos"
-      @current_gallery = @@res[current_gallery_id-1]
+      @current_gallery = @user.albums.includes(:photos).find current_gallery_id
+    else @mode=="photos"
+      @current_gallery = get_all_photos(@user)[current_gallery_id-1]
     end
-    puts @arr
     respond_to do|format|
       format.js
     end
@@ -59,23 +51,42 @@ class UsersController < ApplicationController
     user.albums.size
   end
 
-
-
-  def get_album_hash(albums)
-    links=[]
-    albums.map{|x| links[x.id]=x.photos.map{|y| [y.title,y.description,y.attached_image]}}
-    @links
-  end
-
   def get_current_album_load(index)
     current_album_load = @user.albums[index]
   end
 
+  def follow
+    @user = User.includes(:followees,:followers).find follow_params[:param]
+    @mode = follow_params[:mode]
 
-  helper_method :get_photos_count
-  helper_method :get_albums_count
-  helper_method :get_all_photos
-  helper_method :get_current_album_load
+    if @mode=="followings"
+      @followings = @user.followees
+    else
+      @followers = @user.followers
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def check_followings_status(user_to_check,checker)
+    checker.followees.include?user_to_check
+  end
+
+  def follow_action
+    @user = User.includes(:followees,:followers).find follow_params[:param]
+    @mode = follow_params[:mode]
+    if @mode=="follow"
+      @followees_id = follow_params[:followees_id]
+      @user.followees.push User.find @followees_id
+    else
+      @followers_id = follow_params[:followers_id]
+      @user.followees.destroy(User.find @followers_id)
+    end
+  end
+
+  helper_method :get_photos_count, :get_albums_count, :get_all_photos, :get_current_album_load,
+                :check_followings_status
 
   private
   def user_params
@@ -86,5 +97,8 @@ class UsersController < ApplicationController
     params.require(:data).permit(:param,:mode,:gallery_id)
   end
 
+  def follow_params
+    params.require(:data).permit(:param,:mode,:followers_id,:followees_id)
+  end
 
 end
