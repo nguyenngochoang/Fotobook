@@ -1,0 +1,22 @@
+- if followers
+  .row.imgrow.mt-5.gocenter.container-fluid.us.followers.tab
+    - followers.each do |follower|
+      .fl.card.h-100.usercard.mr-3
+        = image_tag 'profile/ultra.jpeg',alt:"Sample",class:"fl card-img-top img-fluid rounded-circle"
+        .fl.card-body.text-center.font-weight-bolder= "#{follower.first_name} #{follower.last_name}"
+        .row
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder= follower.photos.size
+              p.fl.secondchild Photos
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder= follower.albums.size
+              p.fl.secondchild Album
+        .fl.text-center.card-following-btn
+          - if check_followings_status(follower,user)
+            = link_to 'Following', nil,id:follower.id,class:"fl follow-button followingsbtn",onClick:"return false;"
+          - else
+            = link_to '+ Follow', nil,id:follower.id,class:"fl follow-button followersbtn",onClick:"return false;"
+
+

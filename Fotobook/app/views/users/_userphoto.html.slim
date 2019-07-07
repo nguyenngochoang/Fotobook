@@ -1,0 +1,20 @@
+a.us.addPA-btn.font-weight-bolder.photo.tab href="#"  Add Photo
+- if user.photos.any?
+  .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
+    - for j in (0...@arr.count)
+        - @current_photo=@arr[j]
+        div id="#{@current_photo.id}" class="card h-100 us usercard mr-5 thumbnail photo"
+          = image_tag @current_photo.attached_image,alt:"Card image cap",class:"us card-img-top img-fluid rounded"
+          - if @current_photo.sharing_mode
+            .us.lockdiv.us.rounded-circle.text-center.d-none
+              = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
+          - else
+            .us.lockdiv.us.rounded-circle.text-center
+              = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
+          a.us.paEdit href="#"  Edit
+          .us.card-body.text-center= @current_photo.description
+          .us.title.text-center.d-none= @current_photo.title
+
+- else
+  .text-center.us-nophoto.text-black-50
+    p You don't have any Photos. Upload one ?

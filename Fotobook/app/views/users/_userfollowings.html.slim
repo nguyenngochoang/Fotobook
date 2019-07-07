@@ -1,0 +1,18 @@
+- if followings
+  .row.imgrow.mt-5.gocenter.container-fluid.us.following.tab
+    - for i in (0...followings.size)
+      .card.h-100.fl.usercard.mr-3.mt-3
+        = image_tag 'profile/ultra.jpeg',alt:'sample',class:"fl card-img-top img-fluid rounded-circle"
+        .fl.card-body.text-center.font-weight-bolder ="#{followings[i].first_name} #{followings[i].last_name} "
+        .row
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder ="#{followings[i].photos.size}"
+              p.fl.secondchild Photos
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder= "#{get_albums_count(followings[i])}"
+              p.fl.secondchild Album
+        .fl.text-center.card-following-btn
+          = link_to 'Following', nil,id:followings[i].id,class:"fl follow-button followingsbtn",onClick:"return false;"
+
