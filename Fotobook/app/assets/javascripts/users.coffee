@@ -89,7 +89,7 @@ $(document).ready ->
       $thisdiv = $thisdiv.next()
     return
 
-  $('.profile-content').on 'click','.follow-button', ->
+  $('.mid').on 'click','.follow-button', (e)->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
       $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
@@ -98,6 +98,32 @@ $(document).ready ->
         type: "GET"
         url: "/follow_action"
         data: "data[param]="+id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
+        dataType: 'script'
+        success: () ->
+          false
+    else
+      $(this).text '+ Follow'
+      $(this).css 'backgroundImage', 'none'
+      $(this).css 'backgroundColor', '#ffffff'
+      followers_id=$(this).attr 'id'
+      Rails.ajax
+        type: "GET"
+        url: "/follow_action"
+        data: "data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        dataType: 'script'
+        success: () ->
+          false
+    return
+
+  $('.profile-content').on 'click','.follow-button', (e)->
+    if $(this).text() == '+ Follow'
+      $(this).text 'Following'
+      $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
+      followees_id=$(this).attr 'id'
+      Rails.ajax
+        type: "GET"
+        url: "/follow_action"
+        data: "data[mode]=follow&data[followees_id]="+followees_id.toString()
         dataType: 'script'
         success: () ->
           false

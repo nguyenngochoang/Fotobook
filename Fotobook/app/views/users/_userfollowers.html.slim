@@ -1,4 +1,4 @@
-- if followers
+- if followers.any?
   .row.imgrow.mt-5.gocenter.container-fluid.us.followers.tab
     - followers.each do |follower|
       .fl.card.h-100.usercard.mr-3
@@ -7,7 +7,7 @@
         .row
           .col-lg-6.col-12
             .text-center
-              p.fl.firstchild.font-weight-bolder= follower.photos.size
+              p.fl.firstchild.font-weight-bolder= get_all_photos(follower).size
               p.fl.secondchild Photos
           .col-lg-6.col-12
             .text-center
@@ -18,5 +18,6 @@
             = link_to 'Following', nil,id:follower.id,class:"fl follow-button followingsbtn",onClick:"return false;"
           - else
             = link_to '+ Follow', nil,id:follower.id,class:"fl follow-button followersbtn",onClick:"return false;"
-
-
+-else
+  .text-center.us-noinfo.text-black-50
+    p You don't have any Followers.

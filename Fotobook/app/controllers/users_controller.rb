@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:photos,:albums,:followers,:followees).find(params[:id])
+    get_all_photos(@user)
   end
 
   def myprofile
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
   end
 
   def follow_action
-    @user = User.includes(:followees,:followers).find follow_params[:param]
+    @user = current_user
     @mode = follow_params[:mode]
     if @mode=="follow"
       @followees_id = follow_params[:followees_id]

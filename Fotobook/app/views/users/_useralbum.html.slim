@@ -21,4 +21,6 @@ a.us.addPA-btn.font-weight-bolder.ab.tab href="#"  Add Album
             = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
           a.us.paEdit href="#"  Edit
           .us.card-body.text-center =@current_album_load.name
-
+-else
+  .text-center.us-noinfo.text-black-50
+    p You don't have any Albums. Create one ?

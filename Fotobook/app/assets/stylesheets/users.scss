@@ -222,9 +222,13 @@ hr {
 	height: 100%;
 }
 
+.us.us.modal-body{
+	height: auto;
+}
+
 .us.modal-body>img{
 	width: 100%;
-	height: 100%;
+	height: 80%;
 }
 .next:hover {
 	cursor: alias;
@@ -283,7 +287,37 @@ hr {
 }
 
 .us.username {
-  font-size: 40px;
+	font-size: 40px;
+	color:black;
+	&:hover{
+		text-decoration: none;
+	}
+}
+
+.fl.username{
+	color:black;
+	// border-bottom: .1em solid blue;
+	transition: color .4s ease-out;
+	&::after{
+		border-radius: 1em;
+  	border-top: .1em solid #2F56B0;
+  	content: "";
+  	position: absolute;
+    right: 100%;
+    bottom: 1.3em;
+    left: 0;
+  	transition: right .4s cubic-bezier(0,.5,0,1),
+              border-color .4s ease-out;
+	}
+	&:hover{
+		color: #457DFB;
+  	text-decoration: none;
+	}
+	&:hover::after {
+    border-color: #457DFB;
+  	right: 0;
+  }
+
 }
 
 .us.userdiv ul {
@@ -302,7 +336,8 @@ hr {
 }
 
 .us.card-img-top {
-  height: 150px !important;
+	height: 150px !important;
+
 }
 
 .us.card-body {
@@ -397,19 +432,21 @@ hr {
   display: inline-block;
   cursor: pointer;
   color: white;
-  font-family: Arial;
+	font-family: Arial;
+
   font-size: 10px !important;
   text-decoration: none;
   width: 70px;
   height: 20px;
-  padding: 1px 0 0 10px;
+	padding: 1px 0 0 5px;
+	margin-right: 5px;
   &:hover {
     text-decoration: none;
     color: white;
   }
 }
 
-.us-nophoto{
+.us-noinfo{
 	margin-top: 200px;
 	font-size: 30px;
 }
@@ -446,6 +483,7 @@ hr {
   margin-bottom: 5px;
   &:hover {
 		text-decoration: none;
+		color: white;
 	}
 	&:active {
 		margin-right: 10px;
@@ -518,10 +556,13 @@ hr {
 }
 
 #ptitle{
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 #pdescription{
 	margin-top :20px !important;
+}
+.profile-content{
+	min-width: 100%;
 }
 // -------------------------------------- end of User following css ------------------------------
