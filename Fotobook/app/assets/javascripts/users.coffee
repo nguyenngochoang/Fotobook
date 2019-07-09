@@ -214,6 +214,9 @@ $(document).ready ->
     jQuery('.us.modal').modal 'toggle'
     return
 
+  $('.us.ava-change.text-center').on 'click',->
+    $('#uploadava-btn').click();
+
 return
 
 

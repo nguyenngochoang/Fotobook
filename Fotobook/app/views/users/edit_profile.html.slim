@@ -1,0 +1,41 @@
+.col-lg-10.col-12.us.mid.edit
+  .edit-title
+    h5 Edit User Profile
+    hr
+  .row.edit
+    .edit-center
+      = form_with model:@user,url:update_basic_path(@user),remote:true do |f|
+        - if @user.errors.any?
+          h2
+            = pluralize(@user.errors.count, "error")
+            | prohibited
+            | this article from being saved:
+          ul
+            - @user.errors.full_messages.each do |msg|
+              li =msg
+
+        - if @user.avatar.file.nil?
+          .edit-ava-div.container-fluid
+            = image_tag 'profile/sample-avatar.jpg', class:"us rounded ava-edit"
+            .us.ava-change.text-center CHANGE
+            = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change d-none",accept: 'image/jpeg,image/png,image/jpg'
+
+        - else
+          .edit-ava-div
+            = image_tag current_user.avatar.url,class:"us rounded ava-edit"
+            .us.ava-change.text-center CHANGE
+            = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change d-none",accept: 'image/jpeg,image/png,image/jpg'
+
+        p.text-primary.mt-3.font-weight-bolder Basic Infomation
+        p
+          = f.label :first_name, class:"mr-2"
+          = f.text_field :first_name
+        p
+          = f.label :last_name, class:"mr-2"
+          = f.text_field :last_name
+
+        p
+          = f.label :email, class:"email mr-5"
+          = f.text_field :email
+
+        = f.submit

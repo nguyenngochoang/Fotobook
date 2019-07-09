@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def index
   end
   def feeds
@@ -14,6 +13,18 @@ class UsersController < ApplicationController
   def myprofile
     @user = current_user
     get_all_photos(@user)
+  end
+
+  def update_basic
+    @user = current_user
+    @user.avatar = user_basic_params[:avatar]
+    @user.first_name = user_basic_params[:first_name]
+    @user.last_name = user_basic_params[:last_name]
+    if @user.save
+      redirect_to edit_profile_path
+    else
+      render 'edit_profile'
+    end
   end
 
   def task
@@ -86,12 +97,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def new_photo
+
+  end
+
+  def edit_profile
+    @user = current_user
+  end
+
   helper_method :get_photos_count, :get_albums_count, :get_all_photos, :get_current_album_load,
                 :check_followings_status
 
   private
+  def user_basic_params
+    params.require(:user).permit(:avatar,:first_name,:last_name)
+  end
+
   def user_params
-    params.require(:user).permit(:email,:first_name,:last_name)
+    params.require(:user).permit(:email,:first_name,:last_name,:avatar)
   end
 
   def task_params
