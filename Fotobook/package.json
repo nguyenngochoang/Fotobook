@@ -1,5 +1,7 @@
 {
   "name": "Fotobook",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-validation": "^1.19.1"
+  }
 }

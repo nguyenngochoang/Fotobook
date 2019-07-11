@@ -1,0 +1,30 @@
+.col-lg-10.col-12.us.mid.edit
+  .edit-title
+    h5 New photo
+    hr
+  .edit-center
+
+    = form_with model:current_user.photos.build,url:add_photo_action_path,id:"newphoto",remote:true do |photo|
+      .row
+        .col-6.container-fluid
+          .row
+            = photo.label :title
+            = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Photo Title'
+          .row
+            = photo.label :sharing_mode
+            = photo.select :sharing_mode, [['Private',0],['Public',1 ]],{prompt:'Select One'},{class: "form-control"}
+          .row.mt-5
+            .form-group.photo-files
+              .col-12.image-uploader
+                .photo-upload-preview
+                  label#add-symbol +
+                  .dashes.text-center
+                  = photo.file_field :attached_image,id:"uploadphoto-btn", class:"invisible"
+          .row.edit
+            .col-sm-1
+              = photo.submit id:"photo-submit",class:"btn btn-success"
+
+        .col-6.container-fluid
+            = photo.label :description
+            = photo.text_area :description,placeholder:'Photo Description',class:'form-control',rows:'7'
+

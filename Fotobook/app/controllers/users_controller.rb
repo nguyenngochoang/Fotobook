@@ -15,15 +15,34 @@ class UsersController < ApplicationController
     get_all_photos(@user)
   end
 
+
+
   def update_basic
     @user = current_user
-    @user.avatar = user_basic_params[:avatar]
-    @user.first_name = user_basic_params[:first_name]
-    @user.last_name = user_basic_params[:last_name]
-    if @user.save
-      redirect_to edit_profile_path
+
+    if @user.update(user_basic_params)
+      respond_to do |format|
+        format.html { redirect_to edit_profile_path, flash: { success: "Great, Info updated successfully!"}}
+      end
     else
       render 'edit_profile'
+    end
+  end
+
+  def update_password
+    @user = current_user
+    if @user.valid_password?(params[:user][:current_password])
+      if @user.update(user_password_params)
+        respond_to do |format|
+          format.html { redirect_to edit_profile_path, flash: { success: "Password updated successfully!"}}
+        end
+      else
+        render 'edit_profile'
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to edit_profile_path, flash: { error: "Wrong current password!"}}
+      end
     end
   end
 
@@ -33,6 +52,7 @@ class UsersController < ApplicationController
     get_all_photos(@user)
     respond_to do|format|
       format.js
+
     end
   end
 
@@ -97,20 +117,41 @@ class UsersController < ApplicationController
     end
   end
 
-  def new_photo
-
-  end
 
   def edit_profile
     @user = current_user
+  end
+
+  def add_photo_action
+    @photo = Photo.new(add_photo_action_params)
+    @photo.photoable = current_user
+    if @photo.save
+      byebug
+      redirect_to me_path
+    else
+      render 'add_photo'
+    end
   end
 
   helper_method :get_photos_count, :get_albums_count, :get_all_photos, :get_current_album_load,
                 :check_followings_status
 
   private
+
+  def add_photo_action_params
+    params.require(:photo).permit(:title,:sharing_mode,:description,:attached_image)
+  end
+
+  def user_password_params
+    params.require(:user).permit(:password)
+  end
+
+  def file_extension_params
+    params.require(:valid).permit(:state)
+  end
+
   def user_basic_params
-    params.require(:user).permit(:avatar,:first_name,:last_name)
+    params.require(:user).permit(:avatar,:first_name,:last_name,:email)
   end
 
   def user_params

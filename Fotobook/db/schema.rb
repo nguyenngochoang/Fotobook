@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_09_062723) do
+ActiveRecord::Schema.define(version: 2019_07_11_100715) do
 
   create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
@@ -31,10 +31,9 @@ ActiveRecord::Schema.define(version: 2019_07_09_062723) do
   end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.text "attached_image"
+    t.json "attached_image"
     t.string "title"
     t.text "description"
-    t.date "time"
     t.integer "like"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

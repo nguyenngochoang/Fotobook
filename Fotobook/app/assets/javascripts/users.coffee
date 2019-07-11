@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
 
   $('.pa').on 'click', ->
     if $('.pa').hasClass 'active'
@@ -46,42 +46,7 @@ $(document).ready ->
     arr.push $(this).attr('src')
     return
 
-  # $('.img').on 'click', ->
-  #   jQuery.noConflict()
-  #   backgroundUrl = $(this).children('img').attr('src')
-  #   backgroundUrl = backgroundUrl.replace('url(', '').replace(')', '').replace(/\"/gi, '')
-  #   $('#modal-body-image').attr 'src', backgroundUrl
-  #   text = $(this).next().find('.row-text').children('p').text()
-  #   title = $(this).next().find('.row-text').children('h5').text()
-  #   $('.modal-title').text title
-  #   $('.modal-footer > p').text text
-  #   jQuery('.modal').modal 'toggle'
-  #   index = arr.indexOf(backgroundUrl)
-  #   return
 
-  # $('.next').on 'click', ->
-  #   if index < arr.length - 1
-  #     index = index + 1
-  #     backgroundUrl = arr[index]
-  #     $('#modal-body-image').attr 'src', backgroundUrl
-  #     $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
-  #     text = $selectthis.find('.row-text').children('p').text()
-  #     title = $selectthis.find('.row-text').children('h5').text()
-  #     $('.modal-title').text title
-  #     $('.modal-footer > p').text text
-  #   return
-  # $('.prev').on 'click', ->
-  #   if index > 0
-  #     index = index - 1
-  #     backgroundUrl = arr[index]
-  #     $('#modal-body-image').attr 'src', backgroundUrl
-  #     $selectthis = $('[src=' + '\'' + backgroundUrl + '\'' + ']').parent().next()
-  #     text = $selectthis.find('.row-text').children('p').text()
-  #     title = $selectthis.find('.row-text').children('h5').text()
-  #     $('.modal-title').text title
-  #     $('.modal-footer > p').text text
-  #   return
-  # end of navigations from this photo to another
   $thisdiv = $('.hidethis:first')
   $(window).scroll ->
     if $(window).scrollTop() == $(document).height() - $(window).height()
@@ -89,7 +54,7 @@ $(document).ready ->
       $thisdiv = $thisdiv.next()
     return
 
-  $('.mid').on 'click','.follow-button', (e)->
+  $('.userdiv').on 'click','.follow-button', (e)->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
       $(this).css 'backgroundImage', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
@@ -216,6 +181,150 @@ $(document).ready ->
 
   $('.us.ava-change.text-center').on 'click',->
     $('#uploadava-btn').click();
+    return
+
+  $('#basic').validate({
+    rules: {
+      "user[first_name]":{
+        required: true,
+        maxlength: 25
+      }
+      "user[last_name]":{
+        required: true,
+        maxlength: 25
+      }
+      "user[email]": {
+        required: true,
+        email: true,
+        maxlength:255
+      }
+      "user[avatar]":{
+        accept: "image/*",
+        extension: "jpg|png"
+      }
+    },
+
+    errorPlacement: (error, element)->
+      error.appendTo( element.parent("div").parent("div").next("div").find("span"));
+
+  })
+
+  $('#password').validate({
+    rules: {
+      "user[password]":{
+        required: true,
+        maxlength: 64,
+        minlength:6
+      }
+      "user[password_confirm]":{
+        required: true,
+        maxlength: 64,
+        minlength:6,
+        equalTo: "#newpassword"
+      }
+    },
+    messages:{
+      "user[password_confirm]":{
+        equalTo: "Password does not match!"
+      }
+    },
+    errorPlacement: (error, element)->
+      error.appendTo( element.parent("div").parent("div").next("div").find("span"));
+
+  })
+
+  $('submit-btn').on 'click',(e)->
+    e.preventDefault()
+    if $(this).attr('id')=="basic-submit"
+      $('#basic').submit()
+    else
+      $('#password').submit()
+    return
+
+  $('#uploadava-btn').on 'change', (e)->
+    input = e.target;
+    extension=input.files[0].type
+    validExtension = ['image/jpg','image/png','image/jpeg']
+    if (input.files && input.files[0])
+      if validExtension.includes(extension)
+        file = input.files[0];
+        reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e)->
+          $('.ava-edit').attr('src',reader.result)
+      else
+        alert("Unsupported file type")
+      return
+    return
+#  -------------------------------- this part is for upload photo field ----------------------------
+  $('.photo-upload-preview').addClass('dragging').removeClass 'dragging'
+  $('.photo-upload-preview').on('dragover', ->
+    $('.photo-upload-preview').addClass 'dragging'
+    return
+  ).on('dragleave', ->
+    $('.photo-upload-preview').removeClass 'dragging'
+    return
+  ).on 'drop', (e) ->
+    $('.photo-upload-preview').removeClass 'dragging hasImage'
+    if e.originalEvent
+      file = e.originalEvent.dataTransfer.files[0]
+      console.log file
+      reader = new FileReader
+      #attach event handlers here...
+      reader.readAsDataURL file
+
+      reader.onload = (e) ->
+        console.log reader.result
+        $('.photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'hasImage'
+        return
+
+    return
+  window.addEventListener 'dragover', ((e) ->
+    e = e or event
+    e.preventDefault()
+    return
+  ), false
+  window.addEventListener 'drop', ((e) ->
+    e = e or event
+    e.preventDefault()
+    return
+  ), false
+  $('#uploadphoto-btn').change (e) ->
+    input = e.target
+    if input.files and input.files[0]
+      file = input.files[0]
+      reader = new FileReader
+      reader.readAsDataURL file
+
+      reader.onload = (e) ->
+        console.log reader.result
+        $('photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'hasImage'
+        return
+
+    return
+
+
+
+  $('.dashes.text-center').on 'click', (e) ->
+    $('#uploadphoto-btn').click();
+    return
+
+  $('#uploadphoto-btn').on 'change', (e)->
+    input = e.target;
+    extension=input.files[0].type
+    validExtension = ['image/jpg','image/png','image/jpeg']
+    if (input.files && input.files[0])
+      if validExtension.includes(extension)
+        file = input.files[0];
+        reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e)->
+          $('.ava-edit').attr('src',reader.result)
+      else
+        alert("Unsupported file type")
+    return
+
+#  -------------------------------- end of upload photo field ----------------------------
 
 return
 
