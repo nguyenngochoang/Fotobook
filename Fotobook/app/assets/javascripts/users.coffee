@@ -163,6 +163,7 @@ $(document).on 'turbolinks:load', ->
     return
   $('.profile-content').on 'click','.us.thumbnail',->
     gallery_id = $(this).attr("id")
+    console.log(gallery_id)
     mode="";
     if $(this).attr("class").indexOf("photo") >= 0
       mode="photos"

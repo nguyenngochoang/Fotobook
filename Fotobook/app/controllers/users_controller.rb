@@ -61,10 +61,11 @@ class UsersController < ApplicationController
     @user = User.includes(:photos,:albums).find task_params[:param]
     @mode = task_params[:mode]
     current_gallery_id = task_params[:gallery_id].to_i
+
     if @mode=="albums"
       @current_gallery = @user.albums.includes(:photos).find current_gallery_id
     else @mode=="photos"
-      @current_gallery = get_all_photos(@user)[current_gallery_id-1]
+      @current_gallery = Photo.find current_gallery_id
     end
     respond_to do|format|
       format.js
@@ -123,10 +124,10 @@ class UsersController < ApplicationController
   end
 
   def add_photo_action
-    @photo = Photo.new(add_photo_action_params)
-    @photo.photoable = current_user
+    @photo = current_user.photos.new(add_photo_action_params)
+    # @photo.update_attribute(:photoable, current_user)
+    # byebug
     if @photo.save
-      byebug
       redirect_to me_path
     else
       render 'add_photo'
