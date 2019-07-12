@@ -201,7 +201,7 @@ $(document).on 'turbolinks:load', ->
       }
       "user[avatar]":{
         accept: "image/*",
-        extension: "jpg|png"
+        extension: "jpg|png|jpeg"
       }
     },
 
@@ -290,21 +290,52 @@ $(document).on 'turbolinks:load', ->
     e.preventDefault()
     return
   ), false
-  $('#uploadphoto-btn').change (e) ->
-    input = e.target
-    if input.files and input.files[0]
-      file = input.files[0]
-      reader = new FileReader
-      reader.readAsDataURL file
 
-      reader.onload = (e) ->
-        console.log reader.result
-        $('photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'hasImage'
-        return
-
-    return
-
-
+  $('#newphoto').validate({
+    rules: {
+      "photo[attached_image]":{
+        accept: "image/*",
+        extension: "jpg|png|jpeg"
+      }
+      "photo[title]" :{
+        required:true,
+        maxlength:140,
+      }
+      "photo[description]" :{
+        required:true,
+        maxlength:300,
+      }
+      "photo[sharing_mode]" :{
+        required:true,
+      }
+    },
+    messages: {
+      "photo[attached_image]":{
+        accept: "Please attaches only image please!",
+        extension: "We just support jpg,png,jpeg format."
+      }
+      "photo[title]":{
+        required:'Please give me a title :(',
+        maxlength:"140 characters are allowed",
+      }
+      "photo[description]":{
+        required:"Please give me a description..",
+        maxlength:"300 characters are allowed",
+      }
+      "photo[sharing_mode]" :{
+        required:"Pick a mode please..."
+      }
+    },
+    errorPlacement: (error, element) ->
+      if element.attr("name") == "photo[attached_image]"
+       $('#add-symbol').text(error.text())
+       $('#add-symbol').css('font-size','14px')
+       $('#add-symbol').addClass('font-weight-bolder')
+       $('#add-symbol').css('width','100%')
+       $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
+      else
+        error.appendTo(element.parent("div").next("div").find("span"))
+  })
 
   $('.dashes.text-center').on 'click', (e) ->
     $('#uploadphoto-btn').click();
@@ -319,10 +350,16 @@ $(document).on 'turbolinks:load', ->
         file = input.files[0];
         reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (e)->
-          $('.ava-edit').attr('src',reader.result)
+        reader.onload = (e) ->
+          console.log input.files[0].type
+          $('.photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'hasImage'
       else
         alert("Unsupported file type")
+        $('.photo-upload-preview').css('backgroundImage', 'none')
+        $('.dashes').css('border','5px dashed rgba(255, 0, 0, .5)')
+        $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(red, 0.35)')
+        $('#add-symbol').css('color','red')
+
     return
 
 #  -------------------------------- end of upload photo field ----------------------------

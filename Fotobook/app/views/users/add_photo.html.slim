@@ -11,9 +11,15 @@
             = photo.label :title
             = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Photo Title'
           .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+          .row
             = photo.label :sharing_mode
             = photo.select :sharing_mode, [['Private',0],['Public',1 ]],{prompt:'Select One'},{class: "form-control"}
-          .row.mt-5
+          .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+          .row.mt-4
             .form-group.photo-files
               .col-12.image-uploader
                 .photo-upload-preview
@@ -25,6 +31,10 @@
               = photo.submit id:"photo-submit",class:"btn btn-success"
 
         .col-6.container-fluid
+          .col-sm-12
             = photo.label :description
             = photo.text_area :description,placeholder:'Photo Description',class:'form-control',rows:'7'
+          .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
 
