@@ -1,0 +1,45 @@
+.col-lg-10.col-12.us.mid.edit
+  .edit-title
+    h5 Edit
+    hr
+  .edit-center
+
+    = form_with model:@current_photo,url:photo_path(@current_photo),id:"newphoto",remote:true do |photo|
+      .row
+        .col-6.container-fluid
+          .row
+            = photo.label :title
+            = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Photo Title',value: @current_photo.title
+          .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+          .row
+            = photo.label :sharing_mode
+            - selected_val = @current_photo.to_s.to_i
+            = photo.select :sharing_mode, [['Public',1 ],['Private',0]],{include_blank: false} ,{class: "form-control"}
+          .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+          .row.mt-4
+            .form-group.photo-files
+              .col-12.image-uploader
+                .photo-upload-preview.hasImage style="background-image:url('#{@current_photo.attached_image.url}')"
+                  label#add-symbol +
+                  .dashes.text-center
+                  = photo.file_field :attached_image,id:"uploadphoto-btn", class:"invisible"
+                  span#cancel-symbol.font-weight-bolder x
+
+          .row.edit
+            .col-auto.pr-0
+              = photo.submit 'Save', id:"photo-submit",class:"btn btn-success"
+            .col-auto
+              = link_to 'Delete',photo_path(@current_photo),method: :delete,data: { confirm: 'Are you sure?'}, id:"photo-delete",class:"btn btn-danger"
+
+        .col-6.container-fluid
+          .col-sm-12
+            = photo.label :description
+            = photo.text_area :description,placeholder:'Photo Description',class:'form-control',rows:'7',value: @current_photo.description
+          .row
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+

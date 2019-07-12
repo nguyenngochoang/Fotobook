@@ -1,7 +1,10 @@
 .col-lg-10.col-12.us.mid
   .row.us.gocenter
     div id=("col-lg-4 col-12 useravatar inline-block")
-      = image_tag 'profile/4k-ultra-hd-abstract-nebula-space-creative-galaxy-background_nybzvmxi__F0000.png',alt:"Sample image",class:"us rounded-circle",'data-id':user.id
+      - if user.avatar
+        = image_tag user.avatar.url,alt:"Sample image",class:"us rounded-circle",'data-id':user.id
+      - else
+        = image_tag 'profile/4k-ultra-hd-abstract-nebula-space-creative-galaxy-background_nybzvmxi__F0000.png',alt:"Sample image",class:"us rounded-circle",'data-id':user.id
     .col-lg-8.col-12.inline-block.ml-2.us.userdiv
       - if user.id==current_user.id
         =link_to "Edit Profile",edit_profile_path,class:"us edit-btn d-block mt-2"

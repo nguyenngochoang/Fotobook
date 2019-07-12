@@ -123,14 +123,35 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+
   def add_photo_action
     @photo = current_user.photos.new(add_photo_action_params)
-    # @photo.update_attribute(:photoable, current_user)
-    # byebug
     if @photo.save
-      redirect_to me_path
+      respond_to do |format|
+        format.html { redirect_to me_path, flash: { success: "Uploaded!"}}
+      end
     else
       render 'add_photo'
+    end
+  end
+
+  def add_album_action
+    album_params = add_album_action_params.to_h
+    album_params.delete(:attached_image)
+    @album = current_user.albums.new(album_params)
+    if @album.save
+      photo_params = add_album_action_params.to_h
+      photo_params[:title] = photo_params.delete(:name)
+      photo_params[:title] = "Give me a title..."
+      photo_params[:description] = "Give me a description..."
+      @photo = Photo.new(photo_params)
+      @photo.photoable = @album
+      @photo.save
+      respond_to do |format|
+        format.html { redirect_to me_path, flash: { success: "Uploaded!"}}
+      end
+    else
+      render 'add_album'
     end
   end
 
@@ -141,6 +162,9 @@ class UsersController < ApplicationController
 
   def add_photo_action_params
     params.require(:photo).permit(:title,:sharing_mode,:description,:attached_image)
+  end
+  def add_album_action_params
+    params.require(:album).permit(:name,:sharing_mode,:description,:attached_image)
   end
 
   def user_password_params

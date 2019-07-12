@@ -575,7 +575,7 @@ hr {
 .us.ava-edit{
 	object-fit: fill;
 	max-width:100%;
-	height: auto;
+	height: 100%;
 
 }
 .us.ava-change{
@@ -649,7 +649,8 @@ hr {
   display: table;
   background-size: cover;
   background-position: center center;
-  box-shadow: 0 5px 8px rgba(black, 0.35);
+	box-shadow: 0 5px 8px rgba(black, 0.35);
+	position: relative;
   .dashes {
     position: absolute;
     top: 0;
@@ -667,7 +668,17 @@ hr {
     padding: 0 30px;
     color: grey;
     opacity: 1;
-  }
+	}
+
+	#cancel-symbol{
+		position: absolute;
+		top:2px;
+		right: 10px;
+		color:white;
+		&:hover{
+			cursor: pointer;
+		}
+	}
   &.dragging {
     background-image: none!important;
     .dashes {
@@ -690,6 +701,21 @@ hr {
   }
 }
 
-
+.album-description{
+	min-height: 10rem;
+	max-height: 10rem;
+}
+.thumbnail-div{
+	position: relative;
+}
+#cancel-symbol-thumbnail{
+	position: absolute;
+	top:2px;
+	right: 10px;
+	color:white;
+	&:hover{
+		cursor: pointer;
+	}
+}
 
 // -------------------------------------- end of css for upload photo

@@ -161,11 +161,11 @@ $(document).on 'turbolinks:load', ->
         success: () ->
           false
     return
-  $('.profile-content').on 'click','.us.thumbnail',->
-    gallery_id = $(this).attr("id")
+  $('.profile-content').on 'click','.us.thumbnail img',->
+    gallery_id = $(this).parent("div").attr("id")
     console.log(gallery_id)
     mode="";
-    if $(this).attr("class").indexOf("photo") >= 0
+    if $(this).parent("div").attr("class").indexOf("photo") >= 0
       mode="photos"
     else
       mode="albums"
@@ -295,7 +295,12 @@ $(document).on 'turbolinks:load', ->
     rules: {
       "photo[attached_image]":{
         accept: "image/*",
-        extension: "jpg|png|jpeg"
+        extension: "jpg|png|jpeg",
+        required: ->
+          if $('.photo-upload-preview').hasClass('hasImage')
+            return false
+          else
+            return true
       }
       "photo[title]" :{
         required:true,
@@ -306,13 +311,14 @@ $(document).on 'turbolinks:load', ->
         maxlength:300,
       }
       "photo[sharing_mode]" :{
-        required:true,
+        required:true
       }
     },
     messages: {
       "photo[attached_image]":{
         accept: "Please attaches only image please!",
-        extension: "We just support jpg,png,jpeg format."
+        extension: "We just support jpg,png,jpeg format.",
+        required: "No photo was chosen.."
       }
       "photo[title]":{
         required:'Please give me a title :(',
@@ -347,12 +353,13 @@ $(document).on 'turbolinks:load', ->
     validExtension = ['image/jpg','image/png','image/jpeg']
     if (input.files && input.files[0])
       if validExtension.includes(extension)
-        file = input.files[0];
-        reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (e) ->
-          console.log input.files[0].type
-          $('.photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'hasImage'
+          file = input.files[0]
+          reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = (e) ->
+            console.log input.files[0].type
+            $('#cancel-symbol').removeClass('invisible')
+            $('.photo-upload-preview').css('backgroundImage', 'url(' + reader.result + ')').addClass 'hasImage'
       else
         alert("Unsupported file type")
         $('.photo-upload-preview').css('backgroundImage', 'none')
@@ -361,7 +368,13 @@ $(document).on 'turbolinks:load', ->
         $('#add-symbol').css('color','red')
 
     return
-
+  $('#cancel-symbol').click ->
+    $('.photo-upload-preview').css('backgroundImage', 'none').removeClass 'hasImage'
+    $('#uploadphoto-btn').val('')
+    $('.dashes').css('border','5px dashed rgba(black, 0, 0, .5)')
+    $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(black, 0.35)')
+    $('#add-symbol').css('color','black')
+    $(this).addClass('invisible')
 #  -------------------------------- end of upload photo field ----------------------------
 
 return

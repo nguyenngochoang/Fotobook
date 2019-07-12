@@ -11,7 +11,8 @@
           - else
             .us.lockdiv.us.rounded-circle.text-center
               = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          a.us.paEdit href="#"  Edit
+          = link_to 'Edit', edit_photo_path(@current_photo), class:'us paEdit'
+
           .us.card-body.text-center= @current_photo.description
           .us.title.text-center.d-none= @current_photo.title
 

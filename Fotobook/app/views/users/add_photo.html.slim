@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 New photo
+    h5 New Photo
     hr
   .edit-center
 
@@ -26,6 +26,7 @@
                   label#add-symbol +
                   .dashes.text-center
                   = photo.file_field :attached_image,id:"uploadphoto-btn", class:"invisible"
+                  span#cancel-symbol.invisible.font-weight-bolder x
           .row.edit
             .col-sm-1
               = photo.submit id:"photo-submit",class:"btn btn-success"
