@@ -238,8 +238,12 @@ $(document).on 'turbolinks:load', ->
     e.preventDefault()
     if $(this).attr('id')=="basic-submit"
       $('#basic').submit()
-    else
+    else if $(this).attr('id')=="password-sumbit"
       $('#password').submit()
+    else if $(this).attr('id')=="photo-sumbit"
+      $('#newphoto').submit()
+    else
+      $('#newalbum').submit()
     return
 
   $('#uploadava-btn').on 'change', (e)->
@@ -295,7 +299,7 @@ $(document).on 'turbolinks:load', ->
     rules: {
       "photo[attached_image]":{
         accept: "image/*",
-        extension: "jpg|png|jpeg",
+        extension: "jpg|png|jpeg|gif",
         required: ->
           if $('.photo-upload-preview').hasClass('hasImage')
             return false
@@ -343,40 +347,111 @@ $(document).on 'turbolinks:load', ->
         error.appendTo(element.parent("div").next("div").find("span"))
   })
 
+  $('#newalbum').validate({
+    rules: {
+      "album[attached_image]":{
+        accept: "image/*",
+        extension: "jpg|png|jpeg|gif",
+        required: ->
+          if $('.photo-upload-preview').hasClass('hasImage')
+            return false
+          else
+            return true
+      }
+      "album[name]" :{
+        required:true,
+        maxlength:140,
+      }
+      "album[description]" :{
+        required:true,
+        maxlength:300,
+      }
+      "album[sharing_mode]" :{
+        required:true
+      }
+    },
+    messages: {
+      "album[attached_image]":{
+        accept: "Please attaches only image please!",
+        extension: "We just support jpg,png,jpeg format.",
+        required: "No photo was chosen.."
+      }
+      "album[title]":{
+        required:'Please give me a title :(',
+        maxlength:"140 characters are allowed",
+      }
+      "album[description]":{
+        required:"Please give me a description..",
+        maxlength:"300 characters are allowed",
+      }
+      "album[sharing_mode]" :{
+        required:"Pick a mode please..."
+      }
+    },
+    errorPlacement: (error, element) ->
+      if element.attr("name") == "photo[attached_image]"
+       $('#add-symbol').text(error.text())
+       $('#add-symbol').css('font-size','14px')
+       $('#add-symbol').addClass('font-weight-bolder')
+       $('#add-symbol').css('width','100%')
+       $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
+      else
+        error.appendTo(element.parent("div").next("div").find("span"))
+  })
+
   $('.dashes.text-center').on 'click', (e) ->
     $('#uploadphoto-btn').click();
     return
 
   $('#uploadphoto-btn').on 'change', (e)->
     input = e.target;
-    extension=input.files[0].type
     validExtension = ['image/jpg','image/png','image/jpeg']
-    if (input.files && input.files[0])
-      if validExtension.includes(extension)
-          file = input.files[0]
-          reader = new FileReader()
-          reader.readAsDataURL(file)
+    reader = new FileReader()
+    files = input.files
+    if files.length == 1
+      extension=input.files[0].type
+      if (input.files && input.files[0])
+        if validExtension.includes(extension)
+            # file = input.files[0]
+            reader.readAsDataURL(files[0])
+            reader.onload = (e) ->
+              # console.log input.files[0].type
+              $('#cancel-symbol').removeClass('invisible')
+              $('.photo-upload-preview').css('backgroundImage', 'url(' + reader.result + ')').addClass 'hasImage'
+        else
+          alert("Unsupported file type")
+          $('.photo-upload-preview').css('backgroundImage', 'none')
+          $('.dashes').css('border','5px dashed rgba(255, 0, 0, .5)')
+          $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(red, 0.35)')
+          $('#add-symbol').css('color','red')
+    else
+      readFile = (index) ->
+        if index >= files.length
+          return
+        else
+          get_file = files[index];
           reader.onload = (e) ->
-            console.log input.files[0].type
-            $('#cancel-symbol').removeClass('invisible')
-            $('.photo-upload-preview').css('backgroundImage', 'url(' + reader.result + ')').addClass 'hasImage'
-      else
-        alert("Unsupported file type")
-        $('.photo-upload-preview').css('backgroundImage', 'none')
-        $('.dashes').css('border','5px dashed rgba(255, 0, 0, .5)')
-        $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(red, 0.35)')
-        $('#add-symbol').css('color','red')
+            check_type = get_file.type
+            if validExtension.includes(check_type)
+              $(".upload-row").append("
+              <div class=\"photo-upload-preview\">
+                <img src=\""+reader.result+"\" class=\"img-fluid h-100\">
+                <span id=\"cancel-symbol-thumbnail\"class=\"font-weight-bolder\"> x </span>
+                </div>")
+            readFile(index+1)
+          reader.readAsDataURL(get_file);
+      readFile(0)
 
-    return
   $('#cancel-symbol').click ->
-    $('.photo-upload-preview').css('backgroundImage', 'none').removeClass 'hasImage'
-    $('#uploadphoto-btn').val('')
-    $('.dashes').css('border','5px dashed rgba(black, 0, 0, .5)')
-    $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(black, 0.35)')
-    $('#add-symbol').css('color','black')
-    $(this).addClass('invisible')
-#  -------------------------------- end of upload photo field ----------------------------
+    if $(this).parent().hasClass('photo-upload-preview')
+      $('.photo-upload-preview').css('backgroundImage', 'none').removeClass 'hasImage'
+      $('#uploadphoto-btn').val('')
+      $('.dashes').css('border','5px dashed rgba(black, 0, 0, .5)')
+      $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(black, 0.35)')
+      $('#add-symbol').css('color','black')
+      $(this).addClass('invisible')
 
+#  -------------------------------- end of upload photo field ----------------------------
 return
 
 

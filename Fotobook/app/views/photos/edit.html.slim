@@ -31,9 +31,10 @@
 
           .row.edit
             .col-auto.pr-0
-              = photo.submit 'Save', id:"photo-submit",class:"btn btn-success"
+              = photo.submit 'Save', id:"photo-submit",class:"btn btn-success "
             .col-auto
               = link_to 'Delete',photo_path(@current_photo),method: :delete,data: { confirm: 'Are you sure?'}, id:"photo-delete",class:"btn btn-danger"
+            
 
         .col-6.container-fluid
           .col-sm-12
