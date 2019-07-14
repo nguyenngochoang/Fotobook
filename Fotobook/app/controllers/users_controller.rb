@@ -140,13 +140,26 @@ class UsersController < ApplicationController
     album_params.delete(:attached_image)
     @album = current_user.albums.new(album_params)
     if @album.save
-      photo_params = add_album_action_params.to_h
-      photo_params[:title] = photo_params.delete(:name)
-      photo_params[:title] = "Give me a title..."
-      photo_params[:description] = "Give me a description..."
-      @photo = Photo.new(photo_params)
-      @photo.photoable = @album
-      @photo.save
+      if add_album_action_params[:attached_image].size==1
+        photo_params = add_album_action_params.to_h
+        photo_params[:title] = photo_params.delete(:name)
+        photo_params[:title] = "Give me a title..."
+        photo_params[:description] = "Give me a description..."
+        @photo = Photo.new(photo_params)
+        @photo.photoable = @album
+        @photo.save
+      else
+        photo_params = add_album_action_params
+        add_album_action_params[:attached_image].each do |img_link|
+          photo_params[:attached_image] = img_link
+          photo_params[:title] = photo_params.delete(:name)
+          photo_params[:title] = "Give me a title..."
+          photo_params[:description] = "Give me a description..."
+          @photo = Photo.new(photo_params)
+          @photo.photoable = @album
+          @photo.save
+        end
+      end
       respond_to do |format|
         format.html { redirect_to me_path, flash: { success: "Uploaded!"}}
       end
@@ -164,7 +177,7 @@ class UsersController < ApplicationController
     params.require(:photo).permit(:title,:sharing_mode,:description,:attached_image)
   end
   def add_album_action_params
-    params.require(:album).permit(:name,:sharing_mode,:description,:attached_image)
+    params.require(:album).permit(:name,:sharing_mode,:description,{attached_image:[]})
   end
 
   def user_password_params

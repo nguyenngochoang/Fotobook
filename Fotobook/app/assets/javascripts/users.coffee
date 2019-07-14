@@ -349,7 +349,7 @@ $(document).on 'turbolinks:load', ->
 
   $('#newalbum').validate({
     rules: {
-      "album[attached_image]":{
+      "album[attached_image][]":{
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
@@ -371,7 +371,7 @@ $(document).on 'turbolinks:load', ->
       }
     },
     messages: {
-      "album[attached_image]":{
+      "album[attached_image][]":{
         accept: "Please attaches only image please!",
         extension: "We just support jpg,png,jpeg format.",
         required: "No photo was chosen.."
