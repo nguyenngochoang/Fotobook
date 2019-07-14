@@ -24,4 +24,6 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }
 
 
+
+
 end

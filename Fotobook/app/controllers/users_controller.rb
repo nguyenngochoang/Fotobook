@@ -136,20 +136,21 @@ class UsersController < ApplicationController
   end
 
   def add_album_action
-    album_params = add_album_action_params.to_h
+    temp = add_album_action_params.to_h
+    album_params = temp
     album_params.delete(:attached_image)
     @album = current_user.albums.new(album_params)
     if @album.save
+      photo_params = add_album_action_params.to_h
       if add_album_action_params[:attached_image].size==1
-        photo_params = add_album_action_params.to_h
         photo_params[:title] = photo_params.delete(:name)
         photo_params[:title] = "Give me a title..."
         photo_params[:description] = "Give me a description..."
-        @photo = Photo.new(photo_params)
-        @photo.photoable = @album
-        @photo.save
+        photo_params[:attached_image]=add_album_action_params[:attached_image][0]
+        @new_photo = @album.photos.new(photo_params)
+        @new_photo.photoable = @album
+        @new_photo.save
       else
-        photo_params = add_album_action_params
         add_album_action_params[:attached_image].each do |img_link|
           photo_params[:attached_image] = img_link
           photo_params[:title] = photo_params.delete(:name)

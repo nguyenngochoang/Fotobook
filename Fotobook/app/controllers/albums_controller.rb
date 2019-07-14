@@ -12,8 +12,8 @@ class AlbumsController < ApplicationController
     if @current_album.update(temp_params)
       # byebug
       if album_params[:attached_image]
+        photo_params = album_params
         if album_params[:attached_image].size==1
-          photo_params = album_params
           photo_params[:attached_image] = album_params[:attached_image][0]
           photo_params[:title] = photo_params.delete(:name)
           photo_params[:title] = "Give me a title..."
@@ -22,7 +22,6 @@ class AlbumsController < ApplicationController
           @photo.photoable = @current_album
           @photo.save
         else
-          photo_params = album_params
           album_params[:attached_image].each do |img_link|
             photo_params[:attached_image] = img_link
             photo_params[:title] = photo_params.delete(:name)
