@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_094839) do
+ActiveRecord::Schema.define(version: 2019_07_15_095603) do
 
   create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.date "time"
     t.integer "like"
-    t.boolean "sharing_mode"
+    t.boolean "sharing_mode", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_07_12_094839) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "sharing_mode"
+    t.boolean "sharing_mode", default: true
     t.string "photoable_type"
     t.bigint "photoable_id"
     t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id"

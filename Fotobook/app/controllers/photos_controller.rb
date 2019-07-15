@@ -1,31 +1,45 @@
 class PhotosController < ApplicationController
 
-  def edit
+  before_action :get_current_photo, only: [:edit, :update, :destroy]
+
+  def get_current_photo
     @current_photo = Photo.find(params[:id])
   end
 
-  def update
-    @current_photo = Photo.find(params[:id])
-    if @current_photo.update(photo_params)
-      respond_to do |format|
-        format.html { redirect_to me_path, flash: { success: "Updated!"}}
-      end
+  def create
+    @photo = current_user.photos.new(photo_params)
+    if @photo.save
+      flash[:success] = "Uploaded!"
+      redirect_to me_path
     else
+      render 'new'
+    end
+  end
+
+  def edit
+    @current_photo
+  end
+
+  def update
+    # @current_photo = Photo.find(params[:id])
+    if @current_photo.update(photo_params)
+      flash[:success] = "Updated!"
+      redirect_to me_path
+    else
+      flash[:error] = "Update failed"
       render 'edit_photo'
     end
   end
 
   def destroy
-    @current_photo = Photo.find(params[:id])
     @current_photo.destroy
-    respond_to do |format|
-      format.html { redirect_to me_path, flash: { success: "Photo has been deleted successfully!"}}
-    end
+    flash[:success] = "Photo has been deleted successfully!"
+    redirect_to me_path
   end
 
   private
   def photo_params
-    params.require(:photo).permit(:title,:description,:sharing_mode,:attached_image)
+    params.require(:photo).permit(:title, :description, :sharing_mode, :attached_image)
   end
 
 end

@@ -1,15 +1,3 @@
-
-// $color_pumice_approx: #c9c7c7;
-// $color_flush_orange_approx: #fc8200;
-// $color_smalt_approx: #033a9f;
-
-//fonts
-// $font_0: Open Sans;
-// $font_1: sans-serif !important;
-// $font_2: Arial;
-
-//urls
-// $url_0: url(/assets/web_heart_animation.png);
 // -------------------------------------------------feeds.css -------------------------------------
 * {
 	font-family:Open Sans, sans-serif !important;
@@ -18,10 +6,10 @@
 	height: 35px;
 	width: 35px;
 }
-.showNav {
-	position: relative;
-}
-.userNavBar {
+// .showNav {
+// 	position: relative;
+// }
+.user-navbar {
 	position: absolute;
 	right: 20px;
 	top: 2px;
@@ -38,7 +26,7 @@ body {
 	margin-top: 50px;
 	min-height: 100vh;
 }
-.HeartAnimation {
+.heart-animation {
 	background-image: url(/assets/web_heart_animation.png);
 	background-repeat: no-repeat;
 	background-size: 2900%;
@@ -405,7 +393,7 @@ hr {
   margin-bottom: 5px;
 }
 
-.paEdit {
+.pa-edit {
   position: absolute;
   top: 120px;
   right: 5px;
@@ -424,7 +412,7 @@ hr {
   }
 }
 
-.us.addPA-btn {
+.us.addpa-btn {
   float: right;
   background-color: #04570a;
   border-radius: 28px;
@@ -433,7 +421,6 @@ hr {
   cursor: pointer;
   color: white;
 	font-family: Arial;
-
   font-size: 10px !important;
   text-decoration: none;
   width: 70px;
@@ -610,7 +597,7 @@ hr {
 	position: relative;
 }
 .edit-center{
-	margin:80px 0 0 0px;
+	margin:80px 0 0 0;
 	width: 100%;
 
 }
@@ -692,7 +679,7 @@ hr {
       opacity: 0.5!important;
     }
   }
-  &.hasImage {
+  &.has-image {
     .dashes, label {
       opacity: 0;
       pointer-events: none;
@@ -722,9 +709,10 @@ hr {
 	position: relative;
 	> hr{
 		position: absolute;
-		top:0px;
+		top:0;
 	}
 }
+
 
 
 // -------------------------------------- end of css for upload photo

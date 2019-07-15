@@ -1,4 +1,4 @@
-= link_to "Add Photo", add_photo_path, class:" us addPA-btn font-weight-bolder photo tab"
+= link_to "Add Photo", new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
 - if user.photos.any?
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
     - for j in (0...@arr.count)
@@ -11,7 +11,7 @@
           - else
             .us.lockdiv.us.rounded-circle.text-center
               = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          = link_to 'Edit', edit_photo_path(@current_photo), class:'us paEdit'
+          = link_to 'Edit', edit_photo_path(@current_photo), class:'us pa-edit'
 
           .us.card-body.text-center= @current_photo.description
           .us.title.text-center.d-none= @current_photo.title

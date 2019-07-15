@@ -8,8 +8,8 @@
       .row
         .col-6.container-fluid
           .row
-            = album.label :name
-            = album.text_field :name,class:'form-control edit-field',autocomplete:'off',placeholder:'Album Name',value: @current_album.name
+            = album.label :title
+            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Album Title',value: @current_album.title
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder

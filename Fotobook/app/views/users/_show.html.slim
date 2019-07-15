@@ -1,10 +1,10 @@
 .col-lg-10.col-12.us.mid
   .row.us.gocenter
     div id=("col-lg-4 col-12 useravatar inline-block")
-      - if user.avatar
+      - if !user.avatar.file.nil?
         = image_tag user.avatar.url,alt:"Sample image",class:"us rounded-circle",'data-id':user.id
       - else
-        = image_tag 'profile/4k-ultra-hd-abstract-nebula-space-creative-galaxy-background_nybzvmxi__F0000.png',alt:"Sample image",class:"us rounded-circle",'data-id':user.id
+        = image_tag 'default.png',alt:"Sample image",class:"us rounded-circle",'data-id':user.id
     .col-lg-8.col-12.inline-block.ml-2.us.userdiv
       - if user.id==current_user.id
         =link_to "Edit Profile",edit_profile_path,class:"us edit-btn d-block mt-2"
@@ -19,7 +19,7 @@
           a.btn.btn-link.us.usertab.font-weight-bolder href="#" onclick=("return false;") ="#{get_all_photos(user).size}  Photos"
         li.list-inline-item |
         li.list-inline-item
-          a.btn.btn-link.us.usertab.text-black-50 href="#" onclick=("return false;") ="#{get_albums_count(user)}  Albums"
+          a.btn.btn-link.us.usertab.text-black-50 href="#" onclick=("return false;") ="#{user.albums.size}  Albums"
         li.list-inline-item |
         li.list-inline-item
           a.btn.btn-link.us.usertab.text-black-50 href="#" onclick=("return false;") ="#{user.followees.size}  Followings "

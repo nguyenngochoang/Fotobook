@@ -23,7 +23,7 @@
           .row.mt-4
             .form-group.photo-files
               .col-12.image-uploader
-                .photo-upload-preview.hasImage style="background-image:url('#{@current_photo.attached_image.url}')"
+                .photo-upload-preview.has-image style="background-image:url('#{@current_photo.attached_image.url}')"
                   label#add-symbol +
                   .dashes.text-center
                   = photo.file_field :attached_image,id:"uploadphoto-btn", class:"invisible"
@@ -34,7 +34,7 @@
               = photo.submit 'Save', id:"photo-submit",class:"btn btn-success "
             .col-auto
               = link_to 'Delete',photo_path(@current_photo),method: :delete,data: { confirm: 'Are you sure?'}, id:"photo-delete",class:"btn btn-danger"
-            
+
 
         .col-6.container-fluid
           .col-sm-12

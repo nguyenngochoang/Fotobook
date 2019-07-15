@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :photos, as: :photoable,dependent: :destroy
   has_many :albums, dependent: :destroy
 
+  has_many :albums_photos, through: :albums, source: :photos
+
   #table contains current_user.id and all users.id followed current_user
   #foreign_key is used for specify :followee_id will be used to find follower_followee_follows of user instead of using follower_followee_follows.id by default
   has_many :follower_followee_follows, foreign_key: :followee_id, class_name: "Follow",dependent: :destroy

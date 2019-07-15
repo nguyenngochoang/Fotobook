@@ -1,5 +1,9 @@
 class ChangeIsPublicToSharingModeInAlbums < ActiveRecord::Migration[5.2]
-  def change
-      rename_column :albums, :is_public, :sharing_mode
+  def up
+    rename_column :albums, :is_public, :sharing_mode
+  end
+  
+  def down
+    rename_column :albums, :sharing_mode, :is_public  
   end
 end
