@@ -1,7 +1,8 @@
 = link_to "Add Photo", new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
 - if user.photos.any?
+  - @arr = get_all_photos(user)
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
-    - for j in (0...@arr.count)
+    - for j in (0...@arr.size)
         - @current_photo=@arr[j]
         div id="#{@current_photo.id}" class="card h-100 us usercard mr-5 thumbnail photo"
           = image_tag @current_photo.attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid rounded"

@@ -115,16 +115,16 @@ $(document).on 'turbolinks:load', ->
     if $(this).text().indexOf("Albums") >= 0
       Rails.ajax
         type: "GET"
-        url: "/task"
-        data: "data[param]="+id.toString()+"&data[mode]=albums"
+        url: "/albums"
+        data: "data[param]="+id.toString()
         dataType: 'script'
         success: () ->
           false
     else if $(this).text().indexOf("Photos") >= 0
       Rails.ajax
         type: "GET"
-        url: "/task"
-        data: "data[param]="+id.toString()+"&data[mode]=photos"
+        url: "/photos"
+        data: "data[param]="+id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -430,6 +430,8 @@ $(document).on 'turbolinks:load', ->
       $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(black, 0.35)')
       $('#add-symbol').css('color', 'black')
       $(this).addClass('invisible')
+  # $(window).on 'popstate', ->
+  #   location.reload(true)
 
 #  -------------------------------- end of upload photo field ----------------------------
 return

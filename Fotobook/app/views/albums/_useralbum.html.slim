@@ -3,7 +3,7 @@
   .row.us.imgrow.mt-5.gocenter.container-fluid.ab.tab
     - for j in (0...user.albums.size)
       .card.h-100.us.usercard.mr-5
-        - @current_album_load= get_current_album_load(j)
+        - @current_album_load= user.albums[j]
         - @current_album_photos = @current_album_load.photos
         div id="#{@current_album_load.id}" class="us thumbnail"
           = image_tag @current_album_photos[-1].attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid  rounded firstimg"

@@ -44,20 +44,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def task
-    @user = User.includes(:photos, :albums).find task_params[:param]
-    @mode = task_params[:mode]
-    get_all_photos(@user)
-    respond_to do|format|
-      format.js
-    end
-  end
+
 
   #for performs ajax request and return result to modal
   def currentgallery
-    @user = User.includes(:photos, :albums).find task_params[:param]
+    @user = User.includes(:photos, :albums).find currentgallery_params[:param]
     @mode = task_params[:mode]
-    current_gallery_id = task_params[:gallery_id].to_i
+    current_gallery_id = currentgallery_params[:gallery_id].to_i
 
     if @mode == "albums"
       @current_gallery = @user.albums.includes(:photos).find current_gallery_id
@@ -67,11 +60,6 @@ class UsersController < ApplicationController
     respond_to do|format|
       format.js
     end
-  end
-
-
-  def get_current_album_load(index)
-    current_album_load = @user.albums[index]
   end
 
 
@@ -100,7 +88,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name, :avatar)
   end
 
-  def task_params
+  def currentgallery_params
     params.require(:data).permit(:param, :mode, :gallery_id)
   end
 

@@ -6,6 +6,14 @@ class PhotosController < ApplicationController
     @current_photo = Photo.find(params[:id])
   end
 
+
+  def index
+    @user = User.includes(:photos, :albums).find show_params[:param]
+    respond_to do|format|
+      format.js
+    end
+  end
+
   def create
     @photo = current_user.photos.new(photo_params)
     if @photo.save
@@ -40,6 +48,10 @@ class PhotosController < ApplicationController
   private
   def photo_params
     params.require(:photo).permit(:title, :description, :sharing_mode, :attached_image)
+  end
+
+  def show_params
+    params.require(:data).permit(:param, :gallery_id)
   end
 
 end

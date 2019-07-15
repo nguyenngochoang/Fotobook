@@ -78,6 +78,13 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def index
+    @user = User.includes(:albums).find show_params[:param]
+    # get_all_photos(@user)
+    respond_to do|format|
+      format.js
+    end
+  end
 
   def destroy
 
@@ -85,6 +92,10 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:title, :sharing_mode, :description, {attached_image:[]})
+  end
+
+  def show_params
+    params.require(:data).permit(:param, :mode, :gallery_id)
   end
 
 end
