@@ -1,7 +1,7 @@
 - if followers.any?
   .row.imgrow.mt-5.gocenter.container-fluid.us.followers.tab
     - followers.each do |follower|
-      .fl.card.h-100.usercard.mr-3
+      .fl.card.h-100.usercard.mr-3.mt-3
         = image_tag 'profile/ultra.jpeg',alt:"Sample",class:"fl card-img-top img-fluid rounded-circle"
         .fl.card-body.text-center.font-weight-bolder= "#{follower.first_name} #{follower.last_name}"
         .row

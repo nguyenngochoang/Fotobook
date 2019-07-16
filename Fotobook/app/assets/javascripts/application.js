@@ -20,6 +20,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require toastr
+//= require local-time
 //= require users
 //= require_tree .
 $(document).ready(function() {

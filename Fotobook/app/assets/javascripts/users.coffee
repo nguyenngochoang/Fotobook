@@ -1,17 +1,7 @@
 $(document).on 'turbolinks:load', ->
-  $('.pa').on 'click', ->
-		if $('.pa').hasClass 'active'
-      $('.pa').removeClass 'active'
-    if $(this).text() == "Album"
-      $('.ab').removeClass('d-none')
-      $('.single').addClass('d-none')
-    else
-      $('.ab').addClass('d-none')
-      $('.single').removeClass('d-none')
-    $(this).addClass 'active'
 
   # heart animation for love bttuon
-  $('.heart-animation').click (e) ->
+  $('.feeds-container').on 'click','.heart-animation', (e) ->
     $(this).toggleClass 'animate'
     return
   #end of heart animation
@@ -43,7 +33,7 @@ $(document).on 'turbolinks:load', ->
       $(this).css 'background-image', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'
       followees_id = $(this).attr 'id'
       Rails.ajax
-        type: "GET"
+        type: "POST"
         url: "/follows"
         data: "data[param]="+id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
         dataType: 'script'
@@ -55,9 +45,9 @@ $(document).on 'turbolinks:load', ->
       $(this).css 'backgroundColor', '#ffffff'
       followers_id = $(this).attr 'id'
       Rails.ajax
-        type: "GET"
-        url: "/follows"
-        data: "data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        type: "DELETE"
+        url: "/follows/"+id.toString()
+        data: "data[param]="+id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -335,7 +325,7 @@ $(document).on 'turbolinks:load', ->
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
-          if $('.photo-upload-preview').hasClass('has-image')
+          if $('.photo-upload-preview').hasClass('has-images')
             return false
           else
             return true
@@ -430,9 +420,49 @@ $(document).on 'turbolinks:load', ->
       $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(black, 0.35)')
       $('#add-symbol').css('color', 'black')
       $(this).addClass('invisible')
-  # $(window).on 'popstate', ->
-  #   location.reload(true)
+  $(window).on 'popstate', ->
+    location.reload(true)
 
+  $('.inner-img').click ->
+    gallery_id = $(this).parent("div").attr("data-id")
+    id = $(this).parent("div").attr("data-param")
+    console.log(gallery_id)
+    mode="";
+    if $(this).parent("div").attr("class").indexOf("photo") >= 0
+      mode="photos"
+    else
+      mode="albums"
+
+    Rails.ajax
+      type: "GET"
+      url: "/currentgallery"
+      data: "data[param]="+id.toString()+"&data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
+      dataType: 'script'
+      success: () ->
+        false
+    jQuery('.us.modal').modal 'toggle'
+    return
+  $('.btn-group').on 'click',".pa", ->
+    $(".pa").not(this).removeClass("active")
+    $(this).addClass("active")
+    if $(this).text().indexOf("Album") >= 0
+      console.log("ALBUM!")
+      Rails.ajax
+        type: "GET"
+        url: "/switchpa"
+        data: "show[mode]=album"
+        dataType: 'script'
+        success: () ->
+          false
+    else if $(this).text().indexOf("Photo") >= 0
+      console.log("PHOTO!")
+      Rails.ajax
+        type: "GET"
+        url: "/switchpa"
+        data: "show[mode]=photo"
+        dataType: 'script'
+        success: () ->
+          false
 #  -------------------------------- end of upload photo field ----------------------------
 return
 

@@ -1,15 +1,13 @@
 class AlbumsController < ApplicationController
 
-  before_action :get_current_album, only: [:edit, :update, :show]
+  before_action :get_current_album, except: [:create, :new, :index]
 
   def create
     temp = album_params.to_h
-    byebug
     temp.delete(:attached_image)
     @album = current_user.albums.new(temp)
     if @album.save
       photo_params = album_params.to_h
-      byebug
       if album_params[:attached_image].size == 1
         photo_params[:title] = "Give me a title..."
         photo_params[:description] = "Give me a description..."
@@ -87,7 +85,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-
+    @current_album.destroy
+    flash[:success] = "Album has been deleted successfully!"
+    redirect_to me_path
   end
 
   def album_params

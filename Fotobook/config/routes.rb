@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     get '/task',to:"users#task", as:'task'
     get '/currentgallery', to:"users#currentgallery", as:'currentgallery'
+    get '/switchpa', to:"users#switchpa", as:'switchpa'
 
     resources :photos
     resources :albums

@@ -1,5 +1,5 @@
 = link_to "Add Photo", new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
-- if user.photos.any?
+- if get_all_photos(user).any?
   - @arr = get_all_photos(user)
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
     - for j in (0...@arr.size)

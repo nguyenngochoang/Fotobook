@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
-  def index
-  end
-  def feeds
+
+
+  def switchpa
+    @mode = switchpa_params[:mode]
+    respond_to do|format|
+      format.js
+    end
   end
 
   def show
@@ -49,9 +53,8 @@ class UsersController < ApplicationController
   #for performs ajax request and return result to modal
   def currentgallery
     @user = User.includes(:photos, :albums).find currentgallery_params[:param]
-    @mode = task_params[:mode]
+    @mode = currentgallery_params[:mode]
     current_gallery_id = currentgallery_params[:gallery_id].to_i
-
     if @mode == "albums"
       @current_gallery = @user.albums.includes(:photos).find current_gallery_id
     else @mode == "photos"
@@ -62,8 +65,6 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   def edit_profile
     @user = current_user
   end
@@ -71,6 +72,10 @@ class UsersController < ApplicationController
   helper_method :get_photos_count, :get_current_album_load
 
   private
+
+  def switchpa_params
+    params.require(:show).permit(:mode)
+  end
 
   def user_password_params
     params.require(:user).permit(:password)

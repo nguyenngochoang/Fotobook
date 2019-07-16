@@ -16,11 +16,14 @@ class User < ApplicationRecord
   #table contains all info about each users from table1 except current_user
   has_many :followers, through: :follower_followee_follows,  source: :follower,dependent: :destroy
 
-  #this table current_user is the follower
+  # in this table, current_user is the follower
   #table contains all followees of current_user, using current_user.id as foreign_key
   has_many :followee_follower_follows, foreign_key: :follower_id, class_name: "Follow",dependent: :destroy
   #table contains all info about current_user followees
   has_many :followees, through: :followee_follower_follows, source: :followee,dependent: :destroy
+
+  has_many :followees_photos,-> {order "created_at desc"}, through: :followees, source: :photos
+  has_many :followees_albums, ->{order "created_at desc"}, through: :followees, source: :albums
 
   validates :first_name, :last_name, presence: true, length: { maximum: 25, too_long: "25 characters are maximum allowed!" }
   validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }
