@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
 	before_action :authenticate_user!
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	
+
 	protected
 	def configure_permitted_parameters
 		# Permit the `subscribe_newsletter` parameter along with the other
@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
 
 	def check_followings_status(user_to_check,checker)
     checker.followees.include?user_to_check
-  end
+	end
+
+	
 
 	helper_method :get_all_photos, :check_followings_status
 

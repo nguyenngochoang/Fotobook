@@ -6,9 +6,9 @@
 	height: 35px;
 	width: 35px;
 }
-// .showNav {
-// 	position: relative;
-// }
+.mid{
+	height: 100vh !important;
+}
 .user-navbar {
 	position: absolute;
 	right: 20px;
@@ -36,6 +36,11 @@ body {
 	cursor: pointer;
 	margin: 0 0 -25px -20px;
 }
+
+.liked{
+	background-position: right;
+}
+
 .animate {
 	animation: heart-burst .8s steps(28) forwards;
 }
@@ -56,8 +61,11 @@ body {
 }
 .row-text {
 	margin: 50px 0 0 10px;
-	height: 10em;
+	height: 13em;
 	overflow: auto;
+	> h5{
+		width: 100%;
+	}
 	> p{
 		width: 100%;
 	}
@@ -107,15 +115,30 @@ hr {
 	bottom: 10px;
 	width: 95%;
 }
-
+// -------------------- some config for firefox ----------------------------------------------
 @-moz-document url-prefix() {
 	.date{
 		position: absolute;
 		bottom: 6px !important;
 		letter-spacing:0.01px;
 		font-size:10px !important;
-  }
+	}
+	.row-text {
+		position: relative;
+		margin: 50px 0 0 10px;
+		height: 13em;
+		overflow: auto;
+		> h5{
+			height: 40px !important;
+		}
+		> p{
+			width: 100%;
+			position: absolute;
+			top :50px;
+		}
+	}
 }
+// ---------------------- end of some config for firefox --------------------------------------
 .date {
 	position: absolute;
 	right: 10px;

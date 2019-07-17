@@ -1,0 +1,1 @@
+$("div[data-id=\'<%= j "#{@photo.id}" %>\'] .likesspan").html('<%= j( t(:likes, count: @photo.likes.size) ) %>')

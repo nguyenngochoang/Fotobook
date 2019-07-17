@@ -41,6 +41,24 @@ class AlbumsController < ApplicationController
    @current_album
   end
 
+  def album_like
+    action = likes_params[:action]
+    liker = likes_params[:liker_id].to_i
+    @album = Album.find params[:id]
+    if action == 'like'
+      @album.likes.push(liker)
+      respond_to do |format|
+        format.js
+      end
+    else
+      @album.likes.delete(liker)
+      respond_to do |format|
+        format.js
+      end
+    end
+    @album.save
+  end
+
   def update
     temp_params=album_params.to_h
     temp_params.delete(:attached_image)
@@ -65,7 +83,6 @@ class AlbumsController < ApplicationController
               @photo.save
             end
           end
-
         end
       end
       flash[:success] = "Updated"
@@ -96,6 +113,10 @@ class AlbumsController < ApplicationController
 
   def show_params
     params.require(:data).permit(:param, :mode, :gallery_id)
+  end
+
+  def likes_params
+    params.require(:likes).permit(:liker_id, :action)
   end
 
 end

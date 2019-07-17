@@ -1,5 +1,0 @@
-<%if @mode=="album"%>
-	$(".feeds-row").html('<%= j( render partial: "users/followees_card_album") %>')
-<%else%>
-	$(".feeds-row").html('<%= j( render partial: "users/followees_card_photo") %>')
-<%end%>

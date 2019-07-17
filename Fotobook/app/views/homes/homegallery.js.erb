@@ -1,0 +1,10 @@
+<%if @mode=="albums"%>
+  $("#modal-title").html('<%=@home_gallery.photos[0].title%>')
+  $(".us.modal-body").html('<%= j( render partial: "users/modalpreview", locals: {gallery: @home_gallery}) %>')
+  $(".modal-footer p").html('<%= @home_gallery.photos[0].description%>')
+
+<%else%>
+  $(".modal-title").html('<%=@home_gallery.title%>')
+  $(".us.modal-body").html('<%= j( render partial: "users/photopreview", locals: {gallery: @home_gallery}) %>')
+  $(".modal-footer p").html('<%= @home_gallery.description%>')
+<%end%>

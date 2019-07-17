@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-    get 'discover', to:"discover#discover"
     devise_for :users
-    root 'users#feeds'
+    root 'homes#feeds'
+    get '/discover', to:"users#discover", as: 'discover'
 
     resources :users
     patch '/update_basic', to:"users#update_basic",as:'update_basic'
@@ -12,7 +12,12 @@ Rails.application.routes.draw do
 
     get '/task',to:"users#task", as:'task'
     get '/currentgallery', to:"users#currentgallery", as:'currentgallery'
-    get '/switchpa', to:"users#switchpa", as:'switchpa'
+    get '/switchpa', to:"homes#switchpa", as:'switchpa'
+
+    patch '/photo_like/:id', to:"photos#photo_like", as:'photo_like'
+    patch '/album_like/:id', to:"albums#album_like", as:'album_like'
+    get '/homegallery', to:"homes#homegallery", as:'homegallery'
+
 
     resources :photos
     resources :albums

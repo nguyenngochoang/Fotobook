@@ -1,10 +1,6 @@
 $(document).on 'turbolinks:load', ->
 
-  # heart animation for love bttuon
-  $('.feeds-container').on 'click','.heart-animation', (e) ->
-    $(this).toggleClass 'animate'
-    return
-  #end of heart animation
+
 
   # auto fade navbar
   lastScrollTop = 0
@@ -95,7 +91,7 @@ $(document).on 'turbolinks:load', ->
     $(this).find('.photonums').stop().fadeOut 500
     return
 
-  id = $('.us.rounded-circle').attr('data-id')
+  user_id = $('.us.rounded-circle').attr('data-id')
   $usertab = $('.us.usertab')
   $usertab.on 'click', ->
     $(this).addClass 'font-weight-bolder'
@@ -106,7 +102,7 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/albums"
-        data: "data[param]="+id.toString()
+        data: "data[param]="+user_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -114,7 +110,7 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/photos"
-        data: "data[param]="+id.toString()
+        data: "data[param]="+user_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -122,7 +118,7 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/follows"
-        data: "data[param]="+id.toString()+"&data[mode]=followings"
+        data: "data[param]="+user_id.toString()+"&data[mode]=followings"
         dataType: 'script'
         success: () ->
           false
@@ -130,7 +126,7 @@ $(document).on 'turbolinks:load', ->
        Rails.ajax
         type: "GET"
         url: "/follows"
-        data: "data[param]="+id.toString()+"&data[mode]=followers"
+        data: "data[param]="+user_id.toString()+"&data[mode]=followers"
         dataType: 'script'
         success: () ->
           false
@@ -147,7 +143,7 @@ $(document).on 'turbolinks:load', ->
     Rails.ajax
       type: "GET"
       url: "/currentgallery"
-      data: "data[param]="+id.toString()+"&data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
+      data: "data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
       dataType: 'script'
       success: () ->
         false
@@ -423,7 +419,8 @@ $(document).on 'turbolinks:load', ->
   $(window).on 'popstate', ->
     location.reload(true)
 
-  $('.inner-img').click ->
+
+  $('.feeds-container').on 'click', '.inner-img' ,->
     gallery_id = $(this).parent("div").attr("data-id")
     id = $(this).parent("div").attr("data-param")
     console.log(gallery_id)
@@ -435,7 +432,7 @@ $(document).on 'turbolinks:load', ->
 
     Rails.ajax
       type: "GET"
-      url: "/currentgallery"
+      url: "/homegallery"
       data: "data[param]="+id.toString()+"&data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
       dataType: 'script'
       success: () ->
@@ -463,6 +460,58 @@ $(document).on 'turbolinks:load', ->
         dataType: 'script'
         success: () ->
           false
+  # heart animation for love bttuon
+  $('.feeds-container').on 'click','.heart-animation', (e) ->
+    gallery_id = $(this).parent("div").attr("data-id")
+    id = $(this).parent("div").attr("data-param")
+    if $(this).parent("div").hasClass('photo')
+      if $(this).hasClass 'liked' #unlike post
+        $(this).removeClass("liked")
+        $(this).removeClass 'animate'
+        Rails.ajax
+          type: "PATCH"
+          url: "/photo_like/"+gallery_id.toString()
+          data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=unlike"
+          dataType: 'script'
+          success: () ->
+            false
+      else #like post
+        $(this).addClass 'animate'
+        $(this).addClass 'liked'
+        console.log 'ok'
+        Rails.ajax
+          type: "PATCH"
+          url: "/photo_like/"+gallery_id.toString()
+          data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=like"
+          dataType: 'script'
+          success: () ->
+            false
+    else
+      if $(this).hasClass 'liked' #unlike post
+        $(this).removeClass("liked")
+        $(this).removeClass 'animate'
+        Rails.ajax
+          type: "PATCH"
+          url: "/album_like/"+gallery_id.toString()
+          data: "likes[liker_id]="+id.toString()+"&likes[action]=unlike"
+          dataType: 'script'
+          success: () ->
+            false
+      else #like post
+        $(this).addClass 'animate'
+        $(this).addClass 'liked'
+        console.log 'ok'
+        Rails.ajax
+          type: "PATCH"
+          url: "/album_like/"+gallery_id.toString()
+          data: "likes[liker_id]="+id.toString()+"&likes[action]=like"
+          dataType: 'script'
+          success: () ->
+            false
+
+    return
+  #end of heart animation
+
 #  -------------------------------- end of upload photo field ----------------------------
 return
 
