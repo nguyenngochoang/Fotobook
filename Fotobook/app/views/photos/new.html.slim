@@ -27,6 +27,9 @@
                   .dashes.text-center
                   = photo.file_field :attached_image ,id:"uploadphoto-btn", class:"invisible"
                   span#cancel-symbol.invisible.font-weight-bolder x
+                .row.mt-2
+                  .col-sm-12
+                    span.edit-error.font-weight-bolder
           .row.edit
             .col-sm-1
               = photo.submit id:"photo-submit",class:"btn btn-success"

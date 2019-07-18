@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   mount_uploader :avatar, ImageUploader
 
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable,:registerable,
@@ -27,7 +28,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true, length: { maximum: 25, too_long: "25 characters are maximum allowed!" }
   validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }
-
+  validates :avatar, :attached_image, file_size: { less_than: 5.megabytes }
 
 
 

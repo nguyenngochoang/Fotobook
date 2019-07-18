@@ -223,10 +223,13 @@ $(document).on 'turbolinks:load', ->
     if (input.files && input.files[0])
       if validExtension.includes(extension)
         file = input.files[0];
-        reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = (e)->
-          $('.ava-edit').attr('src',reader.result)
+        if file.size > 5242880
+          alert("File size must under 5MB")
+        else
+          reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = (e)->
+            $('.ava-edit').attr('src',reader.result)
       else
         alert("Unsupported file type")
       return
@@ -263,9 +266,17 @@ $(document).on 'turbolinks:load', ->
     return
   ), false
 
+  $.validator.addMethod 'filesize',(value, element, arg) ->
+    if value<=arg
+      return true
+    else
+      return false
+
+
   $('#newphoto').validate({
     rules: {
       "photo[attached_image]":{
+        filesize:5,
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
@@ -290,7 +301,8 @@ $(document).on 'turbolinks:load', ->
       "photo[attached_image]":{
         accept: "Please attaches only image please!",
         extension: "We just support jpg,png,jpeg format.",
-        required: "No photo was chosen.."
+        required: "No photo was chosen..",
+        filesize: "File size must be under 5MB"
       }
       "photo[title]":{
         required:'Please give me a title :(',
@@ -306,11 +318,14 @@ $(document).on 'turbolinks:load', ->
     },
     errorPlacement: (error, element) ->
       if element.attr("name") == "photo[attached_image]"
-        $('#add-symbol').text(error.text())
-        $('#add-symbol').css('font-size', '14px')
-        $('#add-symbol').addClass('font-weight-bolder')
-        $('#add-symbol').css('width', '100%')
-        $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
+        if (error.text().indexOf("5MB") != -1)
+          error.appendTo(element.parent("div").next("div").find("span"))
+        else
+          $('#add-symbol').text(error.text())
+          $('#add-symbol').css('font-size', '14px')
+          $('#add-symbol').addClass('font-weight-bolder')
+          $('#add-symbol').css('width', '100%')
+          $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
       else
         error.appendTo(element.parent("div").next("div").find("span"))
   })
@@ -318,6 +333,7 @@ $(document).on 'turbolinks:load', ->
   $('#newalbum').validate({
     rules: {
       "album[attached_image][]":{
+        filesize: 5,
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
@@ -342,7 +358,8 @@ $(document).on 'turbolinks:load', ->
       "album[attached_image][]":{
         accept: "Please attaches only image please!",
         extension: "We just support jpg, png, jpeg format.",
-        required: "No photo was chosen.."
+        required: "No photo was chosen..",
+        filesize: "File size must be under 5MB"
       }
       "album[title]":{
         required:'Please give me a title :(',
