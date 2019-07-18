@@ -23,6 +23,7 @@ $(document).on 'turbolinks:load', ->
       $thisdiv = $thisdiv.next()
     return
 
+  user_id = $('.us.rounded-circle').attr('data-id')
   $('.userdiv').on 'click','.follow-button', (e)->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
@@ -31,7 +32,7 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "POST"
         url: "/follows"
-        data: "data[param]="+id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
+        data: "data[param]="+user_id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -42,8 +43,8 @@ $(document).on 'turbolinks:load', ->
       followers_id = $(this).attr 'id'
       Rails.ajax
         type: "DELETE"
-        url: "/follows/"+id.toString()
-        data: "data[param]="+id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        url: "/follows/"+user_id.toString()
+        data: "data[param]="+user_id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -68,8 +69,8 @@ $(document).on 'turbolinks:load', ->
       followers_id = $(this).attr 'id'
       Rails.ajax
         type: "DELETE"
-        url: "/follows/"+id.toString()
-        data: "data[param]="+id.toString()+"&data[followers_id]="+followers_id.toString()
+        url: "/follows/"+user_id.toString()
+        data: "data[param]="+user_id.toString()+"&data[followers_id]="+followers_id.toString()
         dataType: 'script'
         success: () ->
           false
@@ -91,7 +92,6 @@ $(document).on 'turbolinks:load', ->
     $(this).find('.photonums').stop().fadeOut 500
     return
 
-  user_id = $('.us.rounded-circle').attr('data-id')
   $usertab = $('.us.usertab')
   $usertab.on 'click', ->
     $(this).addClass 'font-weight-bolder'
@@ -429,7 +429,6 @@ $(document).on 'turbolinks:load', ->
       mode="photos"
     else
       mode="albums"
-
     Rails.ajax
       type: "GET"
       url: "/homegallery"
@@ -486,7 +485,7 @@ $(document).on 'turbolinks:load', ->
           dataType: 'script'
           success: () ->
             false
-    else
+    else #album like and unlike
       if $(this).hasClass 'liked' #unlike post
         $(this).removeClass("liked")
         $(this).removeClass 'animate'

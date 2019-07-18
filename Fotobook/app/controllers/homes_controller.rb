@@ -1,11 +1,25 @@
 class HomesController < ApplicationController
+  include ActionView::Helpers::UrlHelper
 
 	def switchpa
     @mode = switchpa_params[:mode]
     respond_to do|format|
       format.js
     end
-	end
+  end
+
+  def switchpa_discover
+    @mode = switchpa_params[:mode]
+    if @mode == "photo"
+      @photos = Photo.all.where(photoable_type: "User").order(created_at: :desc)
+    else
+      @albums = Album.all.order(created_at: :desc)
+    end
+    respond_to do|format|
+      format.js
+    end
+
+  end
 
 	def homegallery
     @user = User.includes(:photos, :albums).find homegallery_params[:param]
@@ -19,7 +33,12 @@ class HomesController < ApplicationController
     respond_to do|format|
       format.js
     end
-	end
+  end
+
+  def discover
+    @photos = Photo.all.where(photoable_type: "User")
+  end
+
 
 	private
 	def homegallery_params

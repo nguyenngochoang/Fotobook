@@ -5,8 +5,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable,:registerable,
         :recoverable,:rememberable,:validatable
-  has_many :photos, as: :photoable,dependent: :destroy
-  has_many :albums, dependent: :destroy
+  has_many :photos,as: :photoable,dependent: :destroy
+  has_many :albums,dependent: :destroy
 
   has_many :albums_photos, through: :albums, source: :photos
 
@@ -22,8 +22,8 @@ class User < ApplicationRecord
   #table contains all info about current_user followees
   has_many :followees, through: :followee_follower_follows, source: :followee,dependent: :destroy
 
-  has_many :followees_photos,-> {order "created_at desc"}, through: :followees, source: :photos
-  has_many :followees_albums, ->{order "created_at desc"}, through: :followees, source: :albums
+  has_many :followees_photos, -> {order "created_at desc"}, through: :followees, source: :photos
+  has_many :followees_albums, -> {order "created_at desc"}, through: :followees, source: :albums
 
   validates :first_name, :last_name, presence: true, length: { maximum: 25, too_long: "25 characters are maximum allowed!" }
   validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }

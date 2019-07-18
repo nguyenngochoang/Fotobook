@@ -22,6 +22,7 @@
 //= require toastr
 //= require local-time
 //= require users
+//= require homes
 //= require_tree .
 $(document).ready(function() {
   toastr.options = {

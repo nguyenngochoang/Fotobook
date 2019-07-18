@@ -6,9 +6,15 @@
 	height: 35px;
 	width: 35px;
 }
-.mid{
+.body{
 	height: 100vh !important;
 }
+.mid{
+	min-height: 100vh !important;
+}
+// .feeds-container{
+// 	height: 100vh !important;
+// }
 .user-navbar {
 	position: absolute;
 	right: 20px;
@@ -19,7 +25,7 @@ html {
 	height: 100%;
 }
 body {
-	min-height: 100%;
+	min-height: 100vh !important;
 	background-color: #F2F3F5;
 }
 .body {
@@ -76,7 +82,7 @@ body {
 }
 .mid {
 	position: relative;
-	height: auto;
+	height: auto !important;
 	width: 100%;
 }
 .likesspan {
@@ -145,7 +151,7 @@ hr {
 	bottom: 5px;
 	font-size: 12px;
 }
-.userInfo {
+.user-info {
 	position: absolute;
 	top: 0;
 	left: 20px;
@@ -224,18 +230,7 @@ hr {
 	padding: 1px 0 0 10px;
 
 }
-.discover-fl{
-  position: absolute;
-	top: 8px;
-  right: 1px;
-  &:hover {
-		background-color: #fc8200;
-	}
-	&:active {
-		position: absolute;
-		right: 5px;
-	}
-}
+
 .container.body {
 	width: 100vh !important;
 	min-width: 100%;
@@ -517,8 +512,12 @@ hr {
 .fl.followingsbtn{
 	background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
 }
-.fl.followersbtn{
+.followersbtn{
 	background-color: white;
+	&:hover{
+		color:white;
+		background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+	}
 }
 
 .fl.username {
