@@ -1,7 +1,5 @@
 $(document).on 'turbolinks:load', ->
 
-
-
   # auto fade navbar
   lastScrollTop = 0
   $navbar = $('.navbar')

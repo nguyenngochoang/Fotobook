@@ -1,5 +1,14 @@
 class HomesController < ApplicationController
+
+  before_action :check_role
+
   include ActionView::Helpers::UrlHelper
+
+  def check_role
+    if current_user.role == 'admin'
+      redirect_to manage_photos_path
+    end
+  end
 
 	def switchpa
     @mode = switchpa_params[:mode]
@@ -20,6 +29,7 @@ class HomesController < ApplicationController
     end
 
   end
+
 
 	def homegallery
     @user = User.includes(:photos, :albums).find homegallery_params[:param]

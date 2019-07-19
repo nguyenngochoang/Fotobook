@@ -1,0 +1,12 @@
+tr
+	th[scope="row"] = index
+	td = user.first_name
+	td = user.last_name
+	td = local_time(user.last_sign_in_at)
+	td
+		- unless user.role == 'admin'
+			= link_to 'Edit','',class:"btn btn-success"
+			= link_to 'Delete','',class:"btn btn-danger"
+		- else
+			= link_to 'Edit','',class:"btn btn-success invisible"
+			= link_to 'Delete','',class:"btn btn-danger invisible"

@@ -86,7 +86,11 @@ class AlbumsController < ApplicationController
         end
       end
       flash[:success] = "Updated"
-      redirect_to me_path
+      if current_user.role == 'normal'
+        redirect_to me_path
+      else
+        redirect_to manage_photos_path
+      end
     else
       flash[:error] = "Update failed :("
       render 'edit'

@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     get '/switchpa', to:"homes#switchpa", as:'switchpa'
     get '/switchpa_discover', to:"homes#switchpa_discover", as:'switchpa_discover'
 
+    scope :admin do
+        get 'manage_photos', to:"admins#manage_photos", as: 'manage_photos'
+        get 'manage_albums', to:"admins#manage_albums", as: 'manage_albums'
+        get 'manage_users', to:"admins#manage_users", as: 'manage_users'
+    end
+
 
     patch '/photo_like/:id', to:"photos#photo_like", as:'photo_like'
     patch '/album_like/:id', to:"albums#album_like", as:'album_like'

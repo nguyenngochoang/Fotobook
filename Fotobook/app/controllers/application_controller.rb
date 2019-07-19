@@ -25,14 +25,14 @@ class ApplicationController < ActionController::Base
     checker.followees.include?user_to_check
 	end
 
-	
+
 
 	helper_method :get_all_photos, :check_followings_status
 
 	private
 	# If your model is called User
 	def after_sign_in_path_for(resource)
-		session["user_return_to"] || root_path
+		current_user.role == 'normal'? root_path : manage_photos_path
 	end
 
 end
