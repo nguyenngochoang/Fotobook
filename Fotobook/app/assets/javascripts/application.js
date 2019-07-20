@@ -21,9 +21,9 @@
 //= require bootstrap
 //= require toastr
 //= require local-time
+//= require admins
 //= require users
 //= require homes
-//= require admins
 //= require_tree .
 $(document).ready(function() {
   toastr.options = {
