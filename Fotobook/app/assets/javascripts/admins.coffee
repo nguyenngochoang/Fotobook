@@ -3,4 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ->
-	
+	$('.admin-edit-btn').click ->
+		user_id = $(this).attr('data-id')
+		

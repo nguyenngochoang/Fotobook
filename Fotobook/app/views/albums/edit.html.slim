@@ -34,6 +34,10 @@
               .dashes.text-center
               = album.file_field :attached_image,id:"uploadphoto-btn", class:"invisible",multiple:true
               span#cancel-symbol.invisible.font-weight-bolder x
+            .row.mt-2
+                .col-sm-12
+                  span.edit-error.font-weight-bolder
+      .preview-row.row.mt-4
       = render 'current_album_photo.html.slim', current_album: @current_album
       .row.edit.mt-4
         .col-auto.pr-0

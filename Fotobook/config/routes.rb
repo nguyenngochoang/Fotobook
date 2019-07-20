@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     patch '/album_like/:id', to:"albums#album_like", as:'album_like'
     get '/homegallery', to:"homes#homegallery", as:'homegallery'
 
+    patch '/remove_img', to:"albums#remove_img", as:'remove_img'
 
     resources :photos
     resources :albums

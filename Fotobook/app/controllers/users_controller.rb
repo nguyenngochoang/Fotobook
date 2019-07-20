@@ -10,6 +10,9 @@ class UsersController < ApplicationController
     get_all_photos(@user)
   end
 
+  def edit
+    redirect_to edit_user_path
+  end
 
 
   def update_basic

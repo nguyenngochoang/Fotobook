@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 
-  before_action :get_current_album, except: [:create, :new, :index]
+  before_action :get_current_album, except: [:create, :new, :index, :remove_img]
 
   def create
     temp = album_params.to_h
@@ -111,6 +111,15 @@ class AlbumsController < ApplicationController
     redirect_to me_path
   end
 
+  def remove_img
+    img_id = remove_img_params[:img_id]
+    album_id = remove_img_params[:album_id]
+
+    @album = Album.find album_id
+    @album.photos.delete(img_id)
+  end
+
+  private
   def album_params
     params.require(:album).permit(:title, :sharing_mode, :description, {attached_image:[]})
   end
@@ -121,6 +130,10 @@ class AlbumsController < ApplicationController
 
   def likes_params
     params.require(:likes).permit(:liker_id, :action)
+  end
+
+  def remove_img_params
+    params.require(:remove).permit(:img_id, :album_id)
   end
 
 end

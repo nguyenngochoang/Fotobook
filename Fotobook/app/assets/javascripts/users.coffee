@@ -221,6 +221,7 @@ $(document).on 'turbolinks:load', ->
     if (input.files && input.files[0])
       if validExtension.includes(extension)
         file = input.files[0];
+        console.log file.size
         if file.size > 5242880
           alert("File size must under 5MB")
         else
@@ -264,17 +265,10 @@ $(document).on 'turbolinks:load', ->
     return
   ), false
 
-  $.validator.addMethod 'filesize',(value, element, arg) ->
-    if value<=arg
-      return true
-    else
-      return false
-
 
   $('#newphoto').validate({
     rules: {
       "photo[attached_image]":{
-        filesize:5,
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
@@ -316,14 +310,11 @@ $(document).on 'turbolinks:load', ->
     },
     errorPlacement: (error, element) ->
       if element.attr("name") == "photo[attached_image]"
-        if (error.text().indexOf("5MB") != -1)
-          error.appendTo(element.parent("div").next("div").find("span"))
-        else
-          $('#add-symbol').text(error.text())
-          $('#add-symbol').css('font-size', '14px')
-          $('#add-symbol').addClass('font-weight-bolder')
-          $('#add-symbol').css('width', '100%')
-          $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
+        $('#add-symbol').text(error.text())
+        $('#add-symbol').css('font-size', '14px')
+        $('#add-symbol').addClass('font-weight-bolder')
+        $('#add-symbol').css('width', '100%')
+        $('#add-symbol').css('color', 'rgba(255, 0, 0, 0.5)')
       else
         error.appendTo(element.parent("div").next("div").find("span"))
   })
@@ -331,7 +322,6 @@ $(document).on 'turbolinks:load', ->
   $('#newalbum').validate({
     rules: {
       "album[attached_image][]":{
-        filesize: 5,
         accept: "image/*",
         extension: "jpg|png|jpeg|gif",
         required: ->
@@ -387,40 +377,49 @@ $(document).on 'turbolinks:load', ->
     return
 
   $('#uploadphoto-btn').on 'change', (e)->
-    input = e.target;
+    input = e.target
     validExtension = ['image/jpg', 'image/png', 'image/jpeg']
     reader = new FileReader()
     files = input.files
+
     if files.length == 1
-      extension = input.files[0].type
-      if (input.files && input.files[0])
-        if validExtension.includes(extension)
-            reader.readAsDataURL(files[0])
-            reader.onload = (e) ->
-              $('#cancel-symbol').removeClass('invisible')
-              $('.photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'has-image'
-        else
-          alert("Unsupported file type")
-          $('.photo-upload-preview').css('background-image', 'none')
-          $('.dashes').css('border','5px dashed rgba(255, 0, 0, .5)')
-          $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(red, 0.35)')
-          $('#add-symbol').css('color', 'red')
+      if files[0].size <= 5242880
+        extension = input.files[0].type
+        if (input.files && input.files[0])
+          if validExtension.includes(extension)
+              reader.readAsDataURL(files[0])
+              reader.onload = (e) ->
+                $('#cancel-symbol').removeClass('invisible')
+                $('.photo-upload-preview').css('background-image', 'url(' + reader.result + ')').addClass 'has-image'
+          else
+            alert("Unsupported file type")
+            $('.photo-upload-preview').css('background-image', 'none')
+            $('.dashes').css('border','5px dashed rgba(255, 0, 0, .5)')
+            $('.photo-upload-preview').css('box-shadow','0 5px 8px rgba(red, 0.35)')
+            $('#add-symbol').css('color', 'red')
+      else
+        $(this).parent("div").next("div").find("span").text("File size must be under 5MB")
     else
       readFile = (index) ->
         if index >= files.length
+          $(".upload-row").after("<button type=\"button\" class=\"btn btn-danger reset-btn my-4\">Reset</button>")
           return
         else
           get_file = files[index];
-          reader.onload = (e) ->
-            check_type = get_file.type
-            if validExtension.includes(check_type)
-              $(".upload-row").append("
-                <div class=\"photo-upload-preview mt-2\">
-                  <img src=\""+reader.result+"\" class=\"h-100 img-fluid  \" >
-                  <span id=\"cancel-symbol-thumbnail\"class=\"font-weight-bolder\"> x </span>
-                </div>")
-            readFile(index+1)
-          reader.readAsDataURL(get_file);
+          if get_file.size <= 5242880
+            reader.onload = (e) ->
+              check_type = get_file.type
+              if validExtension.includes(check_type)
+                $(".preview-row").append("
+                  <div class=\"photo-upload-preview mt-2\">
+                    <img src=\""+reader.result+"\" class=\"h-100 img-fluid  \" >
+                  </div>")
+
+              readFile(index+1)
+            reader.readAsDataURL(get_file);
+          else
+            $(this).parent("div").next("div").find("span").text("File size must be under 5MB")
+            return
       readFile(0)
 
   $('#cancel-symbol').click ->
@@ -525,6 +524,26 @@ $(document).on 'turbolinks:load', ->
 
     return
   #end of heart animation
+  $('.cancel-symbol-thumbnail').on 'click', ->
+    $get_parent = $(this).parent("div").parent("div")
+    img_id = $get_parent.attr('id')
+    console.log img_id
+    album_id = $get_parent.parent("div").attr('id')
+    console.log album_id
+    Rails.ajax
+      type: "PATCH"
+      url: "/remove_img/"
+      data: "remove[img_id]="+img_id.toString()+"&remove[album_id]="+album_id.toString()
+      dataType: 'script'
+      success: () ->
+        false
+    $get_parent.remove()
+
+  $('#newalbum').on 'click', '.reset-btn', ->
+    $('#uploadphoto-btn').val('');
+    $('.preview-row').html('')
+    $(this).remove()
+
 
 #  -------------------------------- end of upload photo field ----------------------------
 return
