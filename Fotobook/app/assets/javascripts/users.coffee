@@ -412,7 +412,7 @@ $(document).on 'turbolinks:load', ->
               if validExtension.includes(check_type)
                 $(".preview-row").append("
                   <div class=\"photo-upload-preview mt-2\">
-                    <img src=\""+reader.result+"\" class=\"h-100 img-fluid  \" >
+                    <img src=\""+reader.result+"\" class=\"h-100 img-fluid  \">
                   </div>")
 
               readFile(index+1)

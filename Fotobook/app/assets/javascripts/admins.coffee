@@ -14,3 +14,7 @@ $(document).on 'turbolinks:load', ->
     $(this).find('.admin-photonums').stop().fadeOut 500
 		return
 
+
+
+	return
+

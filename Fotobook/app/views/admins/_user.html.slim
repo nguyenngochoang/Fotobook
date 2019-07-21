@@ -3,10 +3,10 @@ tr
 	td = user.first_name
 	td = user.last_name
 	td = local_time(user.last_sign_in_at)
-	td
+	td data-id="#{user.id}"
 		- unless user.role == 'admin'
-			= link_to 'Edit','',class:"btn btn-success mr-2 admin-edit-btn", :"data-id" => "#{user.id}"
-			= link_to 'Delete','',class:"btn btn-danger admin-delete-btn", :"data-id" => "#{user.id}"
+			= link_to 'Edit',admin_edit_user_path(user),class:"btn btn-success mr-2 admin-edit-btn"
+			= link_to 'Delete',user_path(user), method: :delete, data: { confirm: 'Are you sure?'},class:"btn btn-danger admin-delete-btn"
 		- else
 			= link_to 'Edit','',class:"btn btn-success invisible"
 			= link_to 'Delete','',class:"btn btn-danger invisible"

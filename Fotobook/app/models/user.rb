@@ -31,6 +31,12 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255, too_long: "255 characters are maximum allowed!" }
   validates :avatar, file_size: { less_than: 5.megabytes }
 
+  def active_for_authentication?
+    super and self.active?
+  end
 
+  def inactive_message
+    "Sorry, this account has been deactivated"
+  end
 
 end

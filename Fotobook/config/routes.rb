@@ -19,13 +19,14 @@ Rails.application.routes.draw do
         get 'manage_photos', to:"admins#manage_photos", as: 'manage_photos'
         get 'manage_albums', to:"admins#manage_albums", as: 'manage_albums'
         get 'manage_users', to:"admins#manage_users", as: 'manage_users'
+        get 'admin_edit_user/:id', to:"admins#admin_edit_user", as:'admin_edit_user'
+        patch 'update_basic_user/:id', to:"admins#update_basic_user", as:'update_basic_user'
     end
 
 
     patch '/photo_like/:id', to:"photos#photo_like", as:'photo_like'
     patch '/album_like/:id', to:"albums#album_like", as:'album_like'
     get '/homegallery', to:"homes#homegallery", as:'homegallery'
-
     patch '/remove_img', to:"albums#remove_img", as:'remove_img'
 
     resources :photos

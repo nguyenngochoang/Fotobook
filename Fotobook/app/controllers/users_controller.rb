@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   def show
     @user = User.includes(:photos, :albums, :followers, :followees).find(params[:id])
     get_all_photos(@user)
@@ -14,6 +15,12 @@ class UsersController < ApplicationController
     redirect_to edit_user_path
   end
 
+  def destroy
+    @user = User.find params[:id]
+    @user.destroy
+
+    redirect_to manage_users_path
+  end
 
   def update_basic
     @user = current_user
@@ -92,5 +99,4 @@ class UsersController < ApplicationController
   def follow_params
     params.require(:data).permit(:param, :mode, :followers_id, :followees_id)
   end
-
 end
