@@ -79,3 +79,90 @@
 
     - db/migrate/20190702022911_change_attached_imgage_in_photos.rb => file này ko chạy rollback dc
     - db/migrate/20190704014940_change_is_public_to_sharing_mode_in_albums.rb: tương tự trên
+
+----
+
+## Review 2nd 20190721 - Revision d7eddb7
+
+1. Khi bỏ gem vào Gemfile thì nên đưa thêm version vào => cái này ko cần sửa, sau này làm nhớ là dc. Tốt nhất muôn xài gem nào lên `rubygems.org` copy + paste cái chỗ `Gemfile:` vào app mình.
+
+2. Configure editor dùng space thay cho tab, tabsize là 2 space. => search google là ra cách configure
+
+    - Fotobook/app/assets/javascripts/admins.coffee -> do dùng tab nên nhìn change history trên github rất ghê. Sau này làm chung với người khác thì sự khác nhau giữa space và tab sẽ gây ra conflict code ko đáng có.
+    - Fotobook/app/assets/javascripts/homes.coffee: cùng 1 file nhưng lúc indent = tab, lúc = space @.@
+    - Fotobook/app/controllers/application_controller.rb
+    - Fotobook/app/controllers/follows_controller.rb
+    - (còn nhiều chỗ khác nữa)
+
+3. Không nên dùng js để set css cho HTML nếu ko cần thiết
+
+    - Fotobook/app/assets/javascripts/homes.coffee: `$(this).css 'background-image', 'linear-gradient(to right, #fe8c00 51%, #f83600 100%)'` => `$(this).addClass('class gì đó')`
+
+4. Không nên cùng cộng chuỗi trong coffee
+
+    - Fotobook/app/assets/javascripts/homes.coffee: `"data[param]="+user_id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()` => `"data[param]=#{user_id}&data[mode]=follow&data[followees_id]=#{followees_id}`
+    - (còn nhiều chỗ khác nữa)
+
+5. Code dư thừa
+
+    - Fotobook/app/assets/javascripts/homes.coffee: option `success` khi dùng ajax là optional. ko cần dùng thì ko khai báo.
+
+    ```
+    success: () ->
+       false
+    ```
+
+    => chỗ này ko có ý nghĩa gì hết, remove đi
+
+    - (còn nhiều chỗ khác nữa)
+
+    - Fotobook/app/controllers/admins_controller.rb: `Photo.all.page` => chỗ này ko cần `all`, chỉ `Photp.page` là đủ
+    - Fotobook/app/controllers/albums_controller.rb, Fotobook/app/controllers/follows_controller.rb: Ko thấy dùng ajax ở javascript sao trên controller có xử lý để trả về format `js` nữa? Có thật có chỗ dùng format này ko? Controller chỉ còn xử lý để trả về response cho format nào mà dưới client có dùng thôi, ko phải lúc nào cũng cần `respond_to` rồi trả nhiều format về.
+    - Fotobook/app/controllers/users_controller.rb#show: chỗ này dùng `.includes` ko cần thiết, ở đây mình chỉ có 1 user không thể nào xảy ra issue `N+1` query trên những association link trực tiếp đến user được.
+    - Fotobook/app/views/albums/_current_album_photo.html.slim: `id="#{current_album.id}"` => chỗ này ko cần dùng string interpolation, chỉ `id=current_album.id` là đủ
+
+6. Hạn chế sử dụng `!important` khi viết CSS.
+
+    - Fotobook/app/assets/stylesheets/users.scss
+
+7. Dùng asset ko đúng cách thì asset chỉ available ở mode development. Khi chạy mode production hay deploy heroku sẽ lỗi
+
+    - Fotobook/app/assets/stylesheets/users.scss:36
+
+8. Duplicate code sẽ gây app khó maintainance và dễ sinh bug
+
+    - Fotobook/app/controllers/albums_controller.rb#create + Fotobook/app/controllers/albums_controller.rb#update
+
+9. App ko có cơ chế authorization phù hợp
+
+    - Fotobook/app/controllers/albums_controller.rb#get_current_album: `current_album` nếu chỉ find = mỗi cái `id` thì thằng user Nguyễn Văn A hoàn toàn có thể gởi 1 request lên để update/destroy/remove_img 1 cái album của thằng Nguyễn Văn B
+    - Fotobook/app/controllers/users_controller.rb: có vẻ controller này ai cũng có thể vào để update/destroy 1 thằng user bất kỳ nào đó?
+
+10. Những chức năng của admin nên có riêng những controllers để handle và những controller này nằm trong namespace `admin`
+
+11. Code quá dài cho những logic đơn giản
+
+    - Fotobook/app/controllers/application_controller.rb#get_all_photos: method này chỉ cần `@arr = (user.photos + user.albums_photos).sort_by(&:created_at)`
+
+12. Cần đảm bảo tính đúng đắn của dữ liệu
+
+    - Fotobook/app/controllers/follows_controller.rb#create: nên check xem `current_user` có follow thằng user đang muốn follow chưa, có rồi thì ignore request này đi, chưa có thì tiến hành follow. User nó có nhiều cách gởi request lên server mà vượt qua được validate ở dưới client, nên server cần check lại lần nữa để chắc chắn.
+
+13. Tên varibale, method cần đặt sao cho meaningful
+
+    - Fotobook/app/controllers/homes_controller.rb#switchpa, #switchpa_discover: ko hiểu method này có chức năng gì.
+
+14. Nên tím hiểu `rails enum` hoặc gem `rolify` để thay thế để thay thế cách check user role hiện giờ
+
+15. Đừng commit những file ko dùng tới
+
+    - Fotobook/app/helpers/*
+    - Fotobook/public/uploads/*
+    - Fotobook/test/*
+
+16. Coding style vẫn còn gớm quá
+
+    - Fotobook/app/views/admins/_album.html.slim: sau dấu `,` cần có 1 space
+    - (còn nhiều chỗ khác nữa)
+
+17. Hiện giờ em đang làm 1 mình có thể thêm/xoá/sửa file migration thoải mái. Nhưng chú ý sau này làm việc nhóm thì file migration  đã commit thì ko được xoá/sửa. Cần update lại database schema thì tạo 1 migration mới update lại cái sai của migration cũ.
