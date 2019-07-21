@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 New Photo
+    h5 = t '.new_photo'
     hr
   .edit-center
 
@@ -9,13 +9,13 @@
         .col-6.container-fluid
           .row
             = photo.label :title
-            = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Photo Title'
+            = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:"#{t '.photo_placeholder_title'}"
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = photo.label :sharing_mode
-            = photo.select :sharing_mode, [['Private',0],['Public',1 ]],{prompt:'Select One'},{class: "form-control"}
+            = photo.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -37,7 +37,7 @@
         .col-6.container-fluid
           .col-sm-12
             = photo.label :description
-            = photo.text_area :description,placeholder:'Photo Description',class:'form-control',rows:'7'
+            = photo.text_area :description,placeholder:"#{t '.photo_placeholder_description'}",class:'form-control',rows:'7'
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder

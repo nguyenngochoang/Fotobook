@@ -4,18 +4,18 @@
         - if @user.avatar.file.nil?
           .edit-ava-div.text-center.container-fluid
             = image_tag 'profile/sample-avatar.jpg', class:"us rounded ava-edit"
-            .us.ava-change.text-center CHANGE
+            .us.ava-change.text-center = t(:change)
             = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change d-none"
         - else
           .edit-ava-div.text-center.container-fluid
             = image_tag @user.avatar.url,class:"us rounded ava-edit"
-            .us.ava-change.text-center CHANGE
+            .us.ava-change.text-center = t(:change)
             = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change invisible"
 
         / BASIC FIELD
         .row.edit.mt-2
             .col-sm-4.offset-sm-4
-              p.text-primary.font-weight-bolder Basic Infomation
+              p.text-primary.font-weight-bolder = t(:basic_info)
 
         #form-edit-basic
           .row.edit.text-center

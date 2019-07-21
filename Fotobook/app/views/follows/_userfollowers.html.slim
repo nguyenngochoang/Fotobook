@@ -8,16 +8,16 @@
           .col-lg-6.col-12
             .text-center
               p.fl.firstchild.font-weight-bolder= get_all_photos(follower).size
-              p.fl.secondchild Photos
+              p.fl.secondchild = t(:photos_count)
           .col-lg-6.col-12
             .text-center
               p.fl.firstchild.font-weight-bolder= follower.albums.size
-              p.fl.secondchild Album
+              p.fl.secondchild = t(:albums_count)
         .fl.text-center.card-following-btn
           - if check_followings_status(follower,user)
-            = link_to 'Following', nil,id:follower.id,class:"fl follow-button followingsbtn",onClick:"return false;"
+            = link_to t(:followed), nil,id:follower.id,class:"fl follow-button followingsbtn",onClick:"return false;"
           - else
-            = link_to '+ Follow', nil,id:follower.id,class:"fl follow-button followersbtn",onClick:"return false;"
+            = link_to t(:not_follow), nil,id:follower.id,class:"fl follow-button followersbtn",onClick:"return false;"
 -else
   .text-center.us-noinfo.text-black-50
     p You don't have any Followers.

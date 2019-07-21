@@ -1,4 +1,4 @@
-=link_to 'Add Album',new_album_path,class:'us addpa-btn font-weight-bolder ab tab'
+=link_to t('.add'),new_album_path,class:'us addpa-btn font-weight-bolder ab tab'
 - if user.albums.any?
   .row.us.imgrow.mt-5.gocenter.container-fluid.ab.tab
     - for j in (0...user.albums.size)
@@ -19,7 +19,7 @@
               = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
           .us.lockdiv.us.rounded-circle.text-center.d-none
             = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          = link_to 'Edit',edit_album_path(@current_album_load),class:'us pa-edit'
+          = link_to t(:edit),edit_album_path(@current_album_load),class:'us pa-edit'
           .us.card-body.text-center =@current_album_load.title
 -else
   .text-center.us-noinfo.text-black-50

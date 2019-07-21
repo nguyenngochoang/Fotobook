@@ -14,9 +14,9 @@
 											span.align-self-center.ml-1.font-weight-bolder.discover-span
 												= "#{post.user.first_name} #{post.user.last_name}"
 									- if current_user.followees.include?(post.user)
-										= link_to 'Following', nil,id:post.user_id,class:"discover follow-button followingsbtn ",onClick:"return false;"
+										= link_to "#{t :followed}", nil,id:post.user_id,class:"discover follow-button followingsbtn ",onClick:"return false;"
 									- else
-										= link_to '+ Follow', nil,id:post.user_id,class:"discover follow-button followersbtn ",onClick:"return false;"
+										= link_to "#{t :not_follow}", nil,id:post.user_id,class:"discover follow-button followersbtn ",onClick:"return false;"
 									.row.row-text
 										h5.card-title.mb-4.font-weight-bolder = post.title
 										p = post.description

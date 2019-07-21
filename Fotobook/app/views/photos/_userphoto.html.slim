@@ -1,4 +1,4 @@
-= link_to "Add Photo", new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
+= link_to t('.add'), new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
 - if get_all_photos(user).any?
   - @arr = get_all_photos(user)
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
@@ -12,11 +12,11 @@
           - else
             .us.lockdiv.us.rounded-circle.text-center
               = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          = link_to 'Edit', edit_photo_path(@current_photo), class:'us pa-edit'
+          = link_to t(:edit), edit_photo_path(@current_photo), class:'us pa-edit'
 
           .us.card-body.text-center= @current_photo.description
           .us.title.text-center.d-none= @current_photo.title
 
 - else
   .text-center.us-noinfo.text-black-50
-    p You don't have any Photos. Upload one ?
+    p = t '.no_photo'

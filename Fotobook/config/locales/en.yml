@@ -43,9 +43,93 @@ en:
       mini_magick_processing_error: "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}"
       min_size_error: "File size should be greater than %{min_size}"
       max_size_error: "File size should be less than %{max_size}"
-
   likes:
-    zero: '%{count} Likes' # optional
+    zero:	'%{count} Likes'
     one: '%{count} Like'
-    other: '%{count} Likes'
+    ther: '%{count} Likes'
+
+  not_follow: '+ Follow'
+  followed: 'Following'
+  photos_count: 'Photos'
+  albums_count: 'Albums'
+  followings_count: 'Followings'
+  followers_count: 'followers'
+  email: 'Email'
+  password: 'Password'
+  basic_info: 'Basic Information'
+  change: 'CHANGE'
+  edit: 'Edit'
+  photo_title: 'Photo'
+  album_title: 'Album'
+  none_followees: 'You havent followed anyone...'
+  delete_message: 'Are you sure?'
+  uploaded_photos: 'Uploaded photos'
+  private: 'Private'
+  public: 'Public'
+  save: 'Save'
+  delete: 'Delete'
+
+  layouts:
+    application:
+      logout: 'Logout'
+      feeds: 'Feeds'
+      discover: 'Discover'
+      manage_photo: 'Manage photos'
+      manage_album: 'Manage albums'
+      manage_user: 'Manage users'
+      title: 'Fotobook'
+      admin_title: 'Fotobook admin'
+  devise:
+    sessions:
+      new:
+        title: 'LOGIN'
+        login_btn: 'Login'
+        remember_me: 'Remember me?'
+    shared:
+      links:
+        sign_up: 'Sign up'
+        forgot_password: 'Forgot your password?'
+    registrations:
+      new:
+        char_min: 'characters minimum'
+    passwords:
+      new:
+        send_instructions: 'Send me reset password instructions'
+  users:
+    show:
+      sample_image: 'Sample image'
+      edit_profile : 'Edit Profile'
+    thumbnail:
+      your_image: 'Your image'
+  photos:
+    userphoto:
+      add: 'Add photo'
+      no_photo: 'You dont have any Photos. Upload one ?'
+    edit:
+      edit_photo: 'Edit Photo'
+    new:
+      photo_placeholder_description: 'Photo Description'
+      photo_placeholder_title: 'Photo Title'
+      new_photo: 'New Photo'
+  albums:
+    edit:
+      edit_album: 'Edit Album'
+    useralbum:
+      add: 'Add Album'
+    new:
+      new_album: 'New Album'
+      album_placeholder_title: 'Album Title'
+      album_placeholder_description: 'Album Description'
+  admins:
+    manage_users:
+      index: 'No'
+      first_name: 'First Name'
+      last_name: 'Last Name'
+      last_login: 'Last Login'
+
+
+
+
+
+
 

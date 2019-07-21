@@ -6,7 +6,7 @@ div id="#{p.id}" class="card admin admincard mr-5 thumbnail photo"
 	- else
 		.us.lockdiv.us.rounded-circle.text-center
 			= image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-	= link_to 'Edit', edit_photo_path(p), class:'us pa-edit'
+	= link_to t(:edit), edit_photo_path(p), class:'us pa-edit'
 
 	.us.card-body.text-center= p.description
 	.us.title.text-center.d-none= p.title

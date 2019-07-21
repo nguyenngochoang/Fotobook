@@ -1,12 +1,12 @@
 .col-lg-10.col-12.mid
   .text-center.mt-2
     .btn-group.btn-group-lg aria-label=("Basic example") role="group"
-      = button_tag "Photo",class: "homes btn btn-outline-primary active pa"
-      = button_tag "Album",class: "homes btn btn-outline-primary pa",id:"album"
+      = button_tag t(:photo_title),class: "homes btn btn-outline-primary active pa"
+      = button_tag t(:album_title),class: "homes btn btn-outline-primary pa",id:"album"
   .feeds-container
     .row.feeds-row
       - if current_user.followees.empty?
-        p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees You haven't followed anyone ...
+        p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
       -else
         = render partial: 'followees_card_photo'
 

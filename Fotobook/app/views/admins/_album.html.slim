@@ -3,7 +3,7 @@ div id="#{ab.id}" class="card admin admincard mr-5 thumbnail photo"
 	= image_tag ab.photos[-1].attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid  rounded secondimg"
 	= image_tag ab.photos[-1].attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid  rounded thirdimg"
 	.admin.rounded-circle.admin-photonums.text-center
-		="#{ab.photos.count} Photos"
+		="#{ab.photos.count} #{t(:photos_count)}"
 	- if ab.sharing_mode
 		.us.lockdiv.us.rounded-circle.text-center.d-none
 			= image_tag 'profile/lock.png',alt:"lock",class:"us lock"

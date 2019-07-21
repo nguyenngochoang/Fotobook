@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 Edit Album
+    h5 = t '.edit_album'
     hr
   .edit-center
 
@@ -15,7 +15,7 @@
               span.edit-error.font-weight-bolder
           .row
             = album.label :sharing_mode
-            = album.select :sharing_mode, [['Public',1 ],['Private',0]],{include_blank: false} ,{class: "form-control"}
+            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{include_blank: false} ,{class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -41,9 +41,9 @@
       = render 'current_album_photo.html.slim', current_album: @current_album
       .row.edit.mt-4
         .col-auto.pr-0
-          = album.submit 'Save', id:"album-submit",class:"btn btn-success submit-btn"
+          = album.submit t(:save), id:"album-submit",class:"btn btn-success submit-btn"
         .col-auto
-          = link_to 'Delete',album_path(@current_album),method: :delete,data: { confirm: 'Are you sure?'}, id:"album-delete",class:"btn btn-danger"
+          = link_to t(:delete),album_path(@current_album),method: :delete,data: { confirm: "#{t(:delete_message)}"}, id:"album-delete",class:"btn btn-danger"
 
 
 

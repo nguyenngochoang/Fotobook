@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 New Album
+    h5 = t '.new_album'
     hr
   .edit-center
 
@@ -9,20 +9,20 @@
         .col-6.container-fluid
           .row
             = album.label :title
-            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'album Title'
+            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:"#{t '.album_placeholder_title'}"
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = album.label :sharing_mode
-            = album.select :sharing_mode, [['Private',0],['Public',1 ]],{prompt:'Select One'},{class: "form-control"}
+            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{prompt:'Select One'},{class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
         .col-6.container-fluid
           .col-sm-12
             = album.label :description
-            = album.text_area :description,placeholder:'album Description',class:'form-control album-description',rows:'7'
+            = album.text_area :description,placeholder:"#{t '.album_placeholder_description'}",class:'form-control album-description',rows:'7'
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder

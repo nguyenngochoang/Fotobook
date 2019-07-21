@@ -33,6 +33,7 @@ gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 gem 'toastr-rails'
 gem 'local_time'
 gem 'file_validators'
+gem 'rails-i18n'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
