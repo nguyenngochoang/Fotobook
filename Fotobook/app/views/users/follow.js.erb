@@ -1,5 +1,0 @@
-<% if @mode=="followings" %>
-   $(".profile-content").html('<%= j( render partial: "users/userfollowings", locals: {followings: @followings,user:@user} ) %>')
-<% else %>
-  $(".profile-content").html('<%= j( render partial: "users/userfollowers", locals: {followers: @followers,user:@user} ) %>')
-<% end %>

@@ -20,7 +20,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require toastr
+//= require local-time
+//= require admins
 //= require users
+//= require homes
 //= require_tree .
 $(document).ready(function() {
   toastr.options = {

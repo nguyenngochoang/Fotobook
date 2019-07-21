@@ -1,15 +1,3 @@
-
-// $color_pumice_approx: #c9c7c7;
-// $color_flush_orange_approx: #fc8200;
-// $color_smalt_approx: #033a9f;
-
-//fonts
-// $font_0: Open Sans;
-// $font_1: sans-serif !important;
-// $font_2: Arial;
-
-//urls
-// $url_0: url(/assets/web_heart_animation.png);
 // -------------------------------------------------feeds.css -------------------------------------
 * {
 	font-family:Open Sans, sans-serif !important;
@@ -18,10 +6,16 @@
 	height: 35px;
 	width: 35px;
 }
-.showNav {
-	position: relative;
+.body{
+	height: 100vh !important;
 }
-.userNavBar {
+.mid{
+	min-height: 100vh !important;
+}
+// .feeds-container{
+// 	height: 100vh !important;
+// }
+.user-navbar {
 	position: absolute;
 	right: 20px;
 	top: 2px;
@@ -31,14 +25,14 @@ html {
 	height: 100%;
 }
 body {
-	min-height: 100%;
+	min-height: 100vh !important;
 	background-color: #F2F3F5;
 }
 .body {
 	margin-top: 50px;
 	min-height: 100vh;
 }
-.HeartAnimation {
+.heart-animation {
 	background-image: url(/assets/web_heart_animation.png);
 	background-repeat: no-repeat;
 	background-size: 2900%;
@@ -48,6 +42,11 @@ body {
 	cursor: pointer;
 	margin: 0 0 -25px -20px;
 }
+
+.liked{
+	background-position: right;
+}
+
 .animate {
 	animation: heart-burst .8s steps(28) forwards;
 }
@@ -68,8 +67,14 @@ body {
 }
 .row-text {
 	margin: 50px 0 0 10px;
-	height: 10em;
+	height: 13em;
 	overflow: auto;
+	> h5{
+		width: 100%;
+	}
+	> p{
+		width: 100%;
+	}
 }
 
 .card-text {
@@ -77,7 +82,7 @@ body {
 }
 .mid {
 	position: relative;
-	height: auto;
+	height: auto !important;
 	width: 100%;
 }
 .likesspan {
@@ -105,8 +110,9 @@ body {
 .bot-element-text {
 	position: absolute;
 	left: 70px;
-	bottom: 3px;
-	font-size: 14px;
+	bottom: 5px;
+	font-size: 12px;
+
 }
 hr {
 	position: absolute;
@@ -115,13 +121,37 @@ hr {
 	bottom: 10px;
 	width: 95%;
 }
+// -------------------- some config for firefox ----------------------------------------------
+@-moz-document url-prefix() {
+	.date{
+		position: absolute;
+		bottom: 6px !important;
+		letter-spacing:0.01px;
+		font-size:10px !important;
+	}
+	.row-text {
+		position: relative;
+		margin: 50px 0 0 10px;
+		height: 13em;
+		overflow: auto;
+		> h5{
+			height: 40px !important;
+		}
+		> p{
+			width: 100%;
+			position: absolute;
+			top :50px;
+		}
+	}
+}
+// ---------------------- end of some config for firefox --------------------------------------
 .date {
 	position: absolute;
 	right: 10px;
 	bottom: 5px;
 	font-size: 12px;
 }
-.userInfo {
+.user-info {
 	position: absolute;
 	top: 0;
 	left: 20px;
@@ -200,18 +230,7 @@ hr {
 	padding: 1px 0 0 10px;
 
 }
-.discover-fl{
-  position: absolute;
-	top: 8px;
-  right: 1px;
-  &:hover {
-		background-color: #fc8200;
-	}
-	&:active {
-		position: absolute;
-		right: 5px;
-	}
-}
+
 .container.body {
 	width: 100vh !important;
 	min-width: 100%;
@@ -405,7 +424,7 @@ hr {
   margin-bottom: 5px;
 }
 
-.paEdit {
+.pa-edit {
   position: absolute;
   top: 120px;
   right: 5px;
@@ -424,7 +443,7 @@ hr {
   }
 }
 
-.us.addPA-btn {
+.us.addpa-btn {
   float: right;
   background-color: #04570a;
   border-radius: 28px;
@@ -433,7 +452,6 @@ hr {
   cursor: pointer;
   color: white;
 	font-family: Arial;
-
   font-size: 10px !important;
   text-decoration: none;
   width: 70px;
@@ -494,8 +512,12 @@ hr {
 .fl.followingsbtn{
 	background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
 }
-.fl.followersbtn{
+.followersbtn{
 	background-color: white;
+	&:hover{
+		color:white;
+		background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+	}
 }
 
 .fl.username {
@@ -610,7 +632,7 @@ hr {
 	position: relative;
 }
 .edit-center{
-	margin:80px 0 0 0px;
+	margin:80px 0 0 0;
 	width: 100%;
 
 }
@@ -692,7 +714,7 @@ hr {
       opacity: 0.5!important;
     }
   }
-  &.hasImage {
+  &.has-image {
     .dashes, label {
       opacity: 0;
       pointer-events: none;
@@ -708,7 +730,7 @@ hr {
 .thumbnail-div{
 	position: relative;
 }
-#cancel-symbol-thumbnail{
+.cancel-symbol-thumbnail{
 	position: absolute;
 	top:2px;
 	right: 10px;
@@ -722,9 +744,10 @@ hr {
 	position: relative;
 	> hr{
 		position: absolute;
-		top:0px;
+		top:0;
 	}
 }
+
 
 
 // -------------------------------------- end of css for upload photo

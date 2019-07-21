@@ -10,40 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_12_094839) do
+ActiveRecord::Schema.define(version: 2019_07_20_161307) do
 
-  create_table "albums", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.string "title"
     t.date "time"
     t.integer "like"
-    t.boolean "sharing_mode"
+    t.boolean "sharing_mode", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.text "description"
+    t.integer "likes", default: [], array: true
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
-  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.json "attached_image"
+  create_table "photos", force: :cascade do |t|
+    t.text "attached_image"
     t.string "title"
     t.text "description"
+    t.boolean "sharing_mode", default: true
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "sharing_mode"
     t.string "photoable_type"
     t.bigint "photoable_id"
+    t.integer "likes", default: [], array: true
     t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "first_name", default: "", null: false
@@ -51,6 +58,11 @@ ActiveRecord::Schema.define(version: 2019_07_12_094839) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "confirmation_token"
@@ -58,10 +70,13 @@ ActiveRecord::Schema.define(version: 2019_07_12_094839) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.json "avatar"
+    t.string "role", default: "normal"
+    t.boolean "active", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "albums", "users"
+  add_foreign_key "photos", "users"
 end

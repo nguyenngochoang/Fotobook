@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 Edit
+    h5 = t '.edit_photo'
     hr
   .edit-center
 
@@ -16,14 +16,14 @@
           .row
             = photo.label :sharing_mode
             - selected_val = @current_photo.to_s.to_i
-            = photo.select :sharing_mode, [['Public',1 ],['Private',0]],{include_blank: false} ,{class: "form-control"}
+            = photo.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{include_blank: false} ,{class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row.mt-4
             .form-group.photo-files
               .col-12.image-uploader
-                .photo-upload-preview.hasImage style="background-image:url('#{@current_photo.attached_image.url}')"
+                .photo-upload-preview.has-image style="background-image:url('#{@current_photo.attached_image.url}')"
                   label#add-symbol +
                   .dashes.text-center
                   = photo.file_field :attached_image,id:"uploadphoto-btn", class:"invisible"
@@ -31,10 +31,10 @@
 
           .row.edit
             .col-auto.pr-0
-              = photo.submit 'Save', id:"photo-submit",class:"btn btn-success "
+              = photo.submit t(:save), id:"photo-submit",class:"btn btn-success "
             .col-auto
-              = link_to 'Delete',photo_path(@current_photo),method: :delete,data: { confirm: 'Are you sure?'}, id:"photo-delete",class:"btn btn-danger"
-            
+              = link_to t(:delete) ,photo_path(@current_photo),method: :delete,data: { confirm: 'Are you sure?'}, id:"photo-delete",class:"btn btn-danger"
+
 
         .col-6.container-fluid
           .col-sm-12

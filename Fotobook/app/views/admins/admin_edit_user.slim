@@ -1,0 +1,69 @@
+.col-lg-10.col-12.mid
+  .edit-center
+      = form_with model:@user,url:update_basic_user_path(@user),id:"basic",remote:true do |f|
+        - if @user.avatar.file.nil?
+          .edit-ava-div.text-center.container-fluid
+            = image_tag 'profile/sample-avatar.jpg', class:"us rounded ava-edit"
+            .us.ava-change.text-center = t(:change)
+            = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change d-none"
+        - else
+          .edit-ava-div.text-center.container-fluid
+            = image_tag @user.avatar.url,class:"us rounded ava-edit"
+            .us.ava-change.text-center = t(:change)
+            = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change invisible"
+
+        / BASIC FIELD
+        .row.edit.mt-2
+            .col-sm-4.offset-sm-4
+              p.text-primary.font-weight-bolder = t(:basic_info)
+
+        #form-edit-basic
+          .row.edit.text-center
+            .col-sm-4.text-right
+              = f.label :first_name, class:"edit-label"
+            .col-sm-4
+              = f.text_field :first_name,class:'form-control edit-field',autocomplete:'off'
+          .row.edit.text-center
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+
+          .row.edit.text-center
+            .col-sm-4.text-right
+              = f.label :last_name, class:"edit-label"
+            .col-sm-4
+              = f.text_field :last_name,class:'form-control edit-field',autocomplete:'off'
+          .row.edit.text-center
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+
+          .row.edit.text-center
+            .col-sm-4.text-right
+              = f.label :email,class:"edit-label "
+            .col-sm-4
+              = f.text_field :email,class:'form-control edit-field',autocomplete:'off'
+          .row.edit.text-center
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+
+          .row.edit.text-center
+            .col-sm-4.text-right
+              = f.label :password,class:"edit-label "
+            .col-sm-4
+              = f.password_field :password, class:'form-control edit-field', autocomplete:"off"
+          .row.edit.text-center
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+
+          .row.edit.text-center
+            .col-sm-4.text-right
+              = f.label :active?,class:"edit-label "
+            .col-sm-4.text-left
+              = f.check_box :active,class:'edit-field'
+
+          .row.edit.text-center
+            .col-sm-12
+              span.edit-error.font-weight-bolder
+
+          .row.edit
+            .col-sm-1.offset-sm-4
+              = f.submit id:"basic-submit", class:"btn btn-success submit-btn"

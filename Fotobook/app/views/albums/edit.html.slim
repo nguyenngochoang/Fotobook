@@ -1,6 +1,6 @@
 .col-lg-10.col-12.us.mid.edit
   .edit-title
-    h5 Edit Album
+    h5 = t '.edit_album'
     hr
   .edit-center
 
@@ -8,14 +8,14 @@
       .row
         .col-6.container-fluid
           .row
-            = album.label :name
-            = album.text_field :name,class:'form-control edit-field',autocomplete:'off',placeholder:'Album Name',value: @current_album.name
+            = album.label :title
+            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Album Title',value: @current_album.title
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = album.label :sharing_mode
-            = album.select :sharing_mode, [['Public',1 ],['Private',0]],{include_blank: false} ,{class: "form-control"}
+            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{include_blank: false} ,{class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -29,17 +29,21 @@
       .row.mt-4.upload-row
         .form-group.photo-files
           .col-12.image-uploader
-            .photo-upload-preview
+            .photo-upload-preview.has-images
               label#add-symbol +
               .dashes.text-center
               = album.file_field :attached_image,id:"uploadphoto-btn", class:"invisible",multiple:true
               span#cancel-symbol.invisible.font-weight-bolder x
+            .row.mt-2
+                .col-sm-12
+                  span.edit-error.font-weight-bolder
+      .preview-row.row.mt-4
       = render 'current_album_photo.html.slim', current_album: @current_album
       .row.edit.mt-4
         .col-auto.pr-0
-          = album.submit 'Save', id:"album-submit",class:"btn btn-success submit-btn"
+          = album.submit t(:save), id:"album-submit",class:"btn btn-success submit-btn"
         .col-auto
-          = link_to 'Delete',album_path(@current_album),method: :delete,data: { confirm: 'Are you sure?'}, id:"album-delete",class:"btn btn-danger"
+          = link_to t(:delete),album_path(@current_album),method: :delete,data: { confirm: "#{t(:delete_message)}"}, id:"album-delete",class:"btn btn-danger"
 
 
 

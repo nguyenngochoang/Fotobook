@@ -1,12 +1,11 @@
 class CreatePhotos < ActiveRecord::Migration[5.2]
   def change
     create_table :photos do |t|
-      t.string :picture_link
-      t.string :status_title
-      t.text :status
-      t.date :time
-      t.integer :like
-      t.references :user, foreign_key: true
+      t.json :attached_image
+      t.string :title
+      t.text :description
+      t.boolean :sharing_mode
+      t.references :user, foreign_key: true, type: :bigint
 
       t.timestamps
     end

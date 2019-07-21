@@ -1,0 +1,22 @@
+.col-lg-10.col-12.mid
+  .text-center.mt-2
+    .btn-group.btn-group-lg aria-label=("Basic example") role="group"
+      = button_tag t(:photo_title),class: "homes btn btn-outline-primary active pa"
+      = button_tag t(:album_title),class: "homes btn btn-outline-primary pa",id:"album"
+  .feeds-container
+    .row.feeds-row
+      - if current_user.followees.empty?
+        p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
+      -else
+        = render partial: 'followees_card_photo'
+
+
+
+/! Modal for showing picture
+#exampleModal3.us.modal.fade aria-hidden="true" aria-labelledby="exampleModal3Label" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      button.close aria-label="Close" data-dismiss="modal" type="button"
+        span.float-right.mr-3.mt-3 aria-hidden="true"  ×
+      .us.modal-body
+/! Modal for showing picture
