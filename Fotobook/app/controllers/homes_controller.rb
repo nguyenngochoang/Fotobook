@@ -10,15 +10,15 @@ class HomesController < ApplicationController
     end
   end
 
-	def switchpa
-    @mode = switchpa_params[:mode]
+	def switch_photo_album
+    @mode = switch_photo_album_params[:mode]
     respond_to do|format|
       format.js
     end
   end
 
-  def switchpa_discover
-    @mode = switchpa_params[:mode]
+  def switch_photo_album_discover
+    @mode = switch_photo_album_params[:mode]
     if @mode == "photo"
       @photos = Photo.all.where(photoable_type: "User").order(created_at: :desc)
     else
@@ -55,7 +55,7 @@ class HomesController < ApplicationController
     params.require(:data).permit(:param, :mode, :gallery_id)
 	end
 
-	def switchpa_params
+	def switch_photo_album_params
     params.require(:show).permit(:mode)
   end
 end

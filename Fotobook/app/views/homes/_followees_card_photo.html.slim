@@ -1,30 +1,30 @@
 - if current_user.followees.empty?
-	p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
+  p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
 -	else
-	- current_user.followees_photos.each do |post|
-		- if post.sharing_mode
-			.col-12.col-lg-6
-				.card
-					.card-body
-						.container
-							.row
-								.col-lg-6.col-12.py-0.img.photo data-id="#{post.id}" data-param="#{post.photoable_id}"
-									= render partial: 'users/thumbnail',locals:{link: post.attached_image.url , mode:"photo"}
-								.col-lg-6.col-12.content
-									.user-info
-										= link_to root_path do
-											= image_tag post.photoable.avatar.url,alt:"Card image",class:"card-img-top img-fluid userava rounded-circle"
-											span.align-self-center.ml-1.text-black.font-weight-bolder
-												= "#{post.photoable.first_name} #{post.photoable.last_name}"
-									.row.row-text
-										h5.card-title.mb-4.font-weight-bolder = post.title
-										p = post.description
-									.row.px-2.photo data-id="#{post.id}" data-param="#{current_user.id}"
-										hr/
-										- if post.likes.include?(current_user.id)
-											.heart-animation.d-inline-block.bot-element.liked
-										- else
-											.heart-animation.d-inline-block.bot-element
-										span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
-										span.date = local_time(post.created_at)
+  - current_user.followees_photos.each do |post|
+    - if post.sharing_mode
+      .col-12.col-lg-6
+        .card
+          .card-body
+            .container
+              .row
+                .col-lg-6.col-12.py-0.img.photo data-id="#{post.id}" data-param="#{post.photoable_id}"
+                  = render partial: 'users/thumbnail',locals:{link: post.attached_image.url , mode:"photo"}
+                .col-lg-6.col-12.content
+                  .user-info
+                    = link_to root_path do
+                      = image_tag post.photoable.avatar.url,alt:"Card image",class:"card-img-top img-fluid userava rounded-circle"
+                      span.align-self-center.ml-1.text-black.font-weight-bolder
+                        = "#{post.photoable.first_name} #{post.photoable.last_name}"
+                  .row.row-text
+                    h5.card-title.mb-4.font-weight-bolder = post.title
+                    p = post.description
+                  .row.px-2.photo data-id="#{post.id}" data-param="#{current_user.id}"
+                    hr/
+                    - if post.likes.include?(current_user.id)
+                      .heart-animation.d-inline-block.bot-element.liked
+                    - else
+                      .heart-animation.d-inline-block.bot-element
+                    span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
+                    span.date = local_time(post.created_at)
 

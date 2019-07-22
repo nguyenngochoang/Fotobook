@@ -33,9 +33,6 @@ class AdminsController < ApplicationController
 
   end
 
-  
-
-
   def check_role
     if current_user.role == 'normal'
       flash[:warning] = 'Access denied'

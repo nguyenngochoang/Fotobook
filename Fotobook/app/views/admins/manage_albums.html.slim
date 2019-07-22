@@ -1,9 +1,9 @@
 .col-lg-10.col-12.mid
   .feeds-container
     .row.feeds-row
-			- unless @albums.empty?
-				.row.imgrow.mt-5.us.gocenter.photo.tab
-					- @albums.each do |ab|
-							= render partial:'album', locals:{ab: ab}
-				.justify-content-center.w-100
-					= paginate @albums
+      - unless @albums.empty?
+        .row.imgrow.mt-5.us.gocenter.photo.tab
+          - @albums.each do |ab|
+              = render partial:'album', locals:{ab: ab}
+        .justify-content-center.w-100
+          = paginate @albums

@@ -1,62 +1,62 @@
 .logmethod{
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .log{
-	background-color: #191919;
-	margin: auto;
-	width: fit-content;
-	border-radius: 14px;
+  background-color: #191919;
+  margin: auto;
+  width: fit-content;
+  border-radius: 14px;
 }
 
 .logbtn2{
-	position: relative;
-	border-radius: 24px;
+  position: relative;
+  border-radius: 24px;
 }
 
 .logo:hover{
-	-ms-transform: rotate(360deg); /* IE 9 */
-	-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
-	transform: rotate(360deg);
-	transition-duration: 2s;
+  -ms-transform: rotate(360deg); /* IE 9 */
+  -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+  transform: rotate(360deg);
+  transition-duration: 2s;
 }
 
 .user-navbar:hover{
-	cursor: pointer;
+  cursor: pointer;
 }
 .link:hover{
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .cover{
-	min-width: 100vh;
-	min-height: 100vh;
-	background:#34495e;
+  min-width: 100vh;
+  min-height: 100vh;
+  background:#34495e;
 }
 
 .input{
-	border: none;
-	display: block;
-	text-align: center;
-	border: 2px solid #3498db;
-	outline: none;
-	border-radius: 24px;
-	transition: 0.25s;
-	background-color: #191919;
+  border: none;
+  display: block;
+  text-align: center;
+  border: 2px solid #3498db;
+  outline: none;
+  border-radius: 24px;
+  transition: 0.25s;
+  background-color: #191919;
 }
 .input:focus{
-	width: 100%;
-	border-color: #2ecc71;
-	background-color: #191919;
+  width: 100%;
+  border-color: #2ecc71;
+  background-color: #191919;
 }
 .input{
-	width: 150px;
-	margin:0 auto
+  width: 150px;
+  margin:0 auto
 }
 .logintext h1{
-	text-transform: uppercase;
-	color: white;
-	font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
 }

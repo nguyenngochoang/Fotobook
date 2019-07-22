@@ -459,7 +459,7 @@ $(document).on 'turbolinks:load', ->
       console.log("ALBUM!")
       Rails.ajax
         type: "GET"
-        url: "/switchpa"
+        url: "/switch_photo_album"
         data: "show[mode]=album"
         dataType: 'script'
         success: () ->
@@ -468,7 +468,7 @@ $(document).on 'turbolinks:load', ->
       console.log("PHOTO!")
       Rails.ajax
         type: "GET"
-        url: "/switchpa"
+        url: "/switch_photo_album"
         data: "show[mode]=photo"
         dataType: 'script'
         success: () ->

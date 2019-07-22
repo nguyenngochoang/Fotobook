@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
     get '/task',to:"users#task", as:'task'
     get '/currentgallery', to:"users#currentgallery", as:'currentgallery'
-    get '/switchpa', to:"homes#switchpa", as:'switchpa'
-    get '/switchpa_discover', to:"homes#switchpa_discover", as:'switchpa_discover'
+    get '/switch_photo_album', to:"homes#switch_photo_album", as:'switch_photo_album'
+    get '/switch_photo_album_discover', to:"homes#switch_photo_album_discover", as:'switch_photo_album_discover'
 
     scope :admin do
         get 'manage_photos', to:"admins#manage_photos", as: 'manage_photos'

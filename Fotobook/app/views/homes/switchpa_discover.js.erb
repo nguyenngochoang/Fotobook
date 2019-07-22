@@ -1,5 +1,0 @@
-<%if @mode=="album"%>
-	$(".feeds-row").html('<%= j( render partial: "all_users_albums",locals:{albums: @albums})%>')
-<%else%>
-	$(".feeds-row").html('<%= j( render partial: "all_users_photos", locals: {photos: @photos}) %>')
-<%end%>
