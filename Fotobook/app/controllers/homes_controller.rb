@@ -10,7 +10,7 @@ class HomesController < ApplicationController
     end
   end
 
-	def switch_photo_album
+  def switch_photo_album
     @mode = switch_photo_album_params[:mode]
     respond_to do|format|
       format.js
@@ -31,7 +31,7 @@ class HomesController < ApplicationController
   end
 
 
-	def homegallery
+  def homegallery
     @user = User.includes(:photos, :albums).find homegallery_params[:param]
     @mode = homegallery_params[:mode]
 		home_gallery_id = homegallery_params[:gallery_id].to_i
@@ -50,12 +50,12 @@ class HomesController < ApplicationController
   end
 
 
-	private
-	def homegallery_params
+  private
+  def homegallery_params
     params.require(:data).permit(:param, :mode, :gallery_id)
-	end
+  end
 
-	def switch_photo_album_params
+  def switch_photo_album_params
     params.require(:show).permit(:mode)
   end
 end
