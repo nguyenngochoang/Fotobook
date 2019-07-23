@@ -68,6 +68,7 @@ en:
   public: 'Public'
   save: 'Save'
   delete: 'Delete'
+  login: 'Login'
 
   layouts:
     application:

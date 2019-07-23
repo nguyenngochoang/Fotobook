@@ -16,11 +16,12 @@
                   .row.row-text
                     h5.card-title.mb-4.font-weight-bolder = post.title
                     p = post.description
-                  .row.px-2.photo data-id="#{post.id}" data-param="#{current_user.id}"
+                  .row.px-2.photo data-id="#{post.id}" data-param="#{post.photoable.id}"
                     hr/
-                    - if post.likes.include?(current_user.id)
-                      .heart-animation.d-inline-block.bot-element.liked
-                    - else
-                      .heart-animation.d-inline-block.bot-element
+                    - if current_user
+                      - if post.likes.include?(current_user.id)
+                        .heart-animation.d-inline-block.bot-element.liked
+                      - else
+                        .heart-animation.d-inline-block.bot-element
                     span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
                     span.date = local_time(post.created_at)
