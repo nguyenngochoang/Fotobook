@@ -15,7 +15,7 @@
               span.edit-error.font-weight-bolder
           .row
             = photo.label :sharing_mode
-            = photo.select :sharing_mode, [["#{t(:private)}", 0], ["#{t(:public)}", 1 ]], {class: "form-control"}
+            = photo.select :sharing_mode, [["#{t(:private)}", 0], ["#{t(:public)}", 1 ]], {prompt:'Select One'}, {class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder

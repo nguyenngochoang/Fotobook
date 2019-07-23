@@ -29,4 +29,6 @@
                       .heart-animation.d-inline-block.bot-element
                     span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
                     span.date = local_time(post.created_at)
+#infinite-scrolling.d-none data-mode="album"
+  = paginate albums, remote: true
 
