@@ -42,15 +42,12 @@ class UsersController < ApplicationController
     end
   end
 
-
-
   #for performs ajax request and return result to modal
   def currentgallery
-    @user = current_user
-    @mode = params[:mode]
     current_gallery_id = params[:gallery_id].to_i
+    @mode = params[:mode]
     if @mode == "albums"
-      @current_gallery = @user.albums.includes(:photos).find current_gallery_id
+      @current_gallery = Album.includes(:photos).find current_gallery_id
     else @mode == "photos"
       @current_gallery = Photo.find current_gallery_id
     end
@@ -63,12 +60,8 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  helper_method :get_photos_count
 
   private
-
-
-
   def user_password_params
     params.require(:user).permit(:password)
   end
