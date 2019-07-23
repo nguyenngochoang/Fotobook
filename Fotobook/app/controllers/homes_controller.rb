@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: [:discover, :load_discovers, :switch_photo_album_discover, :homegallery]
   before_action :check_role
 
   PER_PAGE = 5
@@ -38,11 +38,7 @@ class HomesController < ApplicationController
     end
   end
 
-  def check_role
-    if current_user.role == 'admin'
-      redirect_to admins_photos_path
-    end
-  end
+
 
   def switch_photo_album
     @mode = params[:mode]
@@ -71,11 +67,10 @@ class HomesController < ApplicationController
 
 
   def homegallery
-    @user = User.includes(:photos, :albums).find params[:id]
     @mode = params[:mode]
     home_gallery_id = params[:gallery_id].to_i
     if @mode == "albums"
-      @home_gallery = @user.albums.includes(:photos).find home_gallery_id
+      @home_gallery = Album.includes(:photos).find home_gallery_id
     else @mode == "photos"
       @home_gallery = Photo.find home_gallery_id
     end
@@ -83,7 +78,12 @@ class HomesController < ApplicationController
       format.js
     end
   end
-
+  private
+  def check_role
+    if current_user && current_user.role == 'admin'
+      redirect_to admins_photos_path
+    end
+  end
 
 
 end

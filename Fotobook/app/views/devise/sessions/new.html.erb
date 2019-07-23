@@ -33,7 +33,10 @@
           <%= content_tag(:div, flash[:notice], :id => "flash_notice", :class => "text-danger small ml-3") if flash[:notice] %>
           <%= content_tag(:div, flash[:alert], :id => "flash_alert", :class => "text-danger small ml-3") if flash[:alert] %>
           <div class="col text-center mt-3 actions">
-            <%= f.submit "#{t '.login_btn'}",class:"btn btn-primary btn-md mb-3 logbtn2" %>
+            <div>
+              <%= f.submit "#{t '.login_btn'}",class:"btn btn-primary btn-md mb-3 logbtn2" %>
+            </div>
+            <%= link_to 'Visit as guest', discover_path %>
           </div>
   <% end %>
   <div class="text-center">
