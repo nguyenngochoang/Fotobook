@@ -13,8 +13,10 @@ $(document).on 'turbolinks:load', ->
   $('.thumbnail').on 'mouseleave', ->
     $(this).find('.admin-photonums').stop().fadeOut 500
     return
-
-
+    
+  $('.admin-nav-item').click ->
+    $('.admin-nav-item').removeClass('active')
+    $(this).addClass('active')
 
   return
 

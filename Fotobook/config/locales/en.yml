@@ -74,9 +74,9 @@ en:
       logout: 'Logout'
       feeds: 'Feeds'
       discover: 'Discover'
-      manage_photo: 'Manage photos'
-      manage_album: 'Manage albums'
-      manage_user: 'Manage users'
+      manage_photos: 'Manage photos'
+      manage_albums: 'Manage albums'
+      manage_users: 'Manage users'
       title: 'Fotobook'
       admin_title: 'Fotobook admin'
   devise:
@@ -121,11 +121,12 @@ en:
       album_placeholder_title: 'Album Title'
       album_placeholder_description: 'Album Description'
   admins:
-    manage_users:
-      index: 'No'
-      first_name: 'First Name'
-      last_name: 'Last Name'
-      last_login: 'Last Login'
+    users:
+      index:
+        number: 'No'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        last_login: 'Last Login'
 
 
 

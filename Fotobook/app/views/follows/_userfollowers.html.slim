@@ -2,8 +2,8 @@
   .row.imgrow.mt-5.gocenter.container-fluid.us.followers.tab
     - followers.each do |follower|
       .fl.card.h-100.usercard.mr-3.mt-3
-        = image_tag 'profile/ultra.jpeg', alt:"Sample", class:"fl card-img-top img-fluid rounded-circle"
-        .fl.card-body.text-center.font-weight-bolder= "#{follower.first_name} #{follower.last_name}"
+        = link_to (image_tag 'profile/ultra.jpeg', alt:"Sample", class:"fl card-img-top img-fluid rounded-circle"), user_path(follower), method: :get
+        = link_to "#{follower.first_name} #{follower.last_name} ", user_path(follower),  class:"fl card-body text-center font-weight-bolder username guest", method: :get
         .row
           .col-lg-6.col-12
             .text-center
