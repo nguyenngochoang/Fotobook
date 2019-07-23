@@ -39,7 +39,7 @@
         .col-6.container-fluid
           .col-sm-12
             = photo.label :description
-            = photo.text_area :description, placeholder:'Photo Description', :'form-control', rows:'7', value: @current_photo.description
+            = photo.text_area :description, placeholder:'Photo Description', class:'form-control', rows:'7', value: @current_photo.description
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
