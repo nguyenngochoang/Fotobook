@@ -2,7 +2,7 @@ class HomesController < ApplicationController
 
   before_action :check_role
 
-  PER_PAGE = 2
+  PER_PAGE = 5
 
   def feeds
     @photos = current_user.followees_photos.page(params[:page]).per(PER_PAGE)
