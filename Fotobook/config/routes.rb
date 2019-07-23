@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     get '/homegallery', to:"homes#homegallery", as:'homegallery'
     patch '/remove_img', to:"albums#remove_img", as:'remove_img'
 
+    get '/load_feeds', to:"homes#load_feeds", as:'load_feeds'
+    get '/load_discover', to:"homes#load_discovers", as:'load_discovers'
+
     resources :photos
     resources :albums
     resources :follows, only: [:create, :index, :destroy]

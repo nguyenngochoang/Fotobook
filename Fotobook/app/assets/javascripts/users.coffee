@@ -481,7 +481,6 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/switch_photo_album"
-        dataType:'json'
         # data: byebug"show[mode]=album"
         data:new URLSearchParams({mode: 'album'}).toString()
         dataType: 'script'

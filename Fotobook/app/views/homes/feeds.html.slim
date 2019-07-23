@@ -8,8 +8,8 @@
       - if current_user.followees.empty?
         p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
       -else
-        = render partial: 'followees_card_photo'
-
+        = render partial: 'followees_card_photo', locals: {followees_photos: @photos}
+      
 
 
 /! Modal for showing picture

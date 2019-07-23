@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_all_photos(user)
-   arr = (user.photos + user.albums_photos).sort_by(&:created_at)
-   @photos = Kaminari.paginate_array(arr).page(params[:page]).per(40)
+    arr = (user.photos + user.albums_photos).sort_by(&:created_at)
+    @photos = Kaminari.paginate_array(arr).page(params[:page]).per(40)
   end
 
   def check_followings_status(user_to_check, checker)

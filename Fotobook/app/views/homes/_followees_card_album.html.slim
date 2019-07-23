@@ -1,9 +1,9 @@
 - if current_user.followees.empty?
   p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
 - else
-  - current_user.followees_albums.each do |post|
+  - followees_albums.each do |post|
     - if post.sharing_mode
-      .col-12.col-lg-6
+      .col-12.col-lg-6.data data-mode="album"
         .card
           .card-body
             .container
@@ -27,3 +27,5 @@
                       .heart-animation.d-inline-block.bot-element
                     span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
                     span.date = local_time(post.created_at)
+  #infinite-scrolling.d-none data-mode="album"
+    = paginate followees_albums, remote: true

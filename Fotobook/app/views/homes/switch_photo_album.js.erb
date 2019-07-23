@@ -1,5 +1,5 @@
 <%if @mode=="album"%>
-  $(".feeds-row").html('<%= j( render partial: "followees_card_album")%>')
+  $(".feeds-row").html('<%= j( render partial: "followees_card_album", locals: {followees_albums: @albums})%>')
 <%else%>
-  $(".feeds-row").html('<%= j( render partial: "followees_card_photo") %>')
+  $(".feeds-row").html('<%= j( render partial: "followees_card_photo", locals: { followees_photos: @photos}) %>')
 <%end%>
