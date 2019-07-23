@@ -3,17 +3,17 @@
     h5 Edit User Profile
     hr
   .edit-center
-    = form_with model:@user,url:update_basic_path,id:"basic",remote:true do |f|
+    = form_with model:@user, url:update_basic_path, id:"basic", remote:true do |f|
       - if @user.avatar.file.nil?
         .edit-ava-div.text-center.container-fluid
           = image_tag 'profile/sample-avatar.jpg', class:"us rounded ava-edit"
           .us.ava-change.text-center = t(:change)
-          = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change d-none"
+          = f.file_field :avatar, id:"uploadava-btn", class:"us ava-change d-none"
       - else
         .edit-ava-div.text-center.container-fluid
-          = image_tag @user.avatar.url,class:"us rounded ava-edit"
+          = image_tag @user.avatar.url, class:"us rounded ava-edit"
           .us.ava-change.text-center = t(:change)
-          = f.file_field :avatar,id:"uploadava-btn",class:"us ava-change invisible"
+          = f.file_field :avatar, id:"uploadava-btn", class:"us ava-change invisible"
 
       / BASIC FIELD
       .row.edit.mt-2
@@ -25,7 +25,7 @@
           .col-sm-4.text-right
             = f.label :first_name, class:"edit-label"
           .col-sm-4
-            = f.text_field :first_name,class:'form-control edit-field',autocomplete:'off'
+            = f.text_field :first_name, class:'form-control edit-field', autocomplete:'off'
         .row.edit.text-center
           .col-sm-12
             span.edit-error.font-weight-bolder
@@ -41,9 +41,9 @@
 
         .row.edit.text-center
           .col-sm-4.text-right
-            = f.label :email,class:"edit-label "
+            = f.label :email, class:"edit-label "
           .col-sm-4
-            = f.text_field :email,class:'form-control edit-field',autocomplete:'off'
+            = f.text_field :email, class:'form-control edit-field', autocomplete:'off'
         .row.edit.text-center
           .col-sm-12
             span.edit-error.font-weight-bolder
@@ -51,7 +51,7 @@
           .col-sm-1.offset-sm-4
             = f.submit id:"basic-submit", class:"btn btn-success submit-btn"
 
-    = form_with model:@user,url:update_password_path,id:"password",remote:true do |f|
+    = form_with model:@user, url:update_password_path, id:"password", remote:true do |f|
       / PASSWORD FIELD
       .row.edit.mt-5
           .col-sm-4.offset-sm-4
@@ -62,7 +62,7 @@
           .col-sm-4.text-right
             = f.label :current_password
           .col-sm-4
-            = f.password_field :current_password,class:'form-control',autocomplete:'off'
+            = f.password_field :current_password, class:'form-control', autocomplete:'off'
         .row.edit.text-center
           .col-sm-12
             span.edit-error.font-weight-bolder
@@ -71,7 +71,7 @@
           .col-sm-4.text-right
             = f.label :new_password
           .col-sm-4
-            = f.password_field :password,id:"newpassword",class:'form-control',autocomplete:'off'
+            = f.password_field :password, id:"newpassword", class:'form-control', autocomplete:'off'
         .row.edit.text-center
           .col-sm-12
             span.edit-error.font-weight-bolder
@@ -80,11 +80,11 @@
           .col-sm-4.text-right
             = f.label :confirm_new_password
           .col-sm-4
-            = f.password_field :password_confirm,class:'form-control ',autocomplete:'off'
+            = f.password_field :password_confirm, class:'form-control ', autocomplete:'off'
         .row.edit.text-center
           .col-sm-12
             span.edit-error.font-weight-bolder
         .row.edit
           .col-sm-1.offset-sm-4
-            = f.submit id:"password-submit",class:"btn btn-success submit-btn"
+            = f.submit id:"password-submit", class:"btn btn-success submit-btn"
 

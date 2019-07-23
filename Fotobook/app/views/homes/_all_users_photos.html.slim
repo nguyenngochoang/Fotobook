@@ -6,17 +6,18 @@
           .container
             .row
               .col-lg-6.col-12.py-0.img.photo data-id="#{post.id}" data-param="#{post.photoable_id}"
-                = render partial: 'users/thumbnail',locals:{link: post.attached_image.url , mode:"photo"}
+                = render partial: 'users/thumbnail', locals:{link: post.attached_image.url , mode:"photo"}
               .col-lg-6.col-12.content data-id="#{current_user.id}"
                   .discover-user-info
-                    = link_to root_path ,class:'user-info-a' do
-                      = image_tag post.photoable.avatar.url,alt:"Card image",class:"card-img-top img-fluid userava rounded-circle"
+                    = link_to root_path, class:'user-info-a' do
+                      = image_tag post.photoable.avatar.url, alt:"Card image", class:"card-img-top img-fluid userava rounded-circle"
                       span.align-self-center.ml-1.font-weight-bolder.discover-span
                         = "#{post.photoable.first_name} #{post.photoable.last_name}"
-                  - if current_user.followees.include?(post.photoable)
-                    = link_to 'Following', nil,id:post.photoable_id,class:"discover follow-button followingsbtn ",onClick:"return false;"
-                  - else
-                    = link_to '+ Follow', nil,id:post.photoable_id,class:"discover follow-button followersbtn ",onClick:"return false;"
+                  - unless current_user.id == post.photoable.id
+                    - if current_user.followees.include?(post.photoable)
+                      = link_to 'Following', nil, id:post.photoable_id, class:"discover follow-button followingsbtn ", onClick:"return false;"
+                    - else
+                      = link_to '+ Follow', nil, id:post.photoable_id, class:"discover follow-button followersbtn ", onClick:"return false;"
                   .row.row-text
                     h5.card-title.mb-4.font-weight-bolder = post.title
                     p = post.description

@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
 
   def index
-    @user = User.includes(:photos, :albums).find show_params[:param]
+    @user = User.includes(:photos, :albums).find params[:user_id]
     respond_to do|format|
       format.js
     end
@@ -29,8 +29,8 @@ class PhotosController < ApplicationController
   end
 
   def photo_like
-    action = likes_params[:action]
-    liker = likes_params[:liker_id].to_i
+    action = params[:act]
+    liker = params[:liker_id].to_i
     if action == 'like'
       @photo = Photo.find params[:id]
       @photo.likes.push(liker)
@@ -54,7 +54,7 @@ class PhotosController < ApplicationController
       if current_user.role == 'normal'
         redirect_to me_path
       else
-        redirect_to manage_photos_path
+        redirect_to admins_photos_path
       end
     else
       flash[:error] = "Update failed"
@@ -74,12 +74,7 @@ class PhotosController < ApplicationController
     params.require(:photo).permit(:title, :description, :sharing_mode, :attached_image)
   end
 
-  def show_params
-    params.require(:data).permit(:param, :gallery_id)
-  end
 
-  def likes_params
-    params.require(:likes).permit(:liker_id, :action)
-  end
+
 
 end

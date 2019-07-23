@@ -10,5 +10,5 @@
                 th = t '.last_name'
                 th = t '.last_login'
             tbody
-              - @users.each_with_index do |user,index|
-                = render partial:'user', locals: {user: user, index: index}
+              - @users.each_with_index do |user, index|
+                = render partial:'admins/user', locals: {user: user, index: index}

@@ -1,22 +1,10 @@
 = link_to t('.add'), new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
 - if get_all_photos(user).any?
-  - @arr = get_all_photos(user)
+  - @photos = get_all_photos(user)
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
-    - for j in (0...@arr.size)
-        - @current_photo=@arr[j]
-        div id="#{@current_photo.id}" class="card h-100 us usercard mr-5 thumbnail photo"
-          = image_tag @current_photo.attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid rounded"
-          - if @current_photo.sharing_mode
-            .us.lockdiv.us.rounded-circle.text-center.d-none
-              = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          - else
-            .us.lockdiv.us.rounded-circle.text-center
-              = image_tag 'profile/lock.png',alt:"lock",class:"us lock"
-          = link_to t(:edit), edit_photo_path(@current_photo), class:'us pa-edit'
-
-          .us.card-body.text-center= @current_photo.description
-          .us.title.text-center.d-none= @current_photo.title
-
+    = render partial: 'photos/eachphoto'
+  .justify-content-center.w-100
+    = paginate @photos, remote: true
 - else
   .text-center.us-noinfo.text-black-50
     p = t '.no_photo'

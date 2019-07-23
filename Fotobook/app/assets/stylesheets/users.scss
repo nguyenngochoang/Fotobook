@@ -1,20 +1,19 @@
 // -------------------------------------------------feeds.css -------------------------------------
 * {
-  font-family:Open Sans, sans-serif !important;
+  font-family:Open Sans, sans-serif ;
 }
 .userava {
   height: 35px;
   width: 35px;
 }
 .body{
-  height: 100vh !important;
+  height: 100vh;
 }
 .mid{
-  min-height: 100vh !important;
+  min-height: 100vh ;
+  width: 100%;
 }
-// .feeds-container{
-// 	height: 100vh !important;
-// }
+
 .user-navbar {
   position: absolute;
   right: 20px;
@@ -23,10 +22,13 @@
 }
 html {
   height: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 body {
-  min-height: 100vh !important;
+  min-height: 100vh ;
   background-color: #F2F3F5;
+
 }
 .body {
   margin-top: 50px;
@@ -80,11 +82,7 @@ body {
 .card-text {
   overflow: scroll;
 }
-.mid {
-  position: relative;
-  height: auto !important;
-  width: 100%;
-}
+
 .likesspan {
   margin: 0 0 0 -40px;
 }
@@ -325,8 +323,7 @@ hr {
     right: 100%;
     bottom: 1.3em;
     left: 0;
-    transition: right .4s cubic-bezier(0,.5,0,1),
-              border-color .4s ease-out;
+    transition: right .4s cubic-bezier(0, .5, 0, 1), border-color .4s ease-out;
   }
   &:hover{
     color: #457DFB;

@@ -1,11 +1,11 @@
 .col-lg-10.col-12.mid
   .text-center.mt-2
     .btn-group.btn-group-lg aria-label=("Basic example") role="group"
-      = button_tag "Photo",class: "discover-pa btn btn-outline-primary active"
-      = button_tag "Album",class: "discover-pa btn btn-outline-primary ",id:"album"
+      = button_tag "Photo", class: "discover-pa btn btn-outline-primary active"
+      = button_tag "Album", class: "discover-pa btn btn-outline-primary ",id:"album"
   .feeds-container
     .row.feeds-row
-      = render partial: 'all_users_photos',locals: {photos: @photos}
+      = render partial: 'all_users_photos', locals: {photos: @photos}
 
 
 

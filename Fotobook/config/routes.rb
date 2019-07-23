@@ -15,12 +15,15 @@ Rails.application.routes.draw do
     get '/switch_photo_album', to:"homes#switch_photo_album", as:'switch_photo_album'
     get '/switch_photo_album_discover', to:"homes#switch_photo_album_discover", as:'switch_photo_album_discover'
 
-    scope :admin do
-        get 'manage_photos', to:"admins#manage_photos", as: 'manage_photos'
-        get 'manage_albums', to:"admins#manage_albums", as: 'manage_albums'
-        get 'manage_users', to:"admins#manage_users", as: 'manage_users'
-        get 'admin_edit_user/:id', to:"admins#admin_edit_user", as:'admin_edit_user'
-        patch 'update_basic_user/:id', to:"admins#update_basic_user", as:'update_basic_user'
+    namespace  :admins do
+        resources :photos, only: :index
+        # get 'album_index', to:"manage_albums#album_index", as: 'album_index'
+        # resources :ad_albums, only: :index
+        resources :albums, only: :index
+        resources :users, only: [:index, :edit, :update, :destroy]
+        # get 'user_index', to:"manage_users#user_index", as: 'user_index'
+        # get 'admin_edit_user/:id', to:"manage_users#admin_edit_user", as:'admin_edit_user'
+        # patch 'update_basic_user/:id', to:"manage_users#update_basic_user", as:'update_basic_user'
     end
 
 

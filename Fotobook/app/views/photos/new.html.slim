@@ -4,18 +4,18 @@
     hr
   .edit-center
 
-    = form_with model:current_user.photos.build,url:photos_path,id:"newphoto",remote:true do |photo|
+    = form_with model:current_user.photos.build, url:photos_path, id:"newphoto", remote:true do |photo|
       .row
         .col-6.container-fluid
           .row
             = photo.label :title
-            = photo.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:"#{t '.photo_placeholder_title'}"
+            = photo.text_field :title, class:'form-control edit-field', autocomplete:'off', placeholder:"#{t '.photo_placeholder_title'}"
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = photo.label :sharing_mode
-            = photo.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{class: "form-control"}
+            = photo.select :sharing_mode, [["#{t(:private)}", 0], ["#{t(:public)}", 1 ]], {class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -25,19 +25,19 @@
                 .photo-upload-preview
                   label#add-symbol +
                   .dashes.text-center
-                  = photo.file_field :attached_image ,id:"uploadphoto-btn", class:"invisible"
+                  = photo.file_field :attached_image, id:"uploadphoto-btn", class:"invisible"
                   span#cancel-symbol.invisible.font-weight-bolder x
                 .row.mt-2
                   .col-sm-12
                     span.edit-error.font-weight-bolder
           .row.edit
             .col-sm-1
-              = photo.submit id:"photo-submit",class:"btn btn-success"
+              = photo.submit id:"photo-submit", class:"btn btn-success"
 
         .col-6.container-fluid
           .col-sm-12
             = photo.label :description
-            = photo.text_area :description,placeholder:"#{t '.photo_placeholder_description'}",class:'form-control',rows:'7'
+            = photo.text_area :description, placeholder:"#{t '.photo_placeholder_description'}", class:'form-control', rows:'7'
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder

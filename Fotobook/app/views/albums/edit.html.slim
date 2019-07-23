@@ -4,25 +4,25 @@
     hr
   .edit-center
 
-    = form_with model:@current_album,url:album_path(@current_album),id:"newalbum",remote:true do |album|
+    = form_with model:@current_album, url:album_path(@current_album), id:"newalbum", remote:true do |album|
       .row
         .col-6.container-fluid
           .row
             = album.label :title
-            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:'Album Title',value: @current_album.title
+            = album.text_field :title, class:'form-control edit-field',autocomplete:'off', placeholder:'Album Title', value: @current_album.title
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = album.label :sharing_mode
-            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{include_blank: false} ,{class: "form-control"}
+            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]], {include_blank: false}, {class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
         .col-6.container-fluid
           .col-sm-12
             = album.label :description
-            = album.text_area :description,placeholder:'album Description',class:'form-control',rows:'7',value: @current_album.description
+            = album.text_area :description, placeholder:'album Description', class:'form-control', rows:'7', value: @current_album.description
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -32,7 +32,7 @@
             .photo-upload-preview.has-images
               label#add-symbol +
               .dashes.text-center
-              = album.file_field :attached_image,id:"uploadphoto-btn", class:"invisible",multiple:true
+              = album.file_field :attached_image, id:"uploadphoto-btn", class:"invisible", multiple:true
               span#cancel-symbol.invisible.font-weight-bolder x
             .row.mt-2
                 .col-sm-12
@@ -41,9 +41,9 @@
       = render 'current_album_photo.html.slim', current_album: @current_album
       .row.edit.mt-4
         .col-auto.pr-0
-          = album.submit t(:save), id:"album-submit",class:"btn btn-success submit-btn"
+          = album.submit t(:save), id:"album-submit", class:"btn btn-success submit-btn"
         .col-auto
-          = link_to t(:delete),album_path(@current_album),method: :delete,data: { confirm: "#{t(:delete_message)}"}, id:"album-delete",class:"btn btn-danger"
+          = link_to t(:delete), album_path(@current_album), method: :delete, data: { confirm: "#{t(:delete_message)}"}, id:"album-delete", class:"btn btn-danger"
 
 
 

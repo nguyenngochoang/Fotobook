@@ -1,10 +1,10 @@
 .rowtitle-hr
   hr.uploaded-photo-hr
 p.font-weight-bolder.mt-5  = t(:uploaded_photos)
-.row.mt-2.ml-1 id="#{current_album.id}"
+.row.mt-2.ml-1 id = current_album.id
   - current_album.photos.each do |photo|
-    div id="#{photo.id}" class="card h-100 us usercard mr-5 thumbnail photo"
+    div id = photo.id class="card h-100 us usercard mr-5 thumbnail photo"
         .thumbnail-div
-          = image_tag photo.attached_image.url,alt:"Card image cap",class:"us card-img-top img-fluid rounded mt-2"
+          = image_tag photo.attached_image.url, alt:"Card image cap", class:"us card-img-top img-fluid rounded mt-2"
           span.cancel-symbol-thumbnail.font-weight-bolder.cancel-db x
 

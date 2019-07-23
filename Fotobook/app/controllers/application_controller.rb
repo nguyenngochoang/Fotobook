@@ -14,16 +14,14 @@ class ApplicationController < ActionController::Base
   end
 
   def get_all_photos(user)
-    @arr = user.photos.order(:created_at)
-    @album = []
-    @album = user.albums_photos
-    @arr +=  @album
-    @arr = @arr.sort_by{|x| x.created_at}
+   arr = (user.photos + user.albums_photos).sort_by(&:created_at)
+   @photos = Kaminari.paginate_array(arr).page(params[:page]).per(40)
   end
 
-  def check_followings_status(user_to_check,checker)
+  def check_followings_status(user_to_check, checker)
     checker.followees.include?user_to_check
   end
+
 
 
 
@@ -32,7 +30,7 @@ class ApplicationController < ActionController::Base
   private
   # If your model is called User
   def after_sign_in_path_for(resource)
-    current_user.role == 'normal'? root_path : manage_photos_path
+    current_user.role == 'normal'? root_path : admins_photos_path
   end
 
 end

@@ -3,7 +3,6 @@
     .row.feeds-row
       - unless @albums.empty?
         .row.imgrow.mt-5.us.gocenter.photo.tab
-          - @albums.each do |ab|
-              = render partial:'album', locals:{ab: ab}
+          = render partial:'admins/album'
         .justify-content-center.w-100
           = paginate @albums

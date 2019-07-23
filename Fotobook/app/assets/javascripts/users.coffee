@@ -30,10 +30,13 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "POST"
         url: "/follows"
-        data: "data[param]="+user_id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
+        # data: "data[param]="+user_id.toString()+"&data[mode]=follow&data[followees_id]="+followees_id.toString()
+        data : new URLSearchParams({
+          user_id: user_id
+          mode: 'follow'
+          followees_id: followees_id
+        })
         dataType: 'script'
-        success: () ->
-          false
     else
       $(this).text '+ Follow'
       $(this).css 'backgroundImage', 'none'
@@ -42,10 +45,13 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "DELETE"
         url: "/follows/"+user_id.toString()
-        data: "data[param]="+user_id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        # data: "data[param]="+user_id.toString()+"&data[mode]=unfollow&data[followers_id]="+followers_id.toString()
+        data : new URLSearchParams({
+          user_id: user_id
+          mode: 'unfollow'
+          followers_id: followers_id
+        })
         dataType: 'script'
-        success: () ->
-          false
     return
 
   $('.profile-content').on 'click','.follow-button', (e)->
@@ -56,10 +62,11 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "POST"
         url: "/follows"
-        data: "data[followees_id]="+followees_id.toString()
+        # data: "data[followees_id]="+followees_id.toString()
+        data : new URLSearchParams({
+          followees_id: followees_id
+        })
         dataType: 'script'
-        success: () ->
-          false
     else
       $(this).text '+ Follow'
       $(this).css 'backgroundImage', 'none'
@@ -68,10 +75,11 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "DELETE"
         url: "/follows/"+user_id.toString()
-        data: "data[param]="+user_id.toString()+"&data[followers_id]="+followers_id.toString()
+        # data: "data[param]="+user_id.toString()+"&data[followers_id]="+followers_id.toString()
+        data : new URLSearchParams({
+          followers_id: followers_id
+        })
         dataType: 'script'
-        success: () ->
-          false
     return
 
   $('.carousel').carousel ->
@@ -99,52 +107,63 @@ $(document).on 'turbolinks:load', ->
     if $(this).text().indexOf("Albums") >= 0
       Rails.ajax
         type: "GET"
-        url: "/albums"
-        data: "data[param]="+user_id.toString()
+        url: '/albums'
+        # data: "data[param]="+user_id.toString()
+        data : new URLSearchParams({
+          user_id: user_id
+        })
         dataType: 'script'
         success: () ->
-          false
+          console.log 'ok'
     else if $(this).text().indexOf("Photos") >= 0
       Rails.ajax
         type: "GET"
         url: "/photos"
-        data: "data[param]="+user_id.toString()
+        # data: "data[param]="+user_id.toString()
+        data : new URLSearchParams({
+          user_id: user_id
+        })
         dataType: 'script'
-        success: () ->
-          false
+
     else if $(this).text().indexOf("Followings") >=0
       Rails.ajax
         type: "GET"
         url: "/follows"
-        data: "data[param]="+user_id.toString()+"&data[mode]=followings"
+        # data: "data[param]="+user_id.toString()+"&data[mode]=followings"
+        data : new URLSearchParams({
+          user_id: user_id
+          mode: 'followings'
+        })
         dataType: 'script'
-        success: () ->
-          false
     else
        Rails.ajax
         type: "GET"
         url: "/follows"
-        data: "data[param]="+user_id.toString()+"&data[mode]=followers"
+        # data: "data[param]="+user_id.toString()+"&data[mode]=followers"
+        data : new URLSearchParams({
+          user_id: user_id
+          mode: 'followers'
+        })
         dataType: 'script'
-        success: () ->
-          false
     return
   $('.profile-content').on 'click', '.us.thumbnail img', ->
     gallery_id = $(this).parent("div").attr("id")
     console.log(gallery_id)
     mode="";
     if $(this).parent("div").attr("class").indexOf("photo") >= 0
-      mode="photos"
+      mode = "photos"
     else
-      mode="albums"
+      mode = "albums"
 
     Rails.ajax
       type: "GET"
       url: "/currentgallery"
-      data: "data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
+      # data: "data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
+      data : new URLSearchParams({
+        mode: mode
+        gallery_id: gallery_id
+      }).toString()
       dataType: 'script'
-      success: () ->
-        false
     jQuery('.us.modal').modal 'toggle'
     return
 
@@ -446,10 +465,12 @@ $(document).on 'turbolinks:load', ->
     Rails.ajax
       type: "GET"
       url: "/homegallery"
-      data: "data[param]="+id.toString()+"&data[mode]="+mode+"&data[gallery_id]="+gallery_id.toString()
+      data: new URLSearchParams({
+        id: id
+        mode: mode
+        gallery_id: gallery_id
+      }).toString()
       dataType: 'script'
-      success: () ->
-        false
     jQuery('.us.modal').modal 'toggle'
     return
   $('.btn-group').on 'click',".pa", ->
@@ -460,19 +481,18 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/switch_photo_album"
-        data: "show[mode]=album"
+        dataType:'json'
+        # data: byebug"show[mode]=album"
+        data:new URLSearchParams({mode: 'album'}).toString()
         dataType: 'script'
-        success: () ->
-          false
     else if $(this).text().indexOf("Photo") >= 0
       console.log("PHOTO!")
       Rails.ajax
         type: "GET"
         url: "/switch_photo_album"
-        data: "show[mode]=photo"
+        # data: "show[mode]=photo"
+        data:new URLSearchParams({mode: 'photo'}).toString()
         dataType: 'script'
-        success: () ->
-          false
   # heart animation for love bttuon
   $('.feeds-container').on 'click','.heart-animation', (e) ->
     gallery_id = $(this).parent("div").attr("data-id")
@@ -484,10 +504,12 @@ $(document).on 'turbolinks:load', ->
         Rails.ajax
           type: "PATCH"
           url: "/photo_like/"+gallery_id.toString()
-          data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=unlike"
+          # data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=unlike"
+          data: new URLSearchParams({
+            liker_id: id
+            act: 'unlike'
+          }).toString()
           dataType: 'script'
-          success: () ->
-            false
       else #like post
         $(this).addClass 'animate'
         $(this).addClass 'liked'
@@ -495,10 +517,12 @@ $(document).on 'turbolinks:load', ->
         Rails.ajax
           type: "PATCH"
           url: "/photo_like/"+gallery_id.toString()
-          data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=like"
+          # data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=like"
+          data: new URLSearchParams({
+            liker_id: id
+            act: 'like'
+          }).toString()
           dataType: 'script'
-          success: () ->
-            false
     else #album like and unlike
       if $(this).hasClass 'liked' #unlike post
         $(this).removeClass("liked")
@@ -506,10 +530,12 @@ $(document).on 'turbolinks:load', ->
         Rails.ajax
           type: "PATCH"
           url: "/album_like/"+gallery_id.toString()
-          data: "likes[liker_id]="+id.toString()+"&likes[action]=unlike"
+          # data: "likes[liker_id]="+id.toString()+"&likes[action]=unlike"
+          data: new URLSearchParams({
+            liker_id: id
+            act: 'unlike'
+          }).toString()
           dataType: 'script'
-          success: () ->
-            false
       else #like post
         $(this).addClass 'animate'
         $(this).addClass 'liked'
@@ -517,10 +543,12 @@ $(document).on 'turbolinks:load', ->
         Rails.ajax
           type: "PATCH"
           url: "/album_like/"+gallery_id.toString()
-          data: "likes[liker_id]="+id.toString()+"&likes[action]=like"
+          # data: "likes[liker_id]="+id.toString()+"&likes[action]=like"
+          data: new URLSearchParams({
+            liker_id: id
+            act: 'like'
+          }).toString()
           dataType: 'script'
-          success: () ->
-            false
 
     return
   #end of heart animation
@@ -533,10 +561,12 @@ $(document).on 'turbolinks:load', ->
     Rails.ajax
       type: "PATCH"
       url: "/remove_img/"
-      data: "remove[img_id]="+img_id.toString()+"&remove[album_id]="+album_id.toString()
+      # data: "remove[img_id]="+img_id.toString()+"&remove[album_id]="+album_id.toString()
+      data: new URLSearchParams({
+        img_id: img_id
+        album_id: album_id
+      }).toString()
       dataType: 'script'
-      success: () ->
-        false
     $get_parent.remove()
 
   $('#newalbum').on 'click', '.reset-btn', ->

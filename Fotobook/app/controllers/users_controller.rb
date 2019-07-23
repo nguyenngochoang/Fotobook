@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.includes(:photos, :albums, :followers, :followees).find(params[:id])
+    @user = User.find(params[:id])
     get_all_photos(@user)
   end
 
@@ -13,13 +13,6 @@ class UsersController < ApplicationController
 
   def edit
     redirect_to edit_user_path
-  end
-
-  def destroy
-    @user = User.find params[:id]
-    @user.destroy
-
-    redirect_to manage_users_path
   end
 
   def update_basic
@@ -54,8 +47,8 @@ class UsersController < ApplicationController
   #for performs ajax request and return result to modal
   def currentgallery
     @user = current_user
-    @mode = currentgallery_params[:mode]
-    current_gallery_id = currentgallery_params[:gallery_id].to_i
+    @mode = params[:mode]
+    current_gallery_id = params[:gallery_id].to_i
     if @mode == "albums"
       @current_gallery = @user.albums.includes(:photos).find current_gallery_id
     else @mode == "photos"
@@ -70,7 +63,7 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  helper_method :get_photos_count, :get_current_album_load
+  helper_method :get_photos_count
 
   private
 
@@ -90,10 +83,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :avatar)
-  end
-
-  def currentgallery_params
-    params.require(:data).permit(:mode, :gallery_id)
   end
 
   def follow_params

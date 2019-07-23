@@ -6,19 +6,19 @@ class HomesController < ApplicationController
 
   def check_role
     if current_user.role == 'admin'
-      redirect_to manage_photos_path
+      redirect_to admins_photos_path
     end
   end
 
   def switch_photo_album
-    @mode = switch_photo_album_params[:mode]
+    @mode = params[:mode]
     respond_to do|format|
       format.js
     end
   end
 
   def switch_photo_album_discover
-    @mode = switch_photo_album_params[:mode]
+    @mode = params[:mode]
     if @mode == "photo"
       @photos = Photo.all.where(photoable_type: "User").order(created_at: :desc)
     else
@@ -32,9 +32,9 @@ class HomesController < ApplicationController
 
 
   def homegallery
-    @user = User.includes(:photos, :albums).find homegallery_params[:param]
-    @mode = homegallery_params[:mode]
-		home_gallery_id = homegallery_params[:gallery_id].to_i
+    @user = User.includes(:photos, :albums).find params[:id]
+    @mode = params[:mode]
+		home_gallery_id = params[:gallery_id].to_i
     if @mode == "albums"
       @home_gallery = @user.albums.includes(:photos).find home_gallery_id
     else @mode == "photos"
@@ -50,12 +50,5 @@ class HomesController < ApplicationController
   end
 
 
-  private
-  def homegallery_params
-    params.require(:data).permit(:param, :mode, :gallery_id)
-  end
 
-  def switch_photo_album_params
-    params.require(:show).permit(:mode)
-  end
 end

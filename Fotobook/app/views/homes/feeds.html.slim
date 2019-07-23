@@ -1,8 +1,8 @@
 .col-lg-10.col-12.mid
   .text-center.mt-2
     .btn-group.btn-group-lg aria-label=("Basic example") role="group"
-      = button_tag t(:photo_title),class: "homes btn btn-outline-primary active pa"
-      = button_tag t(:album_title),class: "homes btn btn-outline-primary pa",id:"album"
+      = button_tag t(:photo_title), class: "homes btn btn-outline-primary active pa"
+      = button_tag t(:album_title), class: "homes btn btn-outline-primary pa", id:"album"
   .feeds-container
     .row.feeds-row
       - if current_user.followees.empty?

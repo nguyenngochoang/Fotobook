@@ -9,20 +9,20 @@
         .col-6.container-fluid
           .row
             = album.label :title
-            = album.text_field :title,class:'form-control edit-field',autocomplete:'off',placeholder:"#{t '.album_placeholder_title'}"
+            = album.text_field :title,class:'form-control edit-field',autocomplete:'off', placeholder:"#{t '.album_placeholder_title'}"
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
           .row
             = album.label :sharing_mode
-            = album.select :sharing_mode, [["#{t(:private)}",0],["#{t(:public)}",1 ]],{prompt:'Select One'},{class: "form-control"}
+            = album.select :sharing_mode, [["#{t(:private)}", 0], ["#{t(:public)}", 1 ]], {prompt:'Select One'}, {class: "form-control"}
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
         .col-6.container-fluid
           .col-sm-12
             = album.label :description
-            = album.text_area :description,placeholder:"#{t '.album_placeholder_description'}",class:'form-control album-description',rows:'7'
+            = album.text_area :description,placeholder:"#{t '.album_placeholder_description'}", class:'form-control album-description', rows:'7'
           .row
             .col-sm-12
               span.edit-error.font-weight-bolder
@@ -32,7 +32,7 @@
               .photo-upload-preview
                 label#add-symbol +
                 .dashes.text-center
-                = album.file_field :attached_image,id:"uploadphoto-btn", class:"invisible",multiple:true
+                = album.file_field :attached_image,id:"uploadphoto-btn", class:"invisible", multiple:true
                 span#cancel-symbol.invisible.font-weight-bolder x
               .row.mt-2
                 .col-sm-12
@@ -40,6 +40,6 @@
       .preview-row.row.mt-4
       .row.edit.mt-5
         .col-sm-1
-          = album.submit id:"album-submit",class:"btn btn-success"
+          = album.submit id:"album-submit", class:"btn btn-success"
 
 

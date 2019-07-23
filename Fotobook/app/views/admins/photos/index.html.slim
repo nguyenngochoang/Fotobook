@@ -4,6 +4,6 @@
       - unless @photos.empty?
         .row.imgrow.mt-5.us.gocenter.photo.tab
           - @photos.each do |p|
-              = render partial:'photo', locals:{p: p}
+              = render partial:'admins/photo', locals:{p: p}
           .justify-content-center.w-100
             = paginate @photos
