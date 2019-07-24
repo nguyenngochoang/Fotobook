@@ -481,7 +481,6 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/switch_photo_album"
-        # data: byebug"show[mode]=album"
         data:new URLSearchParams({mode: 'album'}).toString()
         dataType: 'script'
     else if $(this).text().indexOf("Photo") >= 0
@@ -489,7 +488,6 @@ $(document).on 'turbolinks:load', ->
       Rails.ajax
         type: "GET"
         url: "/switch_photo_album"
-        # data: "show[mode]=photo"
         data:new URLSearchParams({mode: 'photo'}).toString()
         dataType: 'script'
   # heart animation for love bttuon
@@ -502,9 +500,9 @@ $(document).on 'turbolinks:load', ->
         $(this).removeClass 'animate'
         Rails.ajax
           type: "PATCH"
-          url: "/photo_like/"+gallery_id.toString()
+          url: "/photo_like"
           data: new URLSearchParams({
-            liker_id: id
+            gallery_id : gallery_id
             act: 'unlike'
           }).toString()
           dataType: 'script'
@@ -514,10 +512,9 @@ $(document).on 'turbolinks:load', ->
         console.log 'ok'
         Rails.ajax
           type: "PATCH"
-          url: "/photo_like/"+gallery_id.toString()
-          # data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=like"
+          url: "/photo_like"
           data: new URLSearchParams({
-            liker_id: id
+            gallery_id : gallery_id
             act: 'like'
           }).toString()
           dataType: 'script'
@@ -527,10 +524,9 @@ $(document).on 'turbolinks:load', ->
         $(this).removeClass 'animate'
         Rails.ajax
           type: "PATCH"
-          url: "/album_like/"+gallery_id.toString()
-          # data: "likes[liker_id]="+id.toString()+"&likes[action]=unlike"
+          url: "/album_like"
           data: new URLSearchParams({
-            liker_id: id
+            gallery_id : gallery_id
             act: 'unlike'
           }).toString()
           dataType: 'script'
@@ -540,10 +536,9 @@ $(document).on 'turbolinks:load', ->
         console.log 'ok'
         Rails.ajax
           type: "PATCH"
-          url: "/album_like/"+gallery_id.toString()
-          # data: "likes[liker_id]="+id.toString()+"&likes[action]=like"
+          url: "/album_like"
           data: new URLSearchParams({
-            liker_id: id
+            gallery_id : gallery_id
             act: 'like'
           }).toString()
           dataType: 'script'

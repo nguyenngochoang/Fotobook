@@ -36,6 +36,7 @@ gem 'file_validators'
 gem 'rails-i18n'
 gem 'mini_magick', '~> 4.8'
 gem 'lavatar', '0.1.4'
+gem 'rails_12factor', group: :production
 # Use ActiveStorage variant
 
 # Use Capistrano for deployment
