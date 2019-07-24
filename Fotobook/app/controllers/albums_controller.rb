@@ -53,8 +53,8 @@ class AlbumsController < ApplicationController
 
   def album_like
     action = likes_params[:action]
-    liker = likes_params[:liker_id].to_i
-    @album = Album.find params[:id]
+    liker = current_user.id
+    @album = Album.find params[:gallery_id]
     if action == 'like'
       @album.likes.push(liker)
       respond_to do |format|

@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_letter(user)
-    user.first_name[0]+user.last_name[0]
+    (user.first_name[0]+user.last_name[0]).upcase
   end
 
 

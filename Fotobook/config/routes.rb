@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     end
 
 
-    patch '/photo_like/:id', to:"photos#photo_like", as:'photo_like'
-    patch '/album_like/:id', to:"albums#album_like", as:'album_like'
+    patch '/photo_like/', to:"photos#photo_like", as:'photo_like'
+    patch '/album_like/', to:"albums#album_like", as:'album_like'
     get '/homegallery', to:"homes#homegallery", as:'homegallery'
     patch '/remove_img', to:"albums#remove_img", as:'remove_img'
 

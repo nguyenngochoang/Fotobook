@@ -30,9 +30,9 @@ class PhotosController < ApplicationController
 
   def photo_like
     action = params[:act]
-    liker = params[:liker_id].to_i
+    liker = current_user.id
     if action == 'like'
-      @photo = Photo.find params[:id]
+      @photo = Photo.find params[:gallery_id]
       @photo.likes.push(liker)
       @photo.save
       respond_to do |format|
