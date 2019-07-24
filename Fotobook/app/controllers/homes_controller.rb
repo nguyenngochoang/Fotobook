@@ -5,7 +5,7 @@ class HomesController < ApplicationController
   PER_PAGE = 5
 
   def feeds
-    @photos = current_user.followees_photos.page(params[:page]).per(PER_PAGE)
+    @photos = current_user.followees_photos.order(created_at: :desc).page(params[:page]).per(PER_PAGE)
   end
 
   def load_feeds
@@ -22,7 +22,7 @@ class HomesController < ApplicationController
   end
 
   def discover
-    @photos = Photo.all.where(photoable_type: "User").page(params[:page]).per(PER_PAGE)
+    @photos = Photo.where(photoable_type: "User").order(created_at: :desc).page(params[:page]).per(PER_PAGE)
   end
 
   def load_discovers

@@ -105,7 +105,8 @@ en:
   photos:
     userphoto:
       add: 'Add photo'
-      no_photo: 'You dont have any Photos. Upload one ?'
+      no_photo: 'You dont have any Photos. Upload one?'
+      visit_no_photo: 'This person dont have any Photos!'
     edit:
       edit_photo: 'Edit Photo'
     new:
@@ -117,6 +118,8 @@ en:
       edit_album: 'Edit Album'
     useralbum:
       add: 'Add Album'
+      no_album: 'You dont have any Albums. Create one?'
+      visit_no_album: 'This person dont have any Albums!'
     new:
       new_album: 'New Album'
       album_placeholder_title: 'Album Title'
@@ -128,7 +131,13 @@ en:
         first_name: 'First Name'
         last_name: 'Last Name'
         last_login: 'Last Login'
-
+  follows:
+    userfollowers:
+      no_followers: 'You dont have any followers'
+      visit_no_followers: 'This person dont have any followers!'
+    userfollowings:
+      no_followings: 'You havent followed anyone yet'
+      visit_no_followings : 'This person havent followed anyone!'
 
 
 

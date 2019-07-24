@@ -21,7 +21,7 @@ $(document).on 'turbolinks:load', ->
       $thisdiv = $thisdiv.next()
     return
 
-  user_id = $('.us.rounded-circle').attr('data-id')
+  user_id = $('.useravatar').attr('data-id')
   $('.userdiv').on 'click','.follow-button', (e)->
     if $(this).text() == '+ Follow'
       $(this).text 'Following'
@@ -503,7 +503,6 @@ $(document).on 'turbolinks:load', ->
         Rails.ajax
           type: "PATCH"
           url: "/photo_like/"+gallery_id.toString()
-          # data: "likes[liker_id]="+id.toString()+"&likes[mode]=photo"+"&likes[action]=unlike"
           data: new URLSearchParams({
             liker_id: id
             act: 'unlike'

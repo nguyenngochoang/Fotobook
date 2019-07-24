@@ -34,9 +34,9 @@ gem 'toastr-rails'
 gem 'local_time'
 gem 'file_validators'
 gem 'rails-i18n'
-
+gem 'mini_magick', '~> 4.8'
+gem 'lavatar', '0.1.4'
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

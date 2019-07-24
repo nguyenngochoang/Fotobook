@@ -1,4 +1,5 @@
-= link_to t('.add'), new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
+- if user.id == current_user.id
+  = link_to t('.add'), new_photo_path, class:" us addpa-btn font-weight-bolder photo tab"
 - if get_all_photos(user).any?
   - @photos = get_all_photos(user)
   .row.imgrow.mt-5.us.gocenter.container-fluid.photo.tab
@@ -6,5 +7,9 @@
   .justify-content-center.w-100
     = paginate @photos, remote: true
 - else
-  .text-center.us-noinfo.text-black-50
-    p = t '.no_photo'
+  - if user.id == current_user.id
+    .text-center.us-noinfo.text-black-50
+      p = t '.no_photo'
+  - else
+    .text-center.us-noinfo.text-black-50
+      p = t '.visit_no_photo'
