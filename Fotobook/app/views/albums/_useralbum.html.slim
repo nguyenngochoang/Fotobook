@@ -1,10 +1,15 @@
-=link_to t('.add'), new_album_path, class:'us addpa-btn font-weight-bolder ab tab'
+- if user.id == current_user.id
+  =link_to t('.add'), new_album_path, class:'us addpa-btn font-weight-bolder ab tab'
 - if user.albums.any?
   .row.us.imgrow.mt-5.gocenter.container-fluid.ab.tab
     = render partial: 'albums/each_album', locals: {user: user, albums: user.albums.page(params[:page])}
   .justify-content-center.w-100
 	  = paginate user.albums.page(params[:page]), remote: true
 
--else
-  .text-center.us-noinfo.text-black-50
-    p You don't have any Albums. Create one ?
+- else
+  - if user.id == current_user.id
+    .text-center.us-noinfo.text-black-50
+      p = t '.no_album'
+  - else
+    .text-center.us-noinfo.text-black-50
+      p = t '.visit_no_album'

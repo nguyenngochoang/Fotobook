@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def show
     @user = User.find(params[:id])
     get_all_photos(@user)

@@ -18,6 +18,10 @@
             = link_to t(:followed), nil, id:follower.id, class:"fl follow-button followingsbtn", onClick:"return false;"
           - else
             = link_to t(:not_follow), nil, id:follower.id, class:"fl follow-button followersbtn", onClick:"return false;"
--else
-  .text-center.us-noinfo.text-black-50
-    p You don't have any Followers!
+- else
+  - if @user.id == current_user.id
+    .text-center.us-noinfo.text-black-50
+      p = t '.no_followers'
+  - else
+    .text-center.us-noinfo.text-black-50
+      p = t '.visit_no_followers'

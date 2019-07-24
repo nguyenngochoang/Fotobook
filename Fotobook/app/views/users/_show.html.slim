@@ -1,10 +1,10 @@
 .col-lg-10.col-12.us.mid
   .row.us.gocenter
-    div id=("col-lg-4 col-12 useravatar inline-block")
+    div.col-lg-3.col-12.useravatar.inline-block data-id=user.id
       - if !user.avatar.file.nil?
-        = image_tag user.avatar.url, alt:"#{t '.sample_image'}", class:"us rounded-circle", 'data-id':user.id
+        = image_tag user.avatar.url, alt:"#{t '.sample_image'}", class:"us rounded-circle"
       - else
-        = image_tag 'default.png', alt:"#{t '.sample_image'}", class:"us rounded-circle", 'data-id':user.id
+        = lavatar_tag(generate_letter(user), 200, class:"us rounded-circle")
     .col-lg-8.col-12.inline-block.ml-2.us.userdiv
       - if user.id == current_user.id
         = link_to  t('.edit_profile'),edit_profile_path, class:"us edit-btn d-block mt-2"

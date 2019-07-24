@@ -16,5 +16,9 @@
         .fl.text-center.card-following-btn
           = link_to t(:followed), nil, id:followings[i].id,class:"fl follow-button followingsbtn", onClick:"return false;"
 - else
-  .text-center.us-noinfo.text-black-50
-    p You don't have any Followings!
+  - if @user.id == current_user.id
+    .text-center.us-noinfo.text-black-50
+      p = t '.no_followings'
+  - else
+    .text-center.us-noinfo.text-black-50
+      p = t '.visit_no_followings'

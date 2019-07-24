@@ -1,36 +1,5 @@
 - photos.each do |post|
-  - if post.sharing_mode
-    .col-12.col-lg-6
-      .card
-        .card-body
-          .container
-            .row
-              .col-lg-6.col-12.py-0.img.photo data-id="#{post.id}" data-param="#{post.photoable_id}"
-                = render partial: 'users/thumbnail', locals:{link: post.attached_image.url , mode:"photo"}
-              .col-lg-6.col-12.content data-id="#{post.photoable.id}"
-                  .discover-user-info
-                    = link_to user_path(post.photoable.id), class:'user-info-a' do
-                      = image_tag post.photoable.avatar.url, alt:"Card image", class:"card-img-top img-fluid userava rounded-circle"
-                      span.align-self-center.ml-1.font-weight-bolder.discover-span
-                        = "#{post.photoable.first_name} #{post.photoable.last_name}"
-                  - if current_user && current_user.id == post.photoable.id
-                    - if current_user.followees.include?(post.photoable)
-                      = link_to 'Following', nil, id:post.photoable_id, class:"discover follow-button followingsbtn ", onClick:"return false;"
-                    - else
-                      = link_to '+ Follow', nil, id:post.photoable_id, class:"discover follow-button followersbtn ", onClick:"return false;"
-                  .row.row-text
-                    h5.card-title.mb-4.font-weight-bolder = post.title
-                    p = post.description
-                  .row.px-2.photo data-id="#{post.id}" data-param="#{post.photoable.id}"
-                    hr/
-                    - if current_user
-                      - if post.likes.include?(current_user.id)
-                        .heart-animation.d-inline-block.bot-element.liked
-                      - else
-                        .heart-animation.d-inline-block.bot-element
-                    
-                    span.likesspan.bot-element-text = t(:likes, count: post.likes.size)
-                    span.date = local_time(post.created_at)
+  = render partial: 'card_photo', locals: {post: post}
 #infinite-scrolling.d-none data-mode="photo"
   = paginate photos, remote: true
 

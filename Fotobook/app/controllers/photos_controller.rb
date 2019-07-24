@@ -65,7 +65,11 @@ class PhotosController < ApplicationController
   def destroy
     @current_photo.destroy
     flash[:success] = "Photo has been deleted successfully!"
-    redirect_to me_path
+    if current_user.role == 'normal'
+      redirect_to me_path
+    else
+      redirect_to admins_photos_path
+    end
 
   end
 
