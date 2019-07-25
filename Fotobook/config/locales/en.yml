@@ -113,6 +113,8 @@ en:
       photo_placeholder_description: 'Photo Description'
       photo_placeholder_title: 'Photo Title'
       new_photo: 'New Photo'
+    noti_dropdown:
+      blank_noti: 'nothing new...'
   albums:
     edit:
       edit_album: 'Edit Album'

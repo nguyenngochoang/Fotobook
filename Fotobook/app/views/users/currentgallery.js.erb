@@ -8,3 +8,4 @@
   $(".us.modal-body").html('<%= j( render partial: "users/photopreview", locals: {gallery: @current_gallery}) %>')
   $(".modal-footer p").html('<%= @current_gallery.description%>')
 <%end%>
+jQuery('.us.modal').modal('toggle')

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :get_noti
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
 
   def generate_letter(user)
     (user.first_name[0]+user.last_name[0]).upcase
+  end
+
+
+  def get_noti
+    @notifications = Notification.where('user_id = ?', current_user.id)
   end
 
 
