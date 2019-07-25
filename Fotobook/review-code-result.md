@@ -166,3 +166,36 @@
     - (còn nhiều chỗ khác nữa)
 
 17. Hiện giờ em đang làm 1 mình có thể thêm/xoá/sửa file migration thoải mái. Nhưng chú ý sau này làm việc nhóm thì file migration  đã commit thì ko được xoá/sửa. Cần update lại database schema thì tạo 1 migration mới update lại cái sai của migration cũ.
+
+----
+
+## Review 1st 20190725 - Revision 6f08b7
+
+1. Check lại editor của mình, indent cỏ vẻ vẫn còn chỗ dùng tab
+
+    - Fotobook/app/controllers/admins/users_controller.rb
+
+2. Code dư thừa
+
+    - Fotobook/app/controllers/albums_controller.rb#destroy => chỗ `@current_album.destroy` thì rails sẽ tự mở transaction, mình đâu cần wrap dòng này vào transaction làm gì.
+    - Fotobook/app/controllers/homes_controller.rb: nhiều actions thấy chỉ handle mỗi format `js` thì dùng `respond_to` làm gì. Chỉ dùng `respond_to` nếu `action` cần handle nhiều format khác nhau.
+    - Fotobook/app/controllers/homes_controller.rb#check_role: `if current_user && current_user.role == 'admin'` => `if current_user&.role == 'admin'`
+
+3. Method define không đúng chỗ
+
+    - Fotobook/app/controllers/application_controller.rb#generate_letter: cái này nên là 1 method của `user` để khi chỗ nào cần dùng thì chỉ cần đơn giản là gọi `user.short_name`. Controller là nơi để handle business logic (với mô hình MVC truyền thống), nó không phải là nơi để define ra những method format lại data.
+
+4. Không tận dụng dc sức mạnh của ActiveRecord:
+
+    - Fotobook/app/controllers/application_controller.rb#get_noti: `@notifications = Notification.where('user_id = ?', current_user.id)` => `@notifications = current_user.notifications`
+
+5. Nên tím hiểu `rails enum` hoặc gem `rolify` để thay thế để thay thế cách check user role hiện giờ
+
+6. Cần nghĩ về tính toàn vẹn của dữ liệu khi khai báo association
+
+    - Fotobook/app/models/user.rb: `has_many :notifications` nếu chỉ khai báo vầy thì khi user bị removed thì `notifications` sẽ bơ vơ ở lại làm gì?
+
+7. Code ko hiểu được
+
+    - Fotobook/app/models/user.rb: line 27-28 => sao lại đi `order; where` như vậy. Làm vậy thì cuối cùng đâu có order dc gì...
+
