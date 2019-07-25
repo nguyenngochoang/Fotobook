@@ -1,5 +1,5 @@
 <div class="cover">
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post },:html =>{class:"w-25 log text-white my-lg-2"}) do |f| %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post },:html =>{class:"log text-white my-lg-2"}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field py-2 px-2">

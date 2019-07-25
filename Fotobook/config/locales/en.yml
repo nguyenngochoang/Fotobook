@@ -46,7 +46,7 @@ en:
   likes:
     zero:	'%{count} Likes'
     one: '%{count} Like'
-    ther: '%{count} Likes'
+    other: '%{count} Likes'
 
   not_follow: '+ Follow'
   followed: 'Following'

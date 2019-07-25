@@ -1,16 +1,15 @@
 
  <%= stylesheet_link_tag 'login_signup' %>
- <%= javascript_include_tag 'login_signup' %>
 
 <div class="cover">
   <div class="logmethod container-fluid mt-2">
-          <div class="rounded border border-dark w-25 d-flex justify-content-center logmethod">
-          <%= link_to image_tag("google.png",class:"rounded-circle img-fluid logo", alt:"Google"), root_path, {class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
-          <%= link_to image_tag("logo-facebook.png",class:"rounded-circle img-fluid logo", alt:"Facebook"),root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"}  %>
-          <%= link_to image_tag("Twitter.png", class:"rounded-circle img-fluid logo", alt:"Twitter"), root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
+          <div class="rounded border border-dark d-flex justify-content-center logmethod">
+            <%= link_to image_tag("google.png",class:"rounded-circle img-fluid logo", alt:"Google"), root_path, {class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
+            <%= link_to image_tag("logo-facebook.png",class:"rounded-circle img-fluid logo", alt:"Facebook"),root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"}  %>
+            <%= link_to image_tag("Twitter.png", class:"rounded-circle img-fluid logo", alt:"Twitter"), root_path,{class:"rounded-circle container-fluid py-1 mx-2 w-50 h-50"} %>
           </div>
       </div>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html =>{class:"w-25 log text-white my-lg-2"}) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html =>{class:"log text-white my-lg-2"}) do |f| %>
           <div class="col text-center logintext">
             <h1><%= t '.title' %></h1>
           </div>

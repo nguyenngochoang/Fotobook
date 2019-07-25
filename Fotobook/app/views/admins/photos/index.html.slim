@@ -2,7 +2,7 @@
   .feeds-container
     .row.feeds-row
       - unless @photos.empty?
-        .row.imgrow.mt-5.us.gocenter.photo.tab
+        .row.imgrow.mt-5.us.photo.tab.justify-content-center
           - @photos.each do |p|
               = render partial:'admins/photo', locals:{p: p}
           .justify-content-center.w-100
