@@ -97,7 +97,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @current_album.destroy
+    Photo.transaction do
+      @current_album.destroy
+    end
     flash[:success] = "Album has been deleted successfully!"
     redirect_to me_path
   end

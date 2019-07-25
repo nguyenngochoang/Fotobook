@@ -1,25 +1,6 @@
 $(document).on 'turbolinks:load', ->
 
-  # auto fade navbar
-  lastScrollTop = 0
-  $navbar = $('.navbar')
-  $(window).scroll (event) ->
-    st = $(this).scrollTop()
-    if st > lastScrollTop
-      $navbar.stop().fadeOut()  # scroll down
-    else
-      $navbar.stop().fadeIn()   # scroll up
-    lastScrollTop = st
-    return
-  #end of auto fade navbar
-
   # navigations from this photo to another
-  $thisdiv = $('.hidethis:first')
-  $(window).scroll ->
-    if $(window).scrollTop() == $(document).height() - $(window).height()
-      $thisdiv.show()
-      $thisdiv = $thisdiv.next()
-    return
 
   user_id = $('.useravatar').attr('data-id')
   $('.userdiv').on 'click','.follow-button', (e)->
@@ -554,7 +535,6 @@ $(document).on 'turbolinks:load', ->
     Rails.ajax
       type: "PATCH"
       url: "/remove_img/"
-      # data: "remove[img_id]="+img_id.toString()+"&remove[album_id]="+album_id.toString()
       data: new URLSearchParams({
         img_id: img_id
         album_id: album_id

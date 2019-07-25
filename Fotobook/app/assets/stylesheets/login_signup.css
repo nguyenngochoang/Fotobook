@@ -1,13 +1,15 @@
 .logmethod{
   height: 100%;
   display: flex;
+  width: 20rem;
   justify-content: center;
   align-items: center;
 }
 .log{
   background-color: #191919;
   margin: auto;
-  width: fit-content;
+  width: 20rem;
+
   border-radius: 14px;
 }
 
@@ -26,12 +28,15 @@
 .user-navbar:hover{
   cursor: pointer;
 }
+.link{
+  
+}
 .link:hover{
   text-decoration: none;
 }
 
 .cover{
-  min-width: 100vh;
+  min-width: 100vw;
   min-height: 100vh;
   background:#34495e;
 }

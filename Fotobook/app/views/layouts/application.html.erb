@@ -3,6 +3,7 @@
 
   <head>
   <title>Fotobook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -33,22 +34,24 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse collapse show" id="navbarSupportedContent" style="">
-          <form class="form-inline my-2 my-lg-0 w-100">
-            <input class="form-control mr-sm-2 h-25 w-50" type="text" placeholder="Search photo/album" aria-label="Search">
+        <div class="navbar-collapse collapse show w-100" id="navbarSupportedContent" style="">
+          <form class="form-inline my-0 mx-0 py-0 px-0 form-wrapper ">
+            <input class="form-control search-bar" type="text" placeholder="Search photo/album" aria-label="Search">
           </form>
-          <ul class="navbar-nav mr-auto">
+          <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
-              <div class="input-group w-25 h-25 user-navbar">
+              <div class="input-group user-navbar mr-5 ">
                 <%= link_to me_path, method: :get, :class=>"link" do%>
                   <%if !current_user.avatar.file.nil?%>
                     <%= image_tag current_user.avatar.url, alt:'default', class:"py-0  userava rounded-circle" %>
                   <%else%>
                     <%= lavatar_tag(generate_letter(current_user), 200,  class:"py-0  userava rounded-circle")%>
                   <%end%>
-                  <span class="align-self-center mx-2 text-white"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
+                  <span class="align-self-center mx-2 text-white font-weight-bolder"><%="#{current_user.first_name} #{current_user.last_name}"%></span>
                 <%end%>
               </div>
+            </li>
+            <li class="nav-item active mt-1">
               <%= link_to "#{t '.logout'}", destroy_user_session_path, method: :delete, :class => 'text-white logbtn text-decoration-none' %>
             </li>
           </ul>

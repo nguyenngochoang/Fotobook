@@ -6,14 +6,14 @@
         .carousel-item.active
           .carousel-title.carousel-info
             h5#ptitle= photo.title
-          = image_tag photo.attached_image.url, class:'img-fluid img-carousel'
+          = image_tag photo.attached_image.thumb.url, class:'img-fluid img-carousel'
           .carousel-description
             p#pdescription= photo.description
       - else
         .carousel-item
           .carousel-title.carousel-info
             h5#ptitle= photo.title
-          = image_tag photo.attached_image.url, class:'img-fluid img-carousel'
+          = image_tag photo.attached_image.thumb.url, class:'img-fluid img-carousel'
           .carousel-description
             p#pdescription= photo.description
   a.carousel-control-prev data-slide="prev" href="#carouselFade" role="button"

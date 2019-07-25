@@ -1,6 +1,6 @@
 - @albums.each do |ab|
   div id="#{ab.id}" class="card admin admincard mr-5 thumbnail photo"
-    - attached_img = ab.photos[-1].attached_image.url
+    - attached_img = ab.photos[-1].attached_image.thumb.url
     = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded firstimg"
     = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded secondimg"
     = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded thirdimg"
