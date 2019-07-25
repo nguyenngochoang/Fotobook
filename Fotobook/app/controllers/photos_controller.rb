@@ -31,15 +31,18 @@ class PhotosController < ApplicationController
   def photo_like
     action = params[:act]
     liker = current_user.id
-    if action == 'like'
+    gallery_id = params[:gallery_id]
+    if action == 'likes'
       @photo = Photo.find params[:gallery_id]
       @photo.likes.push(liker)
       @photo.save
+      noti_params = {action: action, target_type: 'photo', liker_name: current_user.first_name, target_id:  gallery_id}
+      @photo.photoable.notifications.create(noti_params)
       respond_to do |format|
         format.js
       end
     else
-      @photo = Photo.find params[:id]
+      @photo = Photo.find params[:gallery_id]
       @photo.likes.delete(liker)
       @photo.save
       respond_to do |format|

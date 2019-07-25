@@ -41,9 +41,17 @@
           <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
               <div class="input-group user-navbar mr-5 ">
-                <%= link_to me_path, method: :get, :class=>"link" do%>
+                <div class="dropdown mr-3">
+                  <%= image_tag 'https://cdn1.iconfinder.com/data/icons/material-design-icons-light/24/bell-128.png', alt:'default', class:"py-0  userava rounded-circle dropdown-toggle", 'data-toggle':'dropdown', 'aria-haspopu': 'true', 'aria-expanded': 'false' %>
+                  <%= render partial: 'notifications/counter', locals:{counter: @notifications.count} %>
+                  <div class="dropdown-menu dropdown-menu-right container-fluid" aria-labelledby="dropdownMenu1">
+                    <%= render 'notifications/notification_center', locals:{notifications: @notifications} %>
+                  </div>
+                </div>
+
+                <%= link_to me_path, method: :get, class:"link" do%>
                   <%if !current_user.avatar.file.nil?%>
-                    <%= image_tag current_user.avatar.url, alt:'default', class:"py-0  userava rounded-circle" %>
+                    <%= image_tag current_user.avatar.thumb.url, alt:'default', class:"py-0  userava rounded-circle" %>
                   <%else%>
                     <%= lavatar_tag(generate_letter(current_user), 200,  class:"py-0  userava rounded-circle")%>
                   <%end%>

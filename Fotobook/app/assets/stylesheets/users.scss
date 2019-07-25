@@ -683,6 +683,7 @@ hr {
   }
 
   #cancel-symbol{
+    z-index: 2;
     position: absolute;
     top:2px;
     right: 10px;
@@ -738,6 +739,39 @@ hr {
   }
 }
 
+.noti-row{
+  width: 100%;
+}
+
+.dropdown-menu{
+  width: 300px;
+  white-space: normal;
+  position: relative;
+}
+
+.dropdown-item{
+  font-size:10px;
+  white-space: nowrap;
+
+}
+
+.noti-img{
+  height: 100%;
+  width: 40%;
+  position: absolute;
+  right:1px;
+}
+
+.noti-count{
+  position: absolute;
+  top:0px;
+  right:2px;
+  font-size: 10px;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  color:white;
+}
 
 
 // -------------------------------------- end of css for upload photo

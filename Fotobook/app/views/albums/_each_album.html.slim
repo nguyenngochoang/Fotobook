@@ -1,4 +1,4 @@
-- albums.each do |album|
+- albums.includes(:photos).each do |album|
   .card.h-100.us.usercard.mr-5
     - @current_album_photos = album.photos
     div id="#{album.id}" class="us thumbnail"

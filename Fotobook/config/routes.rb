@@ -17,17 +17,13 @@ Rails.application.routes.draw do
 
     namespace  :admins do
         resources :photos, only: :index
-        # get 'album_index', to:"manage_albums#album_index", as: 'album_index'
-        # resources :ad_albums, only: :index
         resources :albums, only: :index
         resources :users, only: [:index, :edit, :update, :destroy]
-        # get 'user_index', to:"manage_users#user_index", as: 'user_index'
-        # get 'admin_edit_user/:id', to:"manage_users#admin_edit_user", as:'admin_edit_user'
-        # patch 'update_basic_user/:id', to:"manage_users#update_basic_user", as:'update_basic_user'
     end
 
 
     patch '/photo_like/', to:"photos#photo_like", as:'photo_like'
+    get 'load_noti', to:"photos#load_noti", as:'load_noti'
     patch '/album_like/', to:"albums#album_like", as:'album_like'
     get '/homegallery', to:"homes#homegallery", as:'homegallery'
     patch '/remove_img', to:"albums#remove_img", as:'remove_img'
@@ -38,4 +34,9 @@ Rails.application.routes.draw do
     resources :photos
     resources :albums
     resources :follows, only: [:create, :index, :destroy]
+
+
+
+    mount ActionCable.server => '/cable'
+
 end

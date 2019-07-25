@@ -1,4 +1,4 @@
-- @albums.each do |ab|
+- @albums.includes(:photos).each do |ab|
   div id="#{ab.id}" class="card admin admincard mr-5 thumbnail photo"
     - attached_img = ab.photos[-1].attached_image.thumb.url
     = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded firstimg"
@@ -14,5 +14,5 @@
         = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
     = link_to t(:edit), edit_album_path(ab), class:'us pa-edit'
 
-    .us.card-body.text-center = ab.description
-    .us.title.text-center.d-none = ab.title
+    .us.card-body.text-center = ab.title
+    .us.title.text-center.d-none = ab.description

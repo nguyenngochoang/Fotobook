@@ -145,7 +145,6 @@ $(document).on 'turbolinks:load', ->
         gallery_id: gallery_id
       }).toString()
       dataType: 'script'
-    jQuery('.us.modal').modal 'toggle'
     return
 
   $('.us.ava-change.text-center').on 'click',->
@@ -452,7 +451,8 @@ $(document).on 'turbolinks:load', ->
         gallery_id: gallery_id
       }).toString()
       dataType: 'script'
-    jQuery('.us.modal').modal 'toggle'
+
+
     return
   $('.btn-group').on 'click',".pa", ->
     $(".pa").not(this).removeClass("active")
@@ -496,7 +496,7 @@ $(document).on 'turbolinks:load', ->
           url: "/photo_like"
           data: new URLSearchParams({
             gallery_id : gallery_id
-            act: 'like'
+            act: 'likes'
           }).toString()
           dataType: 'script'
     else #album like and unlike

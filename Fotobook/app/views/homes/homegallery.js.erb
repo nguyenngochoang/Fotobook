@@ -7,4 +7,6 @@
   $(".modal-title").html('<%=@home_gallery.title%>')
   $(".us.modal-body").html('<%= j( render partial: "users/photopreview", locals: {gallery: @home_gallery}) %>')
   $(".modal-footer p").html('<%= @home_gallery.description%>')
+
 <%end%>
+jQuery('.us.modal').modal('toggle')

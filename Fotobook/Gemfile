@@ -37,6 +37,8 @@ gem 'rails-i18n'
 gem 'mini_magick', '~> 4.8'
 gem 'lavatar', '0.1.4'
 gem 'rails_12factor', group: :production
+gem 'activity_notification', '1.7.1'
+gem 'font-awesome-rails'
 # Use ActiveStorage variant
 
 # Use Capistrano for deployment
