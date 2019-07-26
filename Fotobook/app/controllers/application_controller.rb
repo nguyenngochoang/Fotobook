@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
 
-  before_action :authenticate_user!, :get_noti
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-
+  before_action :get_noti, if: :user_signed_in?
 
   protected
   def configure_permitted_parameters

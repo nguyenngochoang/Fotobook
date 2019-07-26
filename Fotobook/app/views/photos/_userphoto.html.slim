@@ -5,7 +5,7 @@
   .row.imgrow.mt-5.us.photo.tab.mx-auto.justify-content-center
     = render partial: 'photos/eachphoto'
   .justify-content-center.w-100
-    = paginate @photos, remote: true
+    = paginate @photos
 - else
   - if user.id == current_user.id
     .text-center.us-noinfo.text-black-50
