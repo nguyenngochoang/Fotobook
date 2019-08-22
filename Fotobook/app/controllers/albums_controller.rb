@@ -112,6 +112,10 @@ class AlbumsController < ApplicationController
     @album.photos.delete(img_id)
   end
 
+  def poll
+    byebug
+  end
+
   private
   def album_params
     params.require(:album).permit(:title, :sharing_mode, :description, {attached_image:[]})
@@ -122,6 +126,7 @@ class AlbumsController < ApplicationController
   def likes_params
     params.require(:likes).permit(:liker_id, :action)
   end
+
 
 
 

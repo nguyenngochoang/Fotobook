@@ -2,11 +2,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
     get_all_photos(@user)
   end
 
   def myprofile
     @user = current_user
+    @check = User.all
     get_all_photos(@user)
   end
 
