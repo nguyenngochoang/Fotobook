@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     get '/switch_photo_album', to:"homes#switch_photo_album", as:'switch_photo_album'
     get '/switch_photo_album_discover', to:"homes#switch_photo_album_discover", as:'switch_photo_album_discover'
 
-    namespace  :admins do
+    namespace  :admin do
+        root 'admin#index'
         resources :photos, only: :index
         resources :albums, only: :index
         resources :users, only: [:index, :edit, :update, :destroy]
@@ -31,8 +32,7 @@ Rails.application.routes.draw do
     get '/load_feeds', to:"homes#load_feeds", as:'load_feeds'
     get '/load_discover', to:"homes#load_discovers", as:'load_discovers'
 
-    resources :photos
-    resources :albums
+
     resources :follows, only: [:create, :index, :destroy]
 
 
