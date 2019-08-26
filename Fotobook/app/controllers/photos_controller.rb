@@ -29,13 +29,21 @@ class PhotosController < ApplicationController
   end
 
   def photo_like
+
     action = params[:act]
-    liker = current_user.id
+    if current_user
+      liker = current_user.id
+    else
+      liker = rand 100000000 # for testing purpose
+    end
     gallery_id = params[:gallery_id]
     if action == 'likes'
       @photo = Photo.find params[:gallery_id]
+
       @photo.likes.push(liker)
+
       @photo.save
+      byebug
       noti_params = {action: action, target_type: 'photo', liker_name: current_user.first_name, target_id:  gallery_id}
       @photo.photoable.notifications.create(noti_params)
       respond_to do |format|

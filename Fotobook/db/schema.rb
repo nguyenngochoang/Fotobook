@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_094455) do
+ActiveRecord::Schema.define(version: 2019_08_26_045729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,14 +52,12 @@ ActiveRecord::Schema.define(version: 2019_07_25_094455) do
     t.string "title"
     t.text "description"
     t.boolean "sharing_mode", default: true
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "photoable_type"
     t.bigint "photoable_id"
     t.integer "likes", default: [], array: true
     t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id"
-    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,5 +89,4 @@ ActiveRecord::Schema.define(version: 2019_07_25_094455) do
 
   add_foreign_key "albums", "users"
   add_foreign_key "notifications", "users"
-  add_foreign_key "photos", "users"
 end

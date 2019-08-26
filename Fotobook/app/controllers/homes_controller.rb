@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:discover, :load_discovers, :switch_photo_album_discover, :homegallery]
+  skip_before_action :authenticate_user!#, only: [:discover, :load_discovers, :switch_photo_album_discover, :homegallery]
   before_action :check_role
 
   PER_PAGE = 5
