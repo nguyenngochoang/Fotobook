@@ -54,6 +54,8 @@ gem 'autoprefixer-rails'
 gem "font-awesome-rails"
 gem "devise"
 gem 'jquery-ui-rails'
+gem "factory_bot_rails"
+
 
 
 group :development, :test do

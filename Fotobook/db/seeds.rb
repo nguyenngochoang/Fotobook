@@ -6,25 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-for i in (0..5)
-  Photo.create([
-    {
-      picture_link: "www.abc.com.vn",
-      status_title: "New status",
-      status: "lorem spectrum bla bla bla",
-      time: Time.now,
-      like: 69,
-      user_id: 1,
-      is_public: true,
-    },
-  ])
 
-  Album.create([
+Photo.create([
     {
-      name: i.to_s + "_Album",
-      time: Time.now,
-      like: 696,
-      is_public: true,
+        attached_image: "sample",
+        title: "abc",
+        description: "abcxyz",
+        sharing_mode: true,
+        user_id: nil,
+        photoable_type: "User",
+        photoable_id: 1,
+        likes: []
     },
-  ])
-end
+])
+

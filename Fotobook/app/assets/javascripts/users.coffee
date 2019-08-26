@@ -472,6 +472,9 @@ $(document).on 'turbolinks:load', ->
         data:new URLSearchParams({mode: 'photo'}).toString()
         dataType: 'script'
   # heart animation for love bttuon
+  # $('.heart-animation').click ->
+  #   console.log "ahihi clicked"
+
   $('.feeds-container').on 'click','.heart-animation', (e) ->
     gallery_id = $(this).parent("div").attr("data-id")
     id = $(this).parent("div").attr("data-param")

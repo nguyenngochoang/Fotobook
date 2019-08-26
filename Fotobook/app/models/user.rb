@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable, :registerable,
       :recoverable, :rememberable, :validatable, :trackable
-  has_many :photos, as: :photoable, dependent: :destroy, counter_cache: true
+  has_many :photos, as: :photoable, dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :notifications
 

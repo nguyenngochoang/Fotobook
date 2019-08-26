@@ -112,9 +112,7 @@ class AlbumsController < ApplicationController
     @album.photos.delete(img_id)
   end
 
-  def poll
-    byebug
-  end
+ 
 
   private
   def album_params
