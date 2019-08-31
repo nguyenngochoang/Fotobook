@@ -1,0 +1,62 @@
+// Place all the styles related to the Homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.feeds-container{
+  height: auto;
+}
+.discover-user-info {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  max-width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  > .user-info-a {
+    margin: 10px 0 0 2px;
+    font-size: 18px;
+
+  }
+  span {
+    max-width: 130px !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+.discover.follow-button{
+  position: absolute;
+  top:6px;
+  right:5px;
+
+}
+.discover.followingsbtn{
+  background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.discover.followersbtn{
+  background-color: white;
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.no-followees{
+  font-size: 30px;
+}
+.admin-nav-item{
+  font-size: 18px;
+  padding: 0;
+
+}
+.admin.admincard {
+  width: 150px;
+  border: none;
+  position: relative;
+}
+.admin.thumbnail {
+  position: relative;
+  cursor: pointer;
+}

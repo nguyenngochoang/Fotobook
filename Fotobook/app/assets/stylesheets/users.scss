@@ -1,0 +1,777 @@
+// -------------------------------------------------feeds.css -------------------------------------
+* {
+  font-family:Open Sans, sans-serif ;
+}
+.userava {
+  height: 35px;
+  width: 35px;
+}
+.body{
+  height: 100vh;
+}
+
+
+.form-wrapper{
+  width: 80%;
+  > .search-bar{
+    width: 30rem;
+  }
+}
+
+
+html {
+  height: 100%;
+  // overflow-x: hidden;
+}
+body {
+  min-height: 100vh ;
+  background-color: #F2F3F5;
+
+}
+.body {
+  margin-top: 50px;
+  min-height: 100vh;
+}
+.heart-animation {
+  background-image: url('https://cssanimation.rocks/images/posts/steps/heart.png');
+  background-repeat: no-repeat;
+  background-size: 2900%;
+  background-position: left;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
+  margin: 0 0 -25px -20px;
+}
+
+.liked{
+  background-position: right;
+}
+
+.animate {
+  animation: heart-burst .8s steps(28) forwards;
+}
+@keyframes heart-burst {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+.responsiveimg {
+  width: 100%;
+  height: 100%;
+}
+.row {
+  height: fit-content;
+}
+.row-text {
+  margin: 50px 0 0 10px;
+  height: 13em;
+  > h5{
+    width: 100%;
+  }
+  > p{
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+  }
+}
+
+.card-text {
+  overflow: scroll;
+}
+
+.likesspan {
+  margin: 0 0 0 -40px;
+}
+.card-body {
+  position: relative;
+  margin-top: 50px;
+}
+.card {
+  border: none;
+}
+.content {
+  border: #c9c7c7 solid 1px;
+  border-left: none;
+  background-color:  #e7e7e7;
+  p {
+    margin-top: -20px;
+  }
+}
+.bot-element {
+  position: absolute;
+  bottom: 10px;
+}
+.bot-element-text {
+  position: absolute;
+  left: 70px;
+  bottom: 5px;
+  font-size: 12px;
+
+}
+hr {
+  position: absolute;
+  border: 0;
+  border-top: 3px solid #c9c7c7;
+  bottom: 10px;
+  width: 95%;
+}
+// -------------------- some config for firefox ----------------------------------------------
+@-moz-document url-prefix() {
+  .date{
+    position: absolute;
+    bottom: 6px !important;
+    letter-spacing:0.01px;
+    font-size:10px !important;
+  }
+  .row-text {
+    position: relative;
+    margin: 50px 0 0 10px;
+    height: 13em;
+    overflow: auto;
+    > h5{
+      height: 40px !important;
+    }
+    > p{
+      width: 100%;
+      position: absolute;
+      top :50px;
+    }
+  }
+}
+// ---------------------- end of some config for firefox --------------------------------------
+.date {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-size: 12px;
+}
+.user-info {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  a {
+    margin: 10px 0 0 2px;
+    font-size: 18px;
+
+  }
+}
+.img {
+  border: #c9c7c7 solid 1px;
+  border-right: none;
+  background-color:  #e7e7e7;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: auto;
+  min-height: 20em;
+  position: relative;
+  &:hover {
+    cursor: alias;
+  }
+  > img {
+    height: 70%;
+    width: 80%;
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    right: 0;
+    bottom: 0;
+  }
+  > .single{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.feed-fistimg{
+  z-index: 3;
+}
+
+.feed-secondimg{
+  z-index: 2;
+  -webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+}
+.feed-thirdimg{
+  z-index: 1;
+  -webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+}
+
+.col-lg-10 {
+  background-color: white;
+}
+.follow-button {
+  background-color: white;
+  border-radius: 28px;
+  border: 1px solid #fc8200;
+  display: inline-block;
+  cursor: pointer;
+  color:#033a9f;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fc8200;
+  width: 60px;
+  height: 20px;
+  padding: 1px 0 0 10px;
+
+}
+
+
+.carousel-item > img{
+  width: 100%;
+  height: 100%;
+}
+
+.us.us.modal-body{
+  height: auto;
+}
+
+.us.modal-body>img{
+  width: 100%;
+  height: 80%;
+}
+.next:hover {
+  cursor: alias;
+}
+.prev:hover {
+  cursor: alias;
+}
+
+
+
+// --------------------------------------------end of feeds.css -------------------------------------
+
+
+// ------------------------------------- userpersonal.css ---------------------------------------
+
+.us.rounded-circle {
+  max-width: 100%;
+  max-height: 100%;
+  width: 200px;
+  height: 200px;
+}
+
+.body {
+  min-width: 100vw;
+  background-color: #F2F3F5;
+}
+
+.us.mid {
+  background-color: white;
+  min-height: 100vh;
+}
+
+
+
+.us.edit-btn {
+  background-color: white;
+  border-radius: 28px;
+  border: 1px solid #033a9f;
+  display: inline-block;
+  cursor: pointer;
+  color: #033a9f;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  width: 70px;
+  height: 20px;
+  padding: 1px 0 0 8px;
+  &:hover {
+    text-decoration: none;
+    background-color: #033a9f;
+    color: white;
+
+  }
+}
+
+.us.username {
+  font-size: 40px;
+  color:black;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+.fl.username{
+  color:black;
+  // border-bottom: .1em solid blue;
+  transition: color .4s ease-out;
+  &::after{
+    border-radius: 1em;
+    border-top: .1em solid #2F56B0;
+    content: "";
+    position: absolute;
+    right: 100%;
+    bottom: 1.3em;
+    left: 0;
+    transition: right .4s cubic-bezier(0, .5, 0, 1), border-color .4s ease-out;
+  }
+  &:hover{
+    color: #457DFB;
+    text-decoration: none;
+  }
+  &:hover::after {
+    border-color: #457DFB;
+    right: 0;
+  }
+
+}
+
+.us.userdiv ul {
+  margin: -10px 0 0 -10px;
+}
+
+.us.imgrow {
+  height: auto;
+}
+
+.us.usercard {
+  width: 150px;
+  height: 100%;
+  border: none;
+  position: relative;
+}
+
+.us.card-img-top {
+  height: 150px !important;
+
+}
+
+.us.card-body {
+  font-size: 10px;
+  margin-top:-10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: inherit;
+}
+
+.us.photonums {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 23%;
+  background-color: rgba(245, 245, 245, 0.4);
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  z-index: 3;
+}
+
+.us.thumbnail {
+  position: relative;
+  cursor: pointer;
+}
+
+.us.firstimg {
+  position: absolute;
+  z-index: 2;
+}
+
+.us.secondimg {
+  -webkit-transform: rotateZ(5deg);
+  transform: rotateZ(5deg);
+  z-index: 1;
+  left:0;
+}
+
+.us.thirdimg {
+  position: absolute;
+  top: 2px;
+  -webkit-transform: rotateZ(10deg);
+  transform: rotateZ(10deg);
+  z-index: 0;
+  left:0;
+}
+
+.us.lockdiv {
+  z-index: 3;
+  position: absolute;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  right: 2px;
+}
+
+.us.lock {
+  width: 70%;
+  height: 70%;
+  margin-bottom: 5px;
+}
+
+.pa-edit {
+  position: absolute;
+  top: 120px;
+  right: 5px;
+  background-color: rgba(57, 62, 69, 0.2);
+  width: 60px;
+  height: 20px;
+  font-size: 14px;
+  padding: 0 0 0 18px;
+  text-decoration: none;
+  color: white;
+  border-radius: 28px;
+  z-index: 3;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.us.addpa-btn {
+  float: right;
+  background-color: #04570a;
+  border-radius: 28px;
+  border: 1px solid #04570a;
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  width: 70px;
+  height: 20px;
+  padding: 1px 0 0 5px;
+  margin-right: 5px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.us-noinfo{
+  margin-top: 200px;
+  font-size: 30px;
+}
+
+.us.usertab{
+  cursor: pointer;
+}
+
+// ----------------------------------- modal arrow effect ---------------------------------------
+
+
+
+// ------------------------------------- end of userpersonal.css --------------------------------
+
+// ------------------------------------- User following css --------------------------------------
+
+
+
+
+.fl.follow-button {
+  // background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+  border-radius: 28px;
+  border: 1px solid #fc8200;
+  display: inline-block;
+  cursor: pointer;
+  color: black;
+  font-family: Arial;
+  font-size: 10px !important;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fc8200;
+  width: 60px;
+  height: 20px;
+  padding: 1px 0 0 2px;
+  margin-bottom: 5px;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+  &:active {
+    margin-right: 10px;
+  }
+
+}
+
+.fl.followingsbtn{
+  background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+}
+.followersbtn{
+  background-color: white;
+  &:hover{
+    color:white;
+    background-image: linear-gradient(to right, #fe8c00 51%, #f83600 100%);
+  }
+}
+
+.fl.username {
+  font-size: 40px;
+}
+
+.fl.userdiv ul {
+  margin: -10px 0 0 -10px;
+}
+
+
+
+.fl.imgrow {
+  height: auto;
+}
+
+.fl.usercard {
+  width: 200px;
+  height: 100%;
+  background-color: #F2F3F5;
+  position: relative;
+}
+
+.fl.card-img-top {
+  height: 150px !important;
+}
+
+.fl.card-body {
+  font-size: 15px;
+  margin-top: -10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.fl.card-img-top {
+  height: 80px !important;
+  width: 80px;
+  margin: 5px 0 0 60px;
+}
+
+.fl.firstchild {
+  font-size: 30px;
+  color: #4287f5;
+}
+
+.fl.secondchild {
+  margin-top: -20px;
+}
+
+.fl.card-following-btn {
+  margin-bottom: 10px;
+
+}
+
+.carousel-info{
+  position: relative;
+}
+
+#ptitle{
+  margin-bottom: 5px;
+}
+
+#pdescription{
+  margin-top :20px !important;
+}
+.profile-content{
+  min-width: 100%;
+}
+.edit-ava-div{
+  position: relative;
+  width: 200px;
+  height: 150px;
+  overflow: hidden;
+
+}
+.us.ava-edit{
+  object-fit: fill;
+  max-width:100%;
+  height: 100%;
+
+}
+.us.ava-change{
+  position: absolute;
+  bottom: 10px;
+  background-color: white;
+  opacity: 0.5;
+  left:50px;
+  border-radius: 24px;
+  width: 50%;
+  text-decoration: none;
+  color: Black;
+  &:hover{
+    color:blue;
+    cursor: pointer;
+  }
+}
+
+
+
+.edit-title{
+  position: relative;
+  > hr{
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
+
+.edit.mid{
+  position: relative;
+}
+.edit-center{
+  margin:80px 0 0 0;
+  width: 100%;
+
+}
+
+.edit-error{
+  color:red;
+  margin-left:20px;
+}
+
+// -------------------------------------- end of User following css ------------------------------
+
+// -------------------------------------- css for upload photo -----------------------------------
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+// ----- Variable Declarations -----
+
+
+#uploadphoto-btn {
+  position: absolute;
+  top: -1000px;
+}
+#add-symbol{
+  font-size: 80px;
+}
+.photo-upload-preview {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  margin: 0 10px;
+  position: relative;
+  cursor: pointer;
+  background: #f4f4f4;
+  display: table;
+  background-size: cover;
+  background-position: center center;
+  box-shadow: 0 5px 8px rgba(black, 0.35);
+  position: relative;
+  .dashes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed #ddd;
+    opacity: 1;
+  }
+  label {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 30px;
+    color: grey;
+    opacity: 1;
+  }
+
+  #cancel-symbol{
+    z-index: 2;
+    position: absolute;
+    top:2px;
+    right: 10px;
+    color:white;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &.dragging {
+    background-image: none!important;
+    .dashes {
+      animation-duration: 10s;
+      animation-name: spin;
+      animation-iteration-count:infinite;
+      animation-timing-function: linear;
+      opacity: 1!important;
+    }
+    label {
+      opacity: 0.5!important;
+    }
+  }
+  &.has-image {
+    .dashes, label {
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+}
+
+.album-description{
+  min-height: 10rem;
+  max-height: 10rem;
+}
+.thumbnail-div{
+  position: relative;
+}
+.cancel-symbol-thumbnail{
+  position: absolute;
+  top:2px;
+  right: 10px;
+  color:white;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.rowtitle-hr{
+  position: relative;
+  > hr{
+    position: absolute;
+    top:0;
+  }
+}
+
+.noti-row{
+  width: 100%;
+}
+
+.dropdown-menu{
+  width: 300px;
+  white-space: normal;
+  position: relative;
+}
+
+.dropdown-item{
+  font-size:10px;
+  white-space: nowrap;
+
+}
+
+.noti-img{
+  height: 100%;
+  width: 40%;
+  position: absolute;
+  right:1px;
+}
+
+.noti-count{
+  position: absolute;
+  top:0px;
+  right:2px;
+  font-size: 10px;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  color:white;
+}
+
+
+// -------------------------------------- end of css for upload photo

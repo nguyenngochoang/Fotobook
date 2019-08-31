@@ -1,0 +1,15 @@
+<% if @mode == 'photo'%>
+  $(".feeds-row").append('<%= j(render partial: "paginate_photo", locals:{ photos:@photos}) %>')
+  <% if @photos.next_page %>
+    $('.pagination').html("<%= j(paginate @photos)%>")
+  <% else %>
+    $('.pagination').html("")
+  <% end %>
+<%else%>
+  $(".feeds-row").append('<%= j(render partial: "paginate_album", locals:{ albums:@albums}) %>')
+  <% if @albums.next_page %>
+    $('.pagination').html("<%= j(paginate @albums)%>")
+  <% else %>
+    $('.pagination').html("")
+  <% end %>
+<%end%>

@@ -1,0 +1,8 @@
+.col-lg-10.col-12.mid
+  .feeds-container
+    .row.feeds-row
+      - unless @albums.empty?
+        .row.imgrow.mt-5.us.photo.tab.justify-content-center
+          = render partial:'admins/album'
+        .justify-content-center.w-100
+          = paginate @albums

@@ -1,0 +1,13 @@
+- @photos.each do |p|
+  div id="#{p.id}" class="card h-100 us usercard mr-5 thumbnail photo"
+    = image_tag p.attached_image.thumb.url, alt:"Card image cap", class:"us card-img-top img-fluid rounded"
+    - if p.sharing_mode
+      .us.lockdiv.us.rounded-circle.text-center.d-none
+        = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
+    - else
+      .us.lockdiv.us.rounded-circle.text-center
+        = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
+    - if p.photoable.id == current_user.id
+      = link_to t(:edit), edit_photo_path(p), class:'us pa-edit'
+    .us.card-body.text-center = p.description
+    .us.title.text-center.d-none = p.title

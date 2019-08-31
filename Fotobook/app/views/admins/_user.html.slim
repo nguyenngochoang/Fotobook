@@ -1,0 +1,12 @@
+tr
+  th[scope="row"] = index
+  td = user.first_name
+  td = user.last_name
+  td = local_time(user.last_sign_in_at)
+  td data-id="#{user.id}"
+    - unless user.role == 'admin'
+      = link_to t(:edit), edit_admins_user_path(user), class:"btn btn-success mr-2 admin-edit-btn"
+      = link_to t(:delete), admins_user_path(user), method: :delete, data: { confirm: "#{t(:delete_message)}"}, class:"btn btn-danger admin-delete-btn"
+    - else
+      = link_to t(:edit), '', class:"btn btn-success invisible"
+      = link_to t(:delete), '', class:"btn btn-danger invisible"

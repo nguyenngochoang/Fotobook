@@ -1,0 +1,27 @@
+- if followers.any?
+  .row.imgrow.mt-5.container-fluid.us.followers.tab.justify-content-center
+    - followers.includes(albums: [:photos], :photos).each do |follower|
+      .fl.card.h-100.usercard.mr-3.mt-3
+        = link_to (image_tag 'profile/ultra.jpeg', alt:"Sample", class:"fl card-img-top img-fluid rounded-circle"), user_path(follower), method: :get
+        = link_to "#{follower.first_name} #{follower.last_name} ", user_path(follower),  class:"fl card-body text-center font-weight-bolder username guest", method: :get
+        .row
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder= get_all_photos(follower).size
+              p.fl.secondchild = t(:photos_count)
+          .col-lg-6.col-12
+            .text-center
+              p.fl.firstchild.font-weight-bolder= follower.albums.size
+              p.fl.secondchild = t(:albums_count)
+        .fl.text-center.card-following-btn
+          - if check_followings_status(follower, user)
+            = link_to t(:followed), nil, id:follower.id, class:"fl follow-button followingsbtn", onClick:"return false;"
+          - else
+            = link_to t(:not_follow), nil, id:follower.id, class:"fl follow-button followersbtn", onClick:"return false;"
+- else
+  - if @user.id == current_user.id
+    .text-center.us-noinfo.text-black-50
+      p = t '.no_followers'
+  - else
+    .text-center.us-noinfo.text-black-50
+      p = t '.visit_no_followers'
