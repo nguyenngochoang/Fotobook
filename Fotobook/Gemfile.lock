@@ -57,8 +57,9 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-sass (3.2.0.4)
-      sass (~> 3.2)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
     capybara (3.24.0)
@@ -91,7 +92,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.8.0)
     execjs (2.7.0)
-    ffi (1.11.1)
+    ffi (1.11.3)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
@@ -161,7 +162,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rake (12.3.2)
     rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
+    rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.5.1)
     responders (3.0.0)
@@ -233,7 +234,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
-  bootstrap-sass (~> 3.2.0)
+  bootstrap-sass (~> 3.4.1)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
