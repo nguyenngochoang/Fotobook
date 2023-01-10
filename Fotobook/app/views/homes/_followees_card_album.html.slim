@@ -1,0 +1,7 @@
+- if current_user.followees.empty?
+  p.text-black-50.font-weight-bolder.mt-5.mx-auto.no-followees = t :none_followees
+- else
+  - followees_albums.each do |post|
+    = render partial: 'card_album', locals: {post: post}
+  #infinite-scrolling.d-none data-mode="album"
+    = paginate followees_albums, remote: true

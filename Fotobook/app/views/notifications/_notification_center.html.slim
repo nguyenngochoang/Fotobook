@@ -1,0 +1,6 @@
+- if current_user.notifications.any?
+  - noties = current_user.notifications.limit(5)
+  - noties.each do |noti|
+    = render partial: 'notifications/notification', locals: {noti: noti}
+- else
+  = link_to t('.blank_noti'), '', class:'dropdown-item'

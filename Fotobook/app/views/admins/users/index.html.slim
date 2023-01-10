@@ -1,0 +1,14 @@
+.col-lg-10.col-12.mid
+  .feeds-container
+    - unless  @mode =='all' && @users.empty?
+      .row.feeds-row
+          table.table
+            thead
+              tr
+                th = t '.number'
+                th = t '.first_name'
+                th = t '.last_name'
+                th = t '.last_login'
+            tbody
+              - @users.each_with_index do |user, index|
+                = render partial:'admins/user', locals: {user: user, index: index}

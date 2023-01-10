@@ -1,0 +1,9 @@
+.row.noti-row
+  .col-6
+    - if noti.state
+      = link_to "#{noti.liker_name} #{noti.action} your #{noti.target_type}", '', class:'dropdown-item'
+    - else
+      = link_to "#{noti.liker_name} #{noti.action} your #{noti.target_type}", '', class:'dropdown-item font-weight-bolder'
+  .col-6.text-right
+    = image_tag Photo.find(noti.target_id).attached_image.thumb.url, alt:"Card image cap", class:"us noti-img firstimg"
+.dropdown-divider

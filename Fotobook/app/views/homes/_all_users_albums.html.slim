@@ -1,0 +1,5 @@
+- albums.each do |post|
+  = render partial: 'card_album', locals: {post: post}
+#infinite-scrolling.d-none data-mode="album"
+  = paginate albums, remote: true
+

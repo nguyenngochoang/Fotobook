@@ -1,0 +1,22 @@
+- albums.includes(:photos).each do |album|
+  .card.h-100.us.usercard.mr-5
+    - @current_album_photos = album.photos
+    div id="#{album.id}" class="us thumbnail"
+      - attached_img = @current_album_photos[-1].attached_image.thumb.url
+      = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded firstimg"
+      = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded secondimg"
+      = image_tag attached_img, alt:"Card image cap", class:"us card-img-top img-fluid  rounded thirdimg"
+      .us.rounded-circle.photonums.text-center
+        ="#{@current_album_photos.size} Photos"
+      - if album.sharing_mode
+        .lockdiv.us.rounded-circle.text-center.d-none
+          = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
+      - else
+        .us.lockdiv.us.rounded-circle.text-center
+          = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
+      .us.lockdiv.us.rounded-circle.text-center.d-none
+        = image_tag 'profile/lock.png', alt:"lock", class:"us lock"
+      - if album.user_id == current_user.id
+        = link_to t(:edit),edit_album_path(album), class:'us pa-edit'
+      .us.card-body.text-center = album.title
+
